@@ -1,0 +1,63 @@
+<x-guest-layout>
+    @include('layouts.auth-header')
+
+    <section class="absolute right-0 top-48 rounded-xl border border-zinc-200 p-8 pr-48 text-primary shadow-xl">
+        <div class="w-[300px]">
+            <h1 class="text-center font-semibold">SIAKAD SMA N 1 JATI AGUNG</h1>
+            <h2 class="text-center">Masuk</h2>
+
+            <x-auth-session-status class="my-4" :status="session('status')" />
+
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+
+                <!-- Email Address -->
+                <div>
+                    <x-input-label for="email" :value="__('Email')" />
+                    <x-text-input
+                        id="email"
+                        class="block w-full"
+                        type="email"
+                        name="email"
+                        :value="old('email')"
+                        autofocus
+                        placeholder="Masukan email"
+                    />
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                </div>
+
+                <!-- Password -->
+                <div class="mt-4">
+                    <x-input-label for="password" :value="__('Kata Sandi')" />
+
+                    <x-text-input
+                        id="password"
+                        class="block w-full"
+                        type="password"
+                        name="password"
+                        required
+                        placeholder="Masukan Kata Sandi"
+                    />
+
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+
+                    <!--checkbox untuk tampilkan password-->
+                    <div class="mt-2 flex items-center">
+                        <input type="checkbox" class="h-4 w-4 border-2 border-primary text-primary" />
+                        <label for="show-password" class="ml-2 text-sm text-gray-600">Tampilkan Kata Sandi</label>
+                    </div>
+                </div>
+
+                <div class="mt-4 flex flex-col space-y-2 text-center">
+                    <button class="rounded-lg bg-primary py-1 text-center font-semibold text-white">Masuk</button>
+                    <span class="text-sm">atau</span>
+                    <a class="rounded-md text-sm text-red-500 underline" href="{{ route('password.request') }}">
+                        {{ __('Reset Kata sandi') }}
+                    </a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    @include('layouts.auth-footer')
+</x-guest-layout>

@@ -1,0 +1,62 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\OptionCategory;
+use App\Services\OptionService;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class OptionSeeder extends Seeder
+{
+
+    public function __construct(protected OptionService $optionService) {}
+
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        // jenis kelamin
+        OptionCategory::insert([
+            [
+                'key' => 'jenis_kelamin',
+                'name' => 'Jenis Kelamin'
+            ],
+            [
+                'key' => 'agama',
+                'name' => 'Agama'
+            ],
+            [
+                'key' => 'status_keluarga',
+                'name' => 'Status Keluarga'
+            ]
+        ]);
+
+        $jenisKelamin = $this->optionService->getOptionCategoryKey('jenis_kelamin');
+
+        $jenisKelamin->options()->createMany([
+            ['name' => 'L'],
+            ['name' => 'P'],
+        ]);
+
+        $agama = $this->optionService->getOptionCategoryKey('agama');
+
+        $agama->options()->createMany([
+            ['name' => 'Islam'],
+            ['name' => 'Kristen'],
+            ['name' => 'Katolik'],
+            ['name' => 'Hindu'],
+            ['name' => 'Budha'],
+            ['name' => 'Konghucu'],
+        ]);
+
+        $statusKeluarga = $this->optionService->getOptionCategoryKey('status_keluarga');
+
+        $statusKeluarga->options()->createMany([
+            ['name' => 'Anak Kandung'],
+            ['name' => 'Anak Tiri'],
+            ['name' => 'Anak Angkat'],
+        ]);
+    }
+}
