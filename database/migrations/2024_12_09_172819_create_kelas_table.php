@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('nomor');
-            $table->string('kelas');
+            $table->foreignId('tingkat_kelas_id')->constrained('options');
             $table->foreignId('tahun_akademik_id')->constrained('tahun_akademik');
             $table->timestamps();
         });

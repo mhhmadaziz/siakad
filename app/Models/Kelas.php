@@ -10,8 +10,7 @@ class Kelas extends Model
 
     protected $fillable = [
         'name',
-        'nomor',
-        'kelas',
+        'tingkat_kelas_id',
         'tahun_akademik_id',
     ];
 
@@ -25,8 +24,8 @@ class Kelas extends Model
         return $this->hasMany(MataPelajaran::class);
     }
 
-    public function getShortNameAttribute()
+    public function tingkatKelas()
     {
-        return $this->kelas . '-' . $this->nomor;
+        return $this->belongsTo(Option::class, 'tingkat_kelas_id');
     }
 }

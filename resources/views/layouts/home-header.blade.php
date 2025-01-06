@@ -17,17 +17,17 @@
     <!--menu-->
     <section class="flex items-center gap-4">
         <ul class="flex gap-8">
-            @foreach ($homeMenu as $menu)
+            @foreach ($menuData->home as $menu)
                 <li>
-                    <a href="{{ route($menu['route']) }}" class="flex items-center gap-2 hover:underline">
-                        <i class="{{ $menu['icon'] }} text-sm"></i>
-                        {{ $menu['label'] }}
+                    <a href="{{ route($menu->route) }}" class="flex items-center gap-2 hover:underline">
+                        <i class="{{ $menu->icon }} text-sm"></i>
+                        {{ $menu->label }}
                     </a>
                 </li>
             @endforeach
         </ul>
         <a href="{{ route('login') }}">
-            <button class="bg-yellowCustom rounded px-4 py-1 text-blue-800">
+            <button class="rounded bg-yellowCustom px-4 py-1 text-blue-800">
                 <i class="fa-solid fa-right-to-bracket"></i>
                 Masuk
             </button>

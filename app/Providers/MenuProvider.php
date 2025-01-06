@@ -4,19 +4,13 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use App\Services\MenuService;
 
 class MenuProvider extends ServiceProvider
 {
     /**
      * Register services.
      */
-    public function register(): void
-    {
-        $this->app->singleton(MenuService::class, function () {
-            return new MenuService();
-        });
-    }
+    public function register(): void {}
 
     /**
      * Bootstrap services.
@@ -24,10 +18,10 @@ class MenuProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('*', function ($view) {
-            $menuService = app(MenuService::class);
+            $menuJson = file_get_contents(base_path('resources/menu/menu.json'));
+            $menuData = json_decode($menuJson);
             $view->with([
-                'dashboardMenu' => $menuService->dashboardMenu(),
-                'homeMenu' => $menuService->homeMenu(),
+                'menuData' => $menuData
             ]);
         });
     }

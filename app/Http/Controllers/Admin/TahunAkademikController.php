@@ -18,7 +18,6 @@ class TahunAkademikController extends Controller
      */
     public function index()
     {
-
         $tahunAkademik = $this->tahunAkademikService->getAllTahunAkademik();
 
         return view('pages.admin.tahun-akademik.index', compact('tahunAkademik'));
@@ -29,7 +28,8 @@ class TahunAkademikController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('pages.admin.tahun-akademik.create');
     }
 
     /**

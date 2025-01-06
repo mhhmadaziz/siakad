@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Services\OptionService;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
@@ -15,9 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
         $this->call(OptionSeeder::class);
-
 
         $admin = Role::create(['name' => 'admin']);
         $guru = Role::create(['name' => 'guru']);
@@ -57,7 +54,6 @@ class DatabaseSeeder extends Seeder
         });
 
         $this->call([
-            MenuSeeder::class,
             TahunAkademikSeeder::class,
             KelasSeeder::class,
             MataPelajaranSeeder::class,

@@ -28,7 +28,6 @@ class TahunAkademikSeriveProvider extends ServiceProvider
 
             $view->with([
                 'currentTahunAkademik' => $tahunAkademikService->getCurrentTahunAkademik(),
-                'upcomingTahunAkademik' => $tahunAkademikService->getUpcomingTahunAkademik()
             ]);
         });
     }

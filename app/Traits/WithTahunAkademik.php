@@ -9,6 +9,7 @@ trait WithTahunAkademik
     public $currentTahunAkademik;
     public $tahunAkademikId;
 
+
     public function bootWithTahunAkademik()
     {
         $currentTahunAkademik = app(TahunAkademikService::class)->getCurrentTahunAkademik();

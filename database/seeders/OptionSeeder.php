@@ -30,6 +30,10 @@ class OptionSeeder extends Seeder
             [
                 'key' => 'status_keluarga',
                 'name' => 'Status Keluarga'
+            ],
+            [
+                'key' => 'tingkat_kelas',
+                'name' => 'Tingkat Kelas'
             ]
         ]);
 
@@ -57,6 +61,13 @@ class OptionSeeder extends Seeder
             ['name' => 'Anak Kandung'],
             ['name' => 'Anak Tiri'],
             ['name' => 'Anak Angkat'],
+        ]);
+
+        $tingkatKelas = $this->optionService->getOptionCategoryKey('tingkat_kelas');
+        $tingkatKelas->options()->createMany([
+            ['name' => 'X'],
+            ['name' => 'XI'],
+            ['name' => 'XII'],
         ]);
     }
 }

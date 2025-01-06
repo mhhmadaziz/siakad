@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Cache;
 
 class TahunAkademikService
 {
-
     public function __construct() {}
 
     public function getCurrentTahunAkademik()
@@ -20,22 +19,6 @@ class TahunAkademikService
                 return TahunAkademik::where('mulai', '<=', $sekarang)
                     ->where('selesai', '>=', $sekarang)
                     ->first() ?? TahunAkademik::query()->latest()->first();
-            }
-        );
-    }
-
-    public function getUpcomingTahunAkademik()
-    {
-        return Cache::remember(
-            'upcoming_tahun_akademik',
-            3600,
-            function () {
-                $sekarang = now();
-                $currentTahunAkademik = $this->getCurrentTahunAkademik();
-                return TahunAkademik::query()
-                    ->where('mulai', '>', $sekarang)
-                    ->whereNot('id', $currentTahunAkademik->id)
-                    ->get();
             }
         );
     }

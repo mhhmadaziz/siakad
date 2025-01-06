@@ -1,0 +1,106 @@
+{
+    "dashboard": [
+        {
+            "label": "Dashboard",
+            "icon": "fa-solid fa-house",
+            "route": "admin.dashboard",
+            "role": ["admin"],
+            "slug": ["admin.dashboard"]
+        },
+        {
+            "label": "Tahun Ajaran",
+            "icon": "fa-solid fa-graduation-cap",
+            "route": "admin.tahun-akademik.index",
+            "role": ["admin"],
+            "slug": [
+                "admin.tahun-akademik.index",
+                "admin.tahun-akademik.create",
+                "admin.tahun-akademik.edit",
+                "admin.tahun-akademik.show",
+                "admin.tahun-akademik.kelas"
+            ]
+        },
+        {
+            "label": "Guru",
+            "icon": "fa-solid fa-person-chalkboard",
+            "route": "admin.guru.index",
+            "role": ["admin"],
+            "slug": ["admin.guru.index"]
+        },
+        {
+            "label": "Siswa",
+            "icon": "fa-solid fa-person-chalkboard",
+            "route": "admin.siswa.index",
+            "role": ["admin"],
+            "slug": ["admin.siswa.index", "admin.siswa.show"]
+        },
+        {
+            "label": "Kelas",
+            "icon": "fa-solid fa-door-closed",
+            "route": "admin.kelas.index",
+            "role": ["admin"],
+            "slug": ["admin.kelas.index"]
+        },
+        {
+            "label": "Mata Pelajaran",
+            "icon": "fa-solid fa-door-closed",
+            "route": "admin.kelas.index",
+            "role": ["admin"],
+            "slug": []
+        },
+        {
+            "label": "Kehadiran Siswa",
+            "icon": "fa-solid fa-door-closed",
+            "route": "admin.kelas.index",
+            "role": ["admin"],
+            "slug": []
+        },
+        {
+            "label": "Modul Belajar",
+            "icon": "fa-solid fa-door-closed",
+            "route": "admin.kelas.index",
+            "role": ["admin"],
+            "slug": []
+        },
+        {
+            "label": "Formulir Mata Pelajaran Pilihan",
+            "icon": "fa-solid fa-door-closed",
+            "route": "admin.kelas.index",
+            "role": ["admin"],
+            "slug": []
+        },
+        {
+            "label": "Galeri dan Konten",
+            "icon": "fa-solid fa-door-closed",
+            "route": "admin.kelas.index",
+            "role": ["admin"],
+            "slug": []
+        }
+    ],
+    "home": [
+        {
+            "label": "Beranda",
+            "icon": "fas fa-home",
+            "route": "home.index",
+            "slug": ["home.index"]
+        },
+        {
+            "label": "Galeri",
+            "icon": "fas fa-images",
+            "route": "home.galeri",
+            "slug": ["home.galeri"]
+        },
+        {
+            "label": "Kalender",
+            "icon": "fas fa-calendar-alt",
+            "route": "home.kalender",
+            "slug": ["home.kalender"]
+        },
+        {
+            "label": "PPDB",
+            "icon": "fas fa-school",
+            "route": "home.ppdb",
+            "slug": ["home.ppdb"]
+        }
+    ]
+}

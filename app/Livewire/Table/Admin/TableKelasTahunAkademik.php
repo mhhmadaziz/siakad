@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class TableKelasTahunAkademik extends BaseTable
 {
-    public $actionView = 'components.actions.admin.table-guru-action';
+    public $actionView = 'components.actions.admin.table-kelas-tahun-akademik-action';
 
     public TahunAkademik $tahunAkademik;
 
@@ -25,12 +25,15 @@ class TableKelasTahunAkademik extends BaseTable
             });
     }
 
+    public function mount(TahunAkademik $tahunAkademik)
+    {
+        $this->tahunAkademik = $tahunAkademik;
+    }
+
     public function columns(): array
     {
         return [
-            Column::make('kelas', 'Kelas'),
-            Column::make('nomor', 'Nomor Kelas'),
-            Column::make('name', 'Nama Kelas'),
+            Column::make('name', 'Kelas'),
             Column::make('id', ' ')->component('columns.actions.admin.aksi-table-kelas-tahun-akademik')
         ];
     }
