@@ -3,10 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\Siswa;
+use App\Service\MataPelajaranService;
+use App\Services\KelasService;
+use App\Services\OptionService;
+use App\Services\TahunAkademikService;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
 {
+
+    public function __construct(
+        protected KelasService $kelasService,
+        protected OptionService $optionService,
+        protected TahunAkademikService $tahunAkademikService,
+        protected MataPelajaranService $mataPelajaranService,
+    ) {}
+
+
+
     /**
      * Display a listing of the resource.
      */
@@ -20,7 +37,9 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        $tingkatKelas = $this->optionService->getSelectOptionsByCategoryKey('tingkat_kelas');
+
+        return view('pages.admin.kelas.create', compact('tingkatKelas'));
     }
 
     /**
@@ -28,15 +47,29 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'tingkat_kelas_id' => 'required',
+        ]);
+
+        $validated['tahun_akademik_id'] = $this->tahunAkademikService->getCurrentTahunAkademik()->id;
+
+        try {
+            $this->kelasService->create($validated);
+            return redirect()->route('admin.kelas.index')->with('success', 'Kelas berhasil ditambahkan');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Kelas gagal ditambahkan');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Kelas $kelas)
     {
-        //
+
+        return view('pages.admin.kelas.show', compact('kelas'));
     }
 
     /**
@@ -61,5 +94,44 @@ class KelasController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function tambahSiswa(Kelas $kelas)
+    {
+        return view('pages.admin.kelas.tambah-siswa', compact('kelas'));
+    }
+
+    public function tambahMataPelajaran(Kelas $kelas)
+    {
+        $guru = Guru::all()
+            ->map(
+                function ($item) {
+                    return (object) [
+                        'value' => $item->id,
+                        'label' => $item->user->name,
+                    ];
+                }
+            );
+
+        return view('pages.admin.kelas.tambah-mata-pelajaran', compact('kelas', 'guru'));
+    }
+
+    public function storeMataPelajaran(Request $request, Kelas $kelas)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'guru_id' => 'required',
+        ]);
+
+        $validated['kelas_id'] = $kelas->id;
+
+        try {
+            $this->mataPelajaranService->create($validated);
+
+            return redirect()->route('admin.kelas.show', $kelas->id)->with('success', 'Mata Pelajaran berhasil ditambahkan');
+        } catch (\Throwable $th) {
+
+            return redirect()->back()->with('error', 'Mata Pelajaran gagal ditambahkan ' . $th->getMessage());
+        }
     }
 }

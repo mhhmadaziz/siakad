@@ -39,14 +39,14 @@
             "icon": "fa-solid fa-door-closed",
             "route": "admin.kelas.index",
             "role": ["admin"],
-            "slug": ["admin.kelas.index"]
+            "slug": ["admin.kelas.index", "admin.kelas.show", "admin.kelas.create", "admin.kelas.edit"]
         },
         {
             "label": "Mata Pelajaran",
             "icon": "fa-solid fa-door-closed",
-            "route": "admin.kelas.index",
+            "route": "admin.mata-pelajaran.index",
             "role": ["admin"],
-            "slug": []
+            "slug": ["admin.mata-pelajaran.index", "admin.mata-pelajaran.show"]
         },
         {
             "label": "Kehadiran Siswa",

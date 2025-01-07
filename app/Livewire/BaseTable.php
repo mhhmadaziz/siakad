@@ -18,6 +18,10 @@ abstract class BaseTable extends Component
 
     public $actionView = '';
 
+    public $numbering = true;
+
+    public $checkbox = false;
+
     public function updatedSearch()
     {
         $this->resetPage();
@@ -32,14 +36,35 @@ abstract class BaseTable extends Component
     #[Computed()]
     public function data()
     {
-        return $this->query()
-            ->when($this->search, function ($query) {
-                $query->where(function ($query) {
-                    foreach ($this->searchColumns as $column) {
+
+        $query = $this->query();
+
+        if ($this->search !== '') {
+            $query->where(function ($query) {
+                foreach ($this->searchColumns as $column) {
+                    if (str_contains($column, '.')) {
+                        $relationship = explode('.', $column);
+
+                        // get last element of array, then get all element except the last element
+                        $lastElement = end($relationship);
+                        array_pop($relationship);
+
+                        // gabungkan semua element array yang sudah dihilangkan last element dengan sambungkan dengan titik
+                        $relationship = implode('.', $relationship);
+
+                        // cari data yang memiliki relasi dengan table lain
+                        $query->orWhereHas($relationship, function ($query) use ($lastElement) {
+                            $query->where($lastElement, 'like', '%' . $this->search . '%');
+                        });
+                    } else {
                         $query->orWhere($column, 'like', '%' . $this->search . '%');
                     }
-                });
-            })
+                }
+            });
+        }
+
+
+        return $query
             ->paginate($this->perPage);
     }
 

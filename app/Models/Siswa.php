@@ -20,7 +20,6 @@ class Siswa extends Model
         'tgl_masuk',
         'diterima_kelas',
         'status',
-
         'nama_ayah',
         'nama_ibu',
         'alamat_orang_tua',
@@ -43,5 +42,15 @@ class Siswa extends Model
     public function statusKeluarga()
     {
         return $this->belongsTo(Option::class, 'status_keluarga_id');
+    }
+
+    public function kelas()
+    {
+        return $this->belongsToMany(Kelas::class, 'kelas_siswa', 'siswa_id', 'kelas_id');
+    }
+
+    public function kelasSiswa()
+    {
+        return $this->hasMany(KelasSiswa::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\TahunAkademikService;
 use Illuminate\Database\Eloquent\Model;
 
 class TahunAkademik extends Model

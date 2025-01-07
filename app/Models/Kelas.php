@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Services\TahunAkademikService;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Kelas extends Model
@@ -27,5 +29,41 @@ class Kelas extends Model
     public function tingkatKelas()
     {
         return $this->belongsTo(Option::class, 'tingkat_kelas_id');
+    }
+
+    public function siswas()
+    {
+        return $this->belongsToMany(Siswa::class, 'kelas_siswa', 'kelas_id', 'siswa_id');
+    }
+
+    public function kelasSiswa()
+    {
+        return $this->hasMany(KelasSiswa::class);
+    }
+
+
+    public function scopeCurrentTahunAkademik(Builder $query): void
+    {
+        $query->where('tahun_akademik_id', app(TahunAkademikService::class)->getCurrentTahunAkademik()->id);
+    }
+
+
+    public function getFullNameAttribute()
+    {
+        return $this->tingkatKelas->name . '-' . $this->name;
+    }
+
+    public function getSiswaPerempuanAttribute()
+    {
+        return $this->siswas()->whereHas('user.jenisKelamin', function ($q) {
+            $q->where('name', 'P');
+        })->count();
+    }
+
+    public function getSiswaLakiLakiAttribute()
+    {
+        return $this->siswas()->whereHas('user.jenisKelamin', function ($q) {
+            $q->where('name', 'L');
+        })->count();
     }
 }

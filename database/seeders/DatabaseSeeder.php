@@ -60,7 +60,6 @@ class DatabaseSeeder extends Seeder
             JadwalMataPelajaranSeeder::class,
         ]);
 
-        // clear all cache
         cache()->flush();
     }
 }

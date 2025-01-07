@@ -26,6 +26,12 @@ Route::group(
         Route::resource('siswa', App\Http\Controllers\Admin\SiswaController::class);
         Route::resource('jadwal-mata-pelajaran', App\Http\Controllers\Admin\JadwalMataPelajaranController::class);
         Route::resource('modul-pembelajaran', App\Http\Controllers\Admin\ModulPembelajaranController::class);
+        Route::resource('mata-pelajaran', App\Http\Controllers\Admin\MataPelajaranController::class);
+
+
+        Route::get('kelas/{kelas}/tambah-siswa', [App\Http\Controllers\Admin\KelasController::class, 'tambahSiswa'])->name('kelas.siswa.create');
+        Route::get('kelas/{kelas}/tambah-mata-pelajaran', [App\Http\Controllers\Admin\KelasController::class, 'tambahMataPelajaran'])->name('kelas.mata-pelajaran.create');
+        Route::post('kelas/{kelas}/tambah-mata-pelaajaran', [App\Http\Controllers\Admin\KelasController::class, 'storeMataPelajaran'])->name('kelas.mata-pelajaran.store');
         Route::resource('kelas', App\Http\Controllers\Admin\KelasController::class)->parameter('kelas', 'kelas');
     }
 );
