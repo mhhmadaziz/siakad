@@ -11,9 +11,9 @@ class JadwalMataPelajaran extends Model
 
     protected $fillable = [
         'mata_pelajaran_id',
-        'hari',
         'jam_mulai',
         'jam_selesai',
+        'hari_id',
     ];
 
     public function mataPelajaran()
@@ -21,8 +21,18 @@ class JadwalMataPelajaran extends Model
         return $this->belongsTo(MataPelajaran::class);
     }
 
+    public function hari()
+    {
+        return $this->belongsTo(Option::class, 'hari_id');
+    }
+
+    protected function formatTime($time)
+    {
+        return date('H:i', strtotime($time));
+    }
+
     public function getJamAttribute()
     {
-        return $this->jam_mulai . ' - ' . $this->jam_selesai;
+        return $this->formatTime($this->jam_mulai) . ' - ' . $this->formatTime($this->jam_selesai);
     }
 }

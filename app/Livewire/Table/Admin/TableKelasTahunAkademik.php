@@ -18,11 +18,14 @@ class TableKelasTahunAkademik extends BaseTable
 
     public function query(): Builder
     {
+        $this->perPage = 1000;
         return Kelas::query()
             ->with(['tahunAkademik'])
+            ->withCount(['siswas'])
             ->whereHas('tahunAkademik', function ($query) {
                 $query->where('id', $this->tahunAkademik->id);
-            });
+            })
+            ->latest();
     }
 
     public function mount(TahunAkademik $tahunAkademik)
@@ -33,7 +36,10 @@ class TableKelasTahunAkademik extends BaseTable
     public function columns(): array
     {
         return [
-            Column::make('name', 'Kelas'),
+            Column::make('fullName', 'Kelas'),
+            Column::make('siswas_count', 'Jumlah Siswa'),
+            Column::make('siswaLakiLaki', 'Laki Laki'),
+            Column::make('siswaPerempuan', 'Perempuan'),
             Column::make('id', ' ')->component('columns.actions.admin.aksi-table-kelas-tahun-akademik')
         ];
     }

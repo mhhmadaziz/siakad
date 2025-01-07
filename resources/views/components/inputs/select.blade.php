@@ -11,6 +11,7 @@
     value="{{ old($name, $value) }}"
     {{ $required ? 'required' : '' }}
     {{ $disabled ? 'disabled' : '' }}
+    {{ $attributes }}
 >
     @foreach ($options as $option)
         <option value="{{ $option->value }}" {{ $option->label == $value ? 'selected' : '' }}>

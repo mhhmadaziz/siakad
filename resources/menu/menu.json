@@ -2,7 +2,7 @@
     "dashboard": [
         {
             "label": "Dashboard",
-            "icon": "fa-solid fa-house",
+            "icon": "fa-solid fa-border-all",
             "route": "admin.dashboard",
             "role": ["admin"],
             "slug": ["admin.dashboard"]
@@ -29,7 +29,7 @@
         },
         {
             "label": "Siswa",
-            "icon": "fa-solid fa-person-chalkboard",
+            "icon": "fa-solid fa-user-graduate",
             "route": "admin.siswa.index",
             "role": ["admin"],
             "slug": ["admin.siswa.index", "admin.siswa.show"]
@@ -43,35 +43,35 @@
         },
         {
             "label": "Mata Pelajaran",
-            "icon": "fa-solid fa-door-closed",
+            "icon": "fa-solid fa-calendar-days",
             "route": "admin.mata-pelajaran.index",
             "role": ["admin"],
             "slug": ["admin.mata-pelajaran.index", "admin.mata-pelajaran.show"]
         },
         {
             "label": "Kehadiran Siswa",
-            "icon": "fa-solid fa-door-closed",
+            "icon": "fa-solid fa-users-rectangle",
             "route": "admin.kelas.index",
             "role": ["admin"],
             "slug": []
         },
         {
             "label": "Modul Belajar",
-            "icon": "fa-solid fa-door-closed",
+            "icon": "fa-solid fa-book",
             "route": "admin.kelas.index",
             "role": ["admin"],
             "slug": []
         },
         {
             "label": "Formulir Mata Pelajaran Pilihan",
-            "icon": "fa-solid fa-door-closed",
+            "icon": "fa-solid fa-file",
             "route": "admin.kelas.index",
             "role": ["admin"],
             "slug": []
         },
         {
             "label": "Galeri dan Konten",
-            "icon": "fa-solid fa-door-closed",
+            "icon": "fa-solid fa-photo-film",
             "route": "admin.kelas.index",
             "role": ["admin"],
             "slug": []

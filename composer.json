@@ -11,7 +11,8 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
         "predis/predis": "^2.3",
-        "spatie/laravel-permission": "^6.10"
+        "spatie/laravel-permission": "^6.10",
+        "wire-elements/modal": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",

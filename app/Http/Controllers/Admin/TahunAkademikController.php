@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kelas;
 use App\Models\TahunAkademik;
 use App\Services\TahunAkademikService;
 use Illuminate\Http\Request;
@@ -51,6 +52,11 @@ class TahunAkademikController extends Controller
     public function kelas(TahunAkademik $tahunAkademik)
     {
         return view('pages.admin.tahun-akademik.kelas.index', compact('tahunAkademik'));
+    }
+
+    public function jadwalMataPelajaran(TahunAkademik $tahunAkademik, Kelas $kelas)
+    {
+        return view('pages.admin.tahun-akademik.kelas.jadwal', compact('tahunAkademik', 'kelas'));
     }
 
     /**

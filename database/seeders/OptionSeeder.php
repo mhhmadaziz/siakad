@@ -34,6 +34,10 @@ class OptionSeeder extends Seeder
             [
                 'key' => 'tingkat_kelas',
                 'name' => 'Tingkat Kelas'
+            ],
+            [
+                'key' => 'hari',
+                'name' => 'Hari'
             ]
         ]);
 
@@ -68,6 +72,17 @@ class OptionSeeder extends Seeder
             ['name' => 'X'],
             ['name' => 'XI'],
             ['name' => 'XII'],
+        ]);
+
+        $hari = $this->optionService->getOptionCategoryKey('hari');
+        $hari->options()->createMany([
+            ['name' => 'Senin'],
+            ['name' => 'Selasa'],
+            ['name' => 'Rabu'],
+            ['name' => 'Kamis'],
+            ['name' => 'Jumat'],
+            ['name' => 'Sabtu'],
+            ['name' => 'Minggu'],
         ]);
     }
 }

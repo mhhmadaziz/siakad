@@ -19,6 +19,7 @@ Route::group(
         Route::prefix('tahun-akademik')->group(
             function () {
                 Route::get('{tahun_akademik}/kelas', [App\Http\Controllers\Admin\TahunAkademikController::class, 'kelas'])->name('tahun-akademik.kelas');
+                Route::get('{tahun_akademik}/kelas/{kelas}/jadwal', [App\Http\Controllers\Admin\TahunAkademikController::class, 'jadwalMataPelajaran'])->name('tahun-akademik.kelas.jadwal');
             }
         );
 

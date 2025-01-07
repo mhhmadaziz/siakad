@@ -37,6 +37,7 @@
         @include('layouts.app-footer')
 
         @livewireScripts
+        @livewire('wire-elements-modal')
         @stack('scripts')
     </body>
 </html>
