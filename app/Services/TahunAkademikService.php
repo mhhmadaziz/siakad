@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\TahunAkademik;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class TahunAkademikService
 {
@@ -32,5 +33,23 @@ class TahunAkademikService
                 return TahunAkademik::query()->orderBy('mulai', 'desc')->get();
             }
         );
+    }
+
+    public function create(array $data)
+    {
+        return DB::transaction(function () use ($data) {
+            $tahunAkademik = TahunAkademik::create($data);
+            Cache::forget('all_tahun_akademik');
+            Cache::forget('current_tahun_akademik');
+            return $tahunAkademik;
+        });
+    }
+
+    public function createKelas(TahunAkademik $tahunAkademik, array $data)
+    {
+        return DB::transaction(function () use ($tahunAkademik, $data) {
+            $kelas = $tahunAkademik->kelas()->create($data);
+            return $kelas;
+        });
     }
 }

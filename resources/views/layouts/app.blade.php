@@ -30,6 +30,10 @@
             @include('layouts.app-sidebar')
 
             <main class="min-h-full w-full bg-white">
+                <div class="mx-auto w-full max-w-screen-xl px-16 pt-4">
+                    {{ Breadcrumbs::render() }}
+                    <x-alert />
+                </div>
                 {{ $slot }}
             </main>
         </div>

@@ -11,22 +11,18 @@ class Siswa extends Model
     protected $fillable = [
         'user_id',
         'nisn',
-        'status_keluarga_id',
-        'ttl',
-        'anak_ke',
+        'nipd',
+        'tempat_lahir',
+        'tanggal_lahir',
         'agama_id',
         'alamat',
-        'asal_sekolah',
-        'tgl_masuk',
-        'diterima_kelas',
-        'status',
+        'rt',
+        'rw',
+        'dusun',
+        'kelurahan',
+        'kecamatan',
         'nama_ayah',
-        'nama_ibu',
-        'alamat_orang_tua',
-        'pekerjaan_ayah',
-        'pekerjaan_ibu',
-        'nomor_telepon_ayah',
-        'nomor_telepon_ibu',
+        'nama_ibu'
     ];
 
     public function user()
@@ -37,11 +33,6 @@ class Siswa extends Model
     public function agama()
     {
         return $this->belongsTo(Option::class, 'agama_id');
-    }
-
-    public function statusKeluarga()
-    {
-        return $this->belongsTo(Option::class, 'status_keluarga_id');
     }
 
     public function kelas()

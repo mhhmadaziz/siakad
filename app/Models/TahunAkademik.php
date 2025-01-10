@@ -14,4 +14,9 @@ class TahunAkademik extends Model
         'mulai',
         'selesai',
     ];
+
+    public function kelas()
+    {
+        return $this->hasMany(Kelas::class);
+    }
 }

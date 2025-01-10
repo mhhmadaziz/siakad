@@ -66,4 +66,20 @@ class Kelas extends Model
             $q->where('name', 'L');
         })->count();
     }
+
+    public function getJadwalMataPelajaranAttribute()
+    {
+        return $this->mataPelajarans()->with('jadwalMataPelajarans')->get();
+    }
+
+
+    public function getJadwalMataPelajaransCountAttribute()
+    {
+        return $this->mataPelajarans()->with('jadwalMataPelajarans')
+            ->get()
+            ->map(function ($mataPelajaran) {
+                return $mataPelajaran->jadwalMataPelajarans->count();
+            })
+            ->sum();
+    }
 }

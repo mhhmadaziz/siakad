@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\OptionService;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class OptionServiceProvider extends ServiceProvider
@@ -22,6 +23,9 @@ class OptionServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer('*', function ($view) {
+            $optionService = app(OptionService::class);
+            $view->with('optionService', $optionService);
+        });
     }
 }

@@ -16,14 +16,19 @@ class GridJadwalMataPelajaran extends Component
     public function jadwalMataPelajarans()
     {
 
-        $result = JadwalMataPelajaran::query()
-            ->whereHas('mataPelajaran', function ($q) {
-                $q->where('kelas_id', $this->kelas->id);
-            })
-            ->orderBy('hari_id')
-            ->orderBy('jam_mulai')
-            ->get()
-            ->groupBy(fn($jadwal) => $jadwal->hari->name);
+        $hari = app(OptionService::class)->getOptionsByCategoryKey('hari');
+
+        $result = collect($hari)->mapWithKeys(function ($value, $key) {
+            return [
+                $value => JadwalMataPelajaran::query()
+                    ->whereHas('mataPelajaran', function ($query) {
+                        $query->where('kelas_id', $this->kelas->id);
+                    })
+                    ->where('hari_id', $key)
+                    ->orderBy('jam_mulai')
+                    ->get()
+            ];
+        });
 
         return $result;
     }

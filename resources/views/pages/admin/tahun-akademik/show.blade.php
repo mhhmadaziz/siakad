@@ -21,7 +21,9 @@
                     <div class="flex justify-end gap-2 text-white">
                         <button class="rounded-md bg-black px-4 py-2">UNDUH</button>
                         <button class="rounded-md bg-yellowCustom px-4 py-2 text-black">UNGGAH BARU</button>
-                        <button class="rounded-md bg-primary px-4 py-2">LIHAT</button>
+                        <a href="{{ route('admin.tahun-akademik.kalender-akademik', $tahunAkademik->id) }}">
+                            <button class="rounded-md bg-primary px-4 py-2">LIHAT</button>
+                        </a>
                     </div>
                 </div>
 

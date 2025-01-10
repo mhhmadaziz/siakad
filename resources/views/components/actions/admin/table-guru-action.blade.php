@@ -1,4 +1,3 @@
-<button class="bg-green-500 p-2 font-semibold text-white">
-    <i class="fa-solid fa-user-plus"></i>
-    TAMBAH
-</button>
+<a href="{{ route('admin.guru.create') }}">
+    <button class="rounded-md bg-black p-2 px-4 font-semibold text-white">Tambah Guru</button>
+</a>

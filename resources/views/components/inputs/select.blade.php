@@ -4,18 +4,22 @@
     'value' => '',
     'required' => false,
     'disabled' => false,
+    'empty' => 'Tidak Ada Data',
 ])
 <select
     class="w-full rounded disabled:opacity-50"
     name="{{ $name }}"
-    value="{{ old($name, $value) }}"
     {{ $required ? 'required' : '' }}
     {{ $disabled ? 'disabled' : '' }}
     {{ $attributes }}
 >
-    @foreach ($options as $option)
-        <option value="{{ $option->value }}" {{ $option->label == $value ? 'selected' : '' }}>
+    @forelse ($options as $option)
+        <option value="{{ $option->value }}" {{ $option->value == $value ? 'selected' : '' }}>
             {{ $option->label }}
         </option>
-    @endforeach
+    @empty
+        <option value="">
+            {{ $empty }}
+        </option>
+    @endforelse
 </select>

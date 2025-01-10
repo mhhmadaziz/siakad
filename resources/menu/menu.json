@@ -17,7 +17,10 @@
                 "admin.tahun-akademik.create",
                 "admin.tahun-akademik.edit",
                 "admin.tahun-akademik.show",
-                "admin.tahun-akademik.kelas"
+                "admin.tahun-akademik.kelas",
+                "admin.tahun-akademik.kelas.jadwal",
+                "admin.tahun-akademik.kelas.create",
+                "admin.tahun-akademik.kalender-akademik"
             ]
         },
         {
@@ -25,14 +28,14 @@
             "icon": "fa-solid fa-person-chalkboard",
             "route": "admin.guru.index",
             "role": ["admin"],
-            "slug": ["admin.guru.index"]
+            "slug": ["admin.guru.index", "admin.guru.show", "admin.guru.create", "admin.guru.edit"]
         },
         {
             "label": "Siswa",
             "icon": "fa-solid fa-user-graduate",
             "route": "admin.siswa.index",
             "role": ["admin"],
-            "slug": ["admin.siswa.index", "admin.siswa.show"]
+            "slug": ["admin.siswa.index", "admin.siswa.show", "admin.siswa.create", "admin.siswa.edit"]
         },
         {
             "label": "Kelas",
@@ -46,14 +49,24 @@
             "icon": "fa-solid fa-calendar-days",
             "route": "admin.mata-pelajaran.index",
             "role": ["admin"],
-            "slug": ["admin.mata-pelajaran.index", "admin.mata-pelajaran.show"]
+            "slug": [
+                "admin.mata-pelajaran.index",
+                "admin.mata-pelajaran.show",
+                "admin.mata-pelajaran.create",
+                "admin.mata-pelajaran.edit"
+            ]
         },
         {
             "label": "Kehadiran Siswa",
             "icon": "fa-solid fa-users-rectangle",
-            "route": "admin.kelas.index",
+            "route": "admin.kehadiran-siswa.index",
             "role": ["admin"],
-            "slug": []
+            "slug": [
+                "admin.kehadiran-siswa.index",
+                "admin.kehadiran-siswa.show",
+                "admin.kehadiran-siswa.create",
+                "admin.kehadiran-siswa.edit"
+            ]
         },
         {
             "label": "Modul Belajar",

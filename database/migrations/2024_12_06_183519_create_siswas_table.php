@@ -14,25 +14,19 @@ return new class extends Migration
         Schema::create('siswa', function (Blueprint $table) {
             $table->id();
             $table->string('nisn')->unique();
-            $table->string('ttl')->nullable();
-            $table->string('anak_ke')->nullable();
-            $table->text('alamat')->nullable();
-            $table->string('asal_sekolah')->nullable();
-            $table->date('tgl_masuk')->nullable();
-            $table->string('diterima_kelas')->nullable();
-            $table->string('status')->nullable();
+            $table->string('nipd')->unique();
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->foreignId('agama_id')->constrained('options');
+            $table->string('alamat')->nullable();
+            $table->string('rt')->nullable();
+            $table->string('rw')->nullable();
+            $table->string('dusun')->nullable();
+            $table->string('kelurahan')->nullable();
+            $table->string('kecamatan')->nullable();
 
             $table->string('nama_ayah')->nullable();
             $table->string('nama_ibu')->nullable();
-            $table->string('alamat_orang_tua')->nullable();
-            $table->string('pekerjaan_ayah')->nullable();
-            $table->string('pekerjaan_ibu')->nullable();
-            $table->string('nomor_telepon_ayah')->nullable();
-            $table->string('nomor_telepon_ibu')->nullable();
-
-            $table->foreignId('agama_id')->constrained('options');
-
-            $table->string('status_keluarga_id')->nullable()->constrained('options');
 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();

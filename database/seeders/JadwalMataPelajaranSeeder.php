@@ -19,17 +19,20 @@ class JadwalMataPelajaranSeeder extends Seeder
         $mataPelajaranIds = MataPelajaran::pluck('id');
         $hariIds = app(OptionService::class)->getOptionCategoryKey('hari')->options->pluck('id');
 
-        $jadwals = collect(range(1, 50))->map(function () use ($mataPelajaranIds, $hariIds) {
-            return [
-                'jam_mulai' => Carbon::createFromTime(rand(7, 10), rand(0, 59), 0)->format('H:i:s'),
-                'jam_selesai' => Carbon::createFromTime(rand(11, 15), rand(0, 59), 0)->format('H:i:s'),
-                'mata_pelajaran_id' => $mataPelajaranIds->random(),
-                'hari_id' => $hariIds->random(),
-            ];
-        })->toArray();
 
-        JadwalMataPelajaran::insert(
-            $jadwals
-        );
+        foreach ($mataPelajaranIds as $mataPelajaranId) {
+            $jadwals = collect(range(1, 15))->map(function () use ($hariIds, $mataPelajaranId) {
+                return [
+                    'jam_mulai' => Carbon::createFromTime(rand(7, 10), rand(0, 59), 0)->format('H:i:s'),
+                    'jam_selesai' => Carbon::createFromTime(rand(11, 15), rand(0, 59), 0)->format('H:i:s'),
+                    'mata_pelajaran_id' => $mataPelajaranId,
+                    'hari_id' => $hariIds->random(),
+                ];
+            })->toArray();
+
+            JadwalMataPelajaran::insert(
+                $jadwals
+            );
+        }
     }
 }

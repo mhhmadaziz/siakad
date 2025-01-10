@@ -4,7 +4,6 @@
             <div class="flex items-center gap-2">
                 <h1 class="font-semibold">{{ $kelas->fullName }}</h1>
             </div>
-            <x-alert />
 
             <section>
                 <h1 class="font-semibold">Mata Pelajaran</h1>

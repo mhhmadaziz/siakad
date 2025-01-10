@@ -32,4 +32,11 @@ class OptionService
             return OptionCategory::where('key', $key)->first();
         });
     }
+
+    public function getOptionValueByName(string $name)
+    {
+        return Cache::rememberForever("options.{$name}", function () use ($name) {
+            return Option::where('name', $name)->first();
+        });
+    }
 }

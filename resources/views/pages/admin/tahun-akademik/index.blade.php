@@ -5,7 +5,7 @@
 
             <div class="flex justify-end">
                 <a href="{{ route('admin.tahun-akademik.create') }}">
-                    <button class="bg-black px-4 py-1 text-white">Tambah</button>
+                    <button class="rounded-md bg-black px-4 py-2 text-white">Tambah</button>
                 </a>
             </div>
 

@@ -5,13 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Kelas;
 use App\Models\TahunAkademik;
+use App\Services\OptionService;
 use App\Services\TahunAkademikService;
 use Illuminate\Http\Request;
 
 class TahunAkademikController extends Controller
 {
 
-    public function __construct(protected TahunAkademikService $tahunAkademikService) {}
+    public function __construct(
+        protected TahunAkademikService $tahunAkademikService,
+        protected OptionService $optionService
+    ) {}
 
 
     /**
@@ -38,7 +42,22 @@ class TahunAkademikController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'mulai' => 'required|date',
+            'selesai' => 'required|date|after:mulai',
+        ]);
+
+        try {
+
+            $this->tahunAkademikService->create($validated);
+
+            return redirect()->route('admin.tahun-akademik.index')->with('success', 'Tahun Akademik berhasil ditambahkan');
+        } catch (\Throwable $th) {
+
+            return redirect()->back()->withInput()->with('error', $th->getMessage());
+        }
     }
 
     /**
@@ -54,9 +73,38 @@ class TahunAkademikController extends Controller
         return view('pages.admin.tahun-akademik.kelas.index', compact('tahunAkademik'));
     }
 
+    public function createKelas(TahunAkademik $tahunAkademik)
+    {
+        $tingkatKelas = $this->optionService->getSelectOptionsByCategoryKey('tingkat_kelas');
+        return view('pages.admin.tahun-akademik.kelas.create', compact('tahunAkademik', 'tingkatKelas'));
+    }
+
+    public function storeKelas(Request $request, TahunAkademik $tahunAkademik)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'tingkat_kelas_id' => 'required',
+        ]);
+
+        try {
+            $this->tahunAkademikService->createKelas($tahunAkademik, $validated);
+
+            return redirect()->route('admin.tahun-akademik.kelas', $tahunAkademik)->with('success', 'Kelas berhasil ditambahkan');
+        } catch (\Throwable $th) {
+
+            return redirect()->back()->withInput()->with('error', $th->getMessage());
+        }
+    }
+
+
     public function jadwalMataPelajaran(TahunAkademik $tahunAkademik, Kelas $kelas)
     {
         return view('pages.admin.tahun-akademik.kelas.jadwal', compact('tahunAkademik', 'kelas'));
+    }
+
+    public function showKalenderAkademik(TahunAkademik $tahunAkademik)
+    {
+        return view('pages.admin.tahun-akademik.kalender-akademik.show', compact('tahunAkademik'));
     }
 
     /**

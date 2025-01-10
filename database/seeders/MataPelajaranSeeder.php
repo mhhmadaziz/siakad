@@ -19,52 +19,46 @@ class MataPelajaranSeeder extends Seeder
         /*    'guru_id',*/
         /*];*/
 
-        $kelas_ids = \App\Models\Kelas::pluck('id');
-        $guru_ids = \App\Models\Guru::pluck('id');
 
-        $mata_pelajarans = [
-            [
-                'name' => 'Matematika',
-                'kelas_id' => $kelas_ids->random(),
-                'guru_id' => $guru_ids->random(),
-            ],
-            [
-                'name' => 'Bahasa Indonesia',
-                'kelas_id' => $kelas_ids->random(),
-                'guru_id' => $guru_ids->random(),
-            ],
-            [
-                'name' => 'Bahasa Inggris',
-                'kelas_id' => $kelas_ids->random(),
-                'guru_id' => $guru_ids->random(),
-            ],
-            [
-                'name' => 'IPA',
-                'kelas_id' => $kelas_ids->random(),
-                'guru_id' => $guru_ids->random(),
-            ],
-            [
-                'name' => 'IPS',
-                'kelas_id' => $kelas_ids->random(),
-                'guru_id' => $guru_ids->random(),
-            ],
-            [
-                'name' => 'PKN',
-                'kelas_id' => $kelas_ids->random(),
-                'guru_id' => $guru_ids->random(),
-            ],
-            [
-                'name' => 'PJOK',
-                'kelas_id' => $kelas_ids->random(),
-                'guru_id' => $guru_ids->random(),
-            ],
-            [
-                'name' => 'Seni Budaya',
-                'kelas_id' => $kelas_ids->random(),
-                'guru_id' => $guru_ids->random(),
-            ],
-        ];
+        \App\Models\Kelas::all()->each(function ($kelas) {
 
-        MataPelajaran::insert($mata_pelajarans);
+            $guru_ids = \App\Models\Guru::pluck('id');
+            $mata_pelajarans = [
+                [
+                    'name' => 'Matematika',
+                    'guru_id' => $guru_ids->random(),
+                ],
+                [
+                    'name' => 'Bahasa Indonesia',
+                    'guru_id' => $guru_ids->random(),
+                ],
+                [
+                    'name' => 'Bahasa Inggris',
+                    'guru_id' => $guru_ids->random(),
+                ],
+                [
+                    'name' => 'IPA',
+                    'guru_id' => $guru_ids->random(),
+                ],
+                [
+                    'name' => 'IPS',
+                    'guru_id' => $guru_ids->random(),
+                ],
+                [
+                    'name' => 'PKN',
+                    'guru_id' => $guru_ids->random(),
+                ],
+                [
+                    'name' => 'PJOK',
+                    'guru_id' => $guru_ids->random(),
+                ],
+                [
+                    'name' => 'Seni Budaya',
+                    'guru_id' => $guru_ids->random(),
+                ],
+            ];
+
+            $kelas->mataPelajarans()->createMany($mata_pelajarans);
+        });
     }
 }

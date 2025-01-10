@@ -26,6 +26,11 @@ class JadwalMataPelajaran extends Model
         return $this->belongsTo(Option::class, 'hari_id');
     }
 
+    public function kehadiranSiswas()
+    {
+        return $this->hasMany(KehadiranSiswa::class);
+    }
+
     protected function formatTime($time)
     {
         return date('H:i', strtotime($time));
@@ -33,6 +38,7 @@ class JadwalMataPelajaran extends Model
 
     public function getJamAttribute()
     {
+
         return $this->formatTime($this->jam_mulai) . ' - ' . $this->formatTime($this->jam_selesai);
     }
 }

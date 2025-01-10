@@ -1,6 +1,3 @@
-<a href="">
-    <button class="bg-green-500 p-2 font-semibold text-white">
-        <i class="fa-solid fa-user-plus"></i>
-        TAMBAH
-    </button>
+<a href="{{ route('admin.tahun-akademik.kelas.create', $tahunAkademik) }}">
+    <button class="rounded-md bg-black px-4 py-2 font-semibold text-white">Tambah Kelas</button>
 </a>

@@ -1,12 +1,7 @@
 <x-app-layout>
     <section class="mx-auto min-h-full w-full max-w-screen-xl space-y-4 px-16 pt-4 text-black">
         <div class="space-y-2 rounded border border-zinc-300 p-2">
-            <div class="flex items-center gap-2">
-                <a href="{{ route('admin.siswa.index') }}">
-                    <i class="fa-solid fa-angle-left"></i>
-                </a>
-                <h1 class="font-semibold">DATA SISWA</h1>
-            </div>
+            <h1 class="font-semibold">DATA SISWA {{ $siswa->user?->name }}</h1>
 
             <div class="flex items-center justify-end text-black">
                 <a href="{{ route('admin.siswa.edit', $siswa->id) }}">
@@ -22,36 +17,6 @@
                     <div class="mx-auto h-56 max-w-44 bg-zinc-400"></div>
                 </div>
                 @foreach ($dataDiri as $key => $value)
-                    <div class="grid grid-cols-2 px-1 py-2">
-                        <div>
-                            <h1>
-                                @normalCase($key)
-                            </h1>
-                        </div>
-                        <div>
-                            <h2>
-                                {{ $value }}
-                            </h2>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-
-            <div class="flex items-center gap-2">
-                <h1 class="font-semibold">DATA ORANG TUA</h1>
-            </div>
-
-            <div class="flex items-center justify-end text-black">
-                <a href="{{ route('admin.siswa.edit', $siswa->id) }}#orang_tua">
-                    <button class="bg-yellowCustom px-4 py-2 text-sm font-semibold">
-                        <i class="fa-solid fa-pen"></i>
-                        EDIT ORANG TUA
-                    </button>
-                </a>
-            </div>
-
-            <div class="divide-y divide-zinc-300 rounded-md border border-zinc-300">
-                @foreach ($dataOrangTua as $key => $value)
                     <div class="grid grid-cols-2 px-1 py-2">
                         <div>
                             <h1>

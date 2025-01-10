@@ -26,7 +26,8 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        $forms = $this->siswaService->getFormCreate();
+        return view('pages.admin.siswa.create', compact('forms'));
     }
 
     /**
@@ -34,7 +35,36 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate(
+            [
+                'name' => ['required', 'string'],
+                'jenis_kelamin_id' => ['required', 'string', 'exists:options,id'],
+                'email' => ['required', 'email', 'unique:users,email'],
+                'password' => ['required', 'string', 'min:8'],
+                'nisn' => ['required', 'string', 'unique:siswa,nisn'],
+                'nipd' => ['required', 'string', 'unique:siswa,nipd'],
+                'tempat_lahir' => ['required', 'string'],
+                'tanggal_lahir' => ['required', 'date'],
+                'agama_id' => ['required', 'string', 'exists:options,id'],
+                'alamat' => ['required', 'string'],
+                'rt' => ['required', 'string'],
+                'rw' => ['required', 'string'],
+                'dusun' => ['required', 'string'],
+                'kelurahan' => ['required', 'string'],
+                'kecamatan' => ['required', 'string'],
+                'telepon' => ['required', 'numeric'],
+                'nama_ayah' => ['required', 'string'],
+                'nama_ibu' => ['required', 'string'],
+            ]
+        );
+
+        try {
+            $this->siswaService->create($validated);
+
+            return redirect()->route('admin.siswa.index')->with('success', 'Berhasil menambahkan siswa');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Gagal menambahkan siswa. ' . $th->getMessage());
+        }
     }
 
     /**
@@ -43,8 +73,7 @@ class SiswaController extends Controller
     public function show(Siswa $siswa)
     {
         $dataDiri = $this->siswaService->getDataDiriSiswa($siswa);
-        $dataOrangTua = $this->siswaService->getDataOrangTuaSiswa($siswa);
-        return view('pages.admin.siswa.show', compact('dataDiri', 'siswa', 'dataOrangTua'));
+        return view('pages.admin.siswa.show', compact('dataDiri', 'siswa'));
     }
 
     /**
@@ -52,13 +81,8 @@ class SiswaController extends Controller
      */
     public function edit(Siswa $siswa)
     {
-        $formDataDiri = $this->siswaService->getFormEditDataDiriSiswa($siswa);
-        $formOrangTua = $this->siswaService->getFormEditOrangTuaSiswa($siswa);
+        $forms = $this->siswaService->getFormEditDataDiriSiswa($siswa);
 
-        $forms = [
-            ...$formDataDiri,
-            ...$formOrangTua
-        ];
         return view('pages.admin.siswa.edit', compact(
             'siswa',
             'forms'
@@ -71,28 +95,22 @@ class SiswaController extends Controller
     public function update(Request $request, Siswa $siswa)
     {
         $validated = $request->validate([
-            'nama_lengkap' => 'nullable',
-            'nomor_induk_siswa_nasional' => 'nullable',
-            'tempat_lahir_tanggal_lahir' => 'nullable',
-            'jenis_kelamin' => 'nullable',
-            'status_dalam_keluarga' => 'nullable',
-            'anak_ke' => 'nullable',
-            'agama' => 'nullable',
-            'alamat' => 'nullable',
-            'nomor_telepon' => 'nullable',
-            'asal_sekolah' => 'nullable',
-            'tanggal_diterima' => 'nullable',
-            'diterima_dikelas' => 'nullable',
-            'diterima_di_kelas' => 'nullable',
-            'kelas_saat_ini' => 'nullable',
-            'status' => 'nullable',
-            'nama_ayah' => 'nullable',
-            'nama_ibu' => 'nullable',
-            'alamat_orang_tua' => 'nullable',
-            'pekerjaan_ayah' => 'nullable',
-            'pekerjaan_ibu' => 'nullable',
-            'nomor_telepon_ayah' => 'nullable',
-            'nomor_telepon_ibu' => 'nullable',
+            'nama_lengkap' => ['required', 'string'],
+            'NISN' => ['required', 'string', 'unique:siswa,nisn,' . $siswa->id],
+            'NIPD' => ['required', 'string', 'unique:siswa,nipd,' . $siswa->id],
+            'jenis_kelamin' => ['required', 'string', 'exists:options,id'],
+            'tempat_lahir' => ['required', 'string'],
+            'tanggal_lahir' => ['required', 'date'],
+            'agama' => ['required', 'string', 'exists:options,id'],
+            'alamat' => ['required', 'string'],
+            'RT' => ['required', 'string'],
+            'RW' => ['required', 'string'],
+            'dusun' => ['required', 'string'],
+            'kelurahan' => ['required', 'string'],
+            'kecamatan' => ['required', 'string'],
+            'telepon' => ['required', 'string'],
+            'nama_ayah' => ['required', 'string'],
+            'nama_ibu' => ['required', 'string'],
         ]);
 
         try {

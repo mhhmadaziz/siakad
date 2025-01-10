@@ -17,6 +17,7 @@ class OptionSeeder extends Seeder
      */
     public function run(): void
     {
+        cache()->flush();
         // jenis kelamin
         OptionCategory::insert([
             [
@@ -28,16 +29,16 @@ class OptionSeeder extends Seeder
                 'name' => 'Agama'
             ],
             [
-                'key' => 'status_keluarga',
-                'name' => 'Status Keluarga'
-            ],
-            [
                 'key' => 'tingkat_kelas',
                 'name' => 'Tingkat Kelas'
             ],
             [
                 'key' => 'hari',
                 'name' => 'Hari'
+            ],
+            [
+                'key' => 'status_kehadiran',
+                'name' => 'Status Kehadiran'
             ]
         ]);
 
@@ -59,14 +60,6 @@ class OptionSeeder extends Seeder
             ['name' => 'Konghucu'],
         ]);
 
-        $statusKeluarga = $this->optionService->getOptionCategoryKey('status_keluarga');
-
-        $statusKeluarga->options()->createMany([
-            ['name' => 'Anak Kandung'],
-            ['name' => 'Anak Tiri'],
-            ['name' => 'Anak Angkat'],
-        ]);
-
         $tingkatKelas = $this->optionService->getOptionCategoryKey('tingkat_kelas');
         $tingkatKelas->options()->createMany([
             ['name' => 'X'],
@@ -83,6 +76,14 @@ class OptionSeeder extends Seeder
             ['name' => 'Jumat'],
             ['name' => 'Sabtu'],
             ['name' => 'Minggu'],
+        ]);
+
+        $statusKehadiran = $this->optionService->getOptionCategoryKey('status_kehadiran');
+        $statusKehadiran->options()->createMany([
+            ['name' => 'Hadir'],
+            ['name' => 'Izin'],
+            ['name' => 'Terlambat'],
+            ['name' => 'Tidak Hadir'],
         ]);
     }
 }
