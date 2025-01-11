@@ -79,7 +79,12 @@
                     </tr>
                 @empty
                     <tr class="border-b border-zinc-300">
-                        <td class="p-2 text-center" colspan="{{ count($this->columns()) }}">Tidak ada data</td>
+                        @php
+                            $colSpan = $this->checkbox ? count($this->columns()) + 1 : count($this->columns());
+                            $colSpan += $this->numbering ? 1 : 0;
+                        @endphp
+
+                        <td class="p-2 text-center" colspan="{{ $colSpan }}">Tidak ada data</td>
                     </tr>
                 @endforelse
             </tbody>

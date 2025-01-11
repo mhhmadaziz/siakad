@@ -48,5 +48,19 @@ Route::group(
         Route::get('kehadiran-siswa/{kelas}', [App\Http\Controllers\Admin\KehadiranSiswaController::class, 'show'])->name('kehadiran-siswa.show');
         Route::get('kehadiran-siswa/{kelas}/mata-pelajaran/{mataPelajaran}', [App\Http\Controllers\Admin\KehadiranSiswaController::class, 'showMataPelajaran'])->name('kehadiran-siswa.mata-pelajaran.show');
         Route::get('kehadiran-siswa/{kelas}/mata-pelajaran/{mataPelajaran}/create', [App\Http\Controllers\Admin\KehadiranSiswaController::class, 'create'])->name('kehadiran-siswa.create');
+
+        Route::group(
+            [
+                'prefix' => 'cms',
+                'as' => 'cms.'
+            ],
+            function () {
+                Route::get('/', [App\Http\Controllers\Admin\CmsController::class, 'index'])->name('index');
+                Route::get('/home', [App\Http\Controllers\Admin\CmsController::class, 'home'])->name('home.index');
+                Route::get('/galeri', [App\Http\Controllers\Admin\CmsController::class, 'index'])->name('galeri.index');
+                Route::get('/kalender', [App\Http\Controllers\Admin\CmsController::class, 'index'])->name('kalender.index');
+                Route::get('/ppdb', [App\Http\Controllers\Admin\CmsController::class, 'index'])->name('ppdb.index');
+            }
+        );
     }
 );

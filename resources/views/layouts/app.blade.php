@@ -17,6 +17,8 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
+        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -40,6 +42,7 @@
 
         @include('layouts.app-footer')
 
+        <!-- Include the Quill library -->
         @livewireScripts
         @livewire('wire-elements-modal')
         @stack('scripts')

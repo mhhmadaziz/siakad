@@ -108,3 +108,26 @@ Breadcrumbs::for('admin.kehadiran-siswa.create', function (BreadcrumbTrail $trai
     $trail->parent('admin.kehadiran-siswa.mata-pelajaran.show', $kelas, $mataPelajaran);
     $trail->push('Tambah Pertemuan', route('admin.kehadiran-siswa.create', [$kelas, $mataPelajaran]));
 });
+
+Breadcrumbs::for('admin.modul-pembelajaran.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Modul Pembelajaran', route('admin.modul-pembelajaran.index'));
+});
+
+Breadcrumbs::for('admin.modul-pembelajaran.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.modul-pembelajaran.index');
+    $trail->push('Tambah Modul Pembelajaran', route('admin.modul-pembelajaran.create'));
+});
+
+Breadcrumbs::for('admin.modul-pembelajaran.show', function (BreadcrumbTrail $trail, $modulPembelajaran) {
+    $trail->parent('admin.modul-pembelajaran.index');
+    $trail->push($modulPembelajaran->name, route('admin.modul-pembelajaran.show', $modulPembelajaran));
+});
+
+Breadcrumbs::for('admin.cms.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Galeri dan Konten', route('admin.cms.index'));
+});
+
+Breadcrumbs::for('admin.cms.home.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.cms.index');
+    $trail->push('Beranda', route('admin.cms.home.index'));
+});

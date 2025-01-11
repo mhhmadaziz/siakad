@@ -29,4 +29,9 @@ class MataPelajaran extends Model
     {
         return $this->hasMany(JadwalMataPelajaran::class);
     }
+
+    public function modulPembelajarans()
+    {
+        return $this->hasMany(ModulPembelajaran::class);
+    }
 }

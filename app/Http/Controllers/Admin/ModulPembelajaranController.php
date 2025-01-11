@@ -3,10 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ModulPembelajaran;
+use App\Service\ModulPembelajaranService;
 use Illuminate\Http\Request;
 
 class ModulPembelajaranController extends Controller
 {
+
+    public function __construct(protected ModulPembelajaranService $modulPembelajaranService) {}
+
+
     /**
      * Display a listing of the resource.
      */
@@ -20,7 +26,8 @@ class ModulPembelajaranController extends Controller
      */
     public function create()
     {
-        //
+        $forms = $this->modulPembelajaranService->getFormCreate();
+        return view('pages.admin.modul-pembelajaran.create', compact('forms'));
     }
 
     /**
@@ -28,15 +35,26 @@ class ModulPembelajaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,zip,rar',
+            'mata_pelajaran_id' => 'required|exists:mata_pelajaran,id',
+        ]);
+
+        try {
+            $this->modulPembelajaranService->create($validated, $request->file('file'));
+            return redirect()->route('admin.modul-pembelajaran.index')->with('success', 'Modul Pembelajaran berhasil ditambahkan');
+        } catch (\Throwable $th) {
+            return redirect()->back()->withInput()->with('error', $th->getMessage());
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(ModulPembelajaran $modulPembelajaran)
     {
-        //
+        return view('pages.admin.modul-pembelajaran.show', compact('modulPembelajaran'));
     }
 
     /**

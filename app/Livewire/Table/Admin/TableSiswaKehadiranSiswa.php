@@ -13,9 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class TableSiswaKehadiranSiswa extends BaseTable
 {
-
     public $searchColumns = ['siswa.user.name'];
-
 
     public Kelas $kelas;
     public KehadiranSiswa $kehadiranSiswa;

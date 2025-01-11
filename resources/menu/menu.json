@@ -65,15 +65,21 @@
                 "admin.kehadiran-siswa.index",
                 "admin.kehadiran-siswa.show",
                 "admin.kehadiran-siswa.create",
-                "admin.kehadiran-siswa.edit"
+                "admin.kehadiran-siswa.edit",
+                "admin.kehadiran-siswa.mata-pelajaran.show"
             ]
         },
         {
             "label": "Modul Belajar",
             "icon": "fa-solid fa-book",
-            "route": "admin.kelas.index",
+            "route": "admin.modul-pembelajaran.index",
             "role": ["admin"],
-            "slug": []
+            "slug": [
+                "admin.modul-pembelajaran.index",
+                "admin.modul-pembelajaran.show",
+                "admin.modul-pembelajaran.create",
+                "admin.modul-pembelajaran.edit"
+            ]
         },
         {
             "label": "Formulir Mata Pelajaran Pilihan",
@@ -85,33 +91,43 @@
         {
             "label": "Galeri dan Konten",
             "icon": "fa-solid fa-photo-film",
-            "route": "admin.kelas.index",
+            "route": "admin.cms.index",
             "role": ["admin"],
-            "slug": []
+            "slug": [
+                "admin.cms.index",
+                "admin.cms.galeri.index",
+                "admin.cms.galeri.show",
+                "admin.cms.galeri.create",
+                "admin.cms.galeri.edit"
+            ]
         }
     ],
     "home": [
         {
             "label": "Beranda",
             "icon": "fas fa-home",
+            "cms": "admin.cms.home.index",
             "route": "home.index",
             "slug": ["home.index"]
         },
         {
             "label": "Galeri",
             "icon": "fas fa-images",
+            "cms": "admin.cms.home.index",
             "route": "home.galeri",
             "slug": ["home.galeri"]
         },
         {
             "label": "Kalender",
             "icon": "fas fa-calendar-alt",
+            "cms": "admin.cms.home.index",
             "route": "home.kalender",
             "slug": ["home.kalender"]
         },
         {
             "label": "PPDB",
             "icon": "fas fa-school",
+            "cms": "admin.cms.home.index",
             "route": "home.ppdb",
             "slug": ["home.ppdb"]
         }
