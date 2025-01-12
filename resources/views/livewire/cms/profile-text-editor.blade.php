@@ -1,10 +1,6 @@
 <div class="space-y-2">
-    <h1>Deskripsi Sekolah</h1>
-    @if (session()->has('success'))
-        <div class="rounded bg-green-500 p-2 text-white">
-            {{ session('success') }}
-        </div>
-    @endif
+    <h1 class="text-lg">Deskripsi Sekolah</h1>
+    <x-alert />
 
     <form wire:submit="save">
         <livewire:quill-text-editor wire:model="text" theme="snow" />

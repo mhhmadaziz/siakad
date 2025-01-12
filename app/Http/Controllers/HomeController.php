@@ -17,7 +17,13 @@ class HomeController extends Controller
     {
         $profileText = $this->cmsService->getCms('profile_text');
 
-        return view('pages.home.welcome', compact('profileText'));
+        $carousels = json_decode($this->cmsService->getCms('carousel') ?? '[]', true);
+
+        $gambarStrukturOrganisasi = $this->cmsService->getCms('gambar-struktur-organisasi');
+
+        $strukturOrganisasi = $this->cmsService->getCms('struktur-organisasi') ?? '';
+
+        return view('pages.home.welcome', compact('profileText', 'carousels', 'gambarStrukturOrganisasi', 'strukturOrganisasi'));
     }
 
     public function galeri()

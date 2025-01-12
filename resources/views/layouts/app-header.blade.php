@@ -1,6 +1,6 @@
 <header class="flex items-center justify-between px-8 py-2 text-primary">
     <!--logo-->
-    <section class="flex gap-2">
+    <a class="flex gap-2" href="{{ route('home.index') }}">
         <div class="h-16 w-16">
             <img
                 src="{{ Vite::asset('resources/images/logo.png') }}"
@@ -12,12 +12,12 @@
             <h1 class="">SMA NEGERI 1</h1>
             <h2 class="">JATI AGUNG</h2>
         </div>
-    </section>
+    </a>
 </header>
 <nav class="relative bg-primary">
     <div class="absolute h-10 w-8 bg-green-600"></div>
     <div class="flex w-full justify-end">
-        <button class="bg-yellowCustom flex items-center gap-2 px-4 py-2">
+        <button class="flex items-center gap-2 bg-yellowCustom px-4 py-2">
             <i class="fas fa-user text-xs"></i>
             @auth
                 {{ auth()->user()->name }}

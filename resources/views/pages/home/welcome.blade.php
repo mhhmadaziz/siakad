@@ -1,8 +1,33 @@
 <x-guest-layout>
     @include('layouts.home-header')
-    <section class="relative min-h-96 overflow-clip bg-black/80">
+    <section
+        class="relative min-h-96 overflow-clip bg-black/80"
+        x-data="{
+            activeSlide: 0,
+            autoSlideInterval: null,
+            slides: @js($carousels),
+            interval: null,
+        }"
+        x-init="
+            interval = setInterval(() => {
+                activeSlide = (activeSlide + 1) % slides.length
+            }, 4000)
+        "
+    >
         <div class="absolute -top-96 -z-10 w-screen">
-            <img src="{{ Vite::asset('resources/images/default-carousel.jpg') }}" alt="logo" class="w-screen" />
+            <template x-for="(slide, index) in slides" :key="index">
+                <div
+                    x-show="true"
+                    class="absolute left-0 top-0 transition-transform duration-500 ease-in-out"
+                    style="width: 100%"
+                    x-bind:style="{
+                        transform: `translateX(${(index - activeSlide) * 100}%)`,
+                    }"
+                >
+                    <img :src=" @js(asset('storage/carousel/')) + '/' + slide " :alt="slide" class="w-full" />
+                </div>
+            </template>
+            {{-- <img src="{{ Vite::asset('resources/images/default-carousel.jpg') }}" alt="logo" class="w-screen" /> --}}
         </div>
 
         <div class="bg mx-auto flex h-96 w-1/2 flex-col justify-center">
@@ -14,7 +39,7 @@
                         class="h-full w-full object-contain"
                     />
                 </div>
-                <div class="prose prose-sm prose-invert prose-p:m-0 prose-headings:m-0">
+                <div class="prose prose-sm prose-invert prose-headings:m-0 prose-p:m-0">
                     {!! $profileText !!}
                 </div>
             </div>
@@ -28,18 +53,23 @@
     <section class="px-8 py-4">
         <h1 class="mb-4 text-center text-xl font-bold">Struktur Organisasi</h1>
         <div class="flex justify-center gap-4">
-            <div class="w-[600px] bg-zinc-600"></div>
-            <div class="w-[400px] bg-primary p-4 text-white">
-                <ul class="space-y-4">
-                    @for ($i = 0; $i < 5; $i++)
-                        <li class="">
-                            <p class="text-xs leading-none">
-                                Kepala Sekolah
-                                <span class="block text-lg font-bold">John Doe</span>
-                            </p>
-                        </li>
-                    @endfor
-                </ul>
+            <div class="h-72 w-[600px] border border-zinc-300 bg-zinc-600">
+                @if ($gambarStrukturOrganisasi)
+                    <img
+                        src="{{ asset('storage/struktur-organisasi/' . $gambarStrukturOrganisasi) }}"
+                        alt="struktur-organisasi"
+                        class="h-full w-full object-cover"
+                    />
+                @else
+                    <img
+                        src="https://placehold.co/600x400"
+                        alt="struktur-organisasi"
+                        class="h-full w-full object-cover"
+                    />
+                @endif
+            </div>
+            <div class="prose prose-sm prose-invert w-[400px] bg-primary p-4 text-white prose-headings:m-0 prose-p:m-0">
+                {!! $strukturOrganisasi !!}
             </div>
         </div>
     </section>

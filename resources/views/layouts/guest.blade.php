@@ -20,8 +20,13 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
     </head>
     <body class="font-sans text-gray-900 antialiased">
         {{ $slot }}
+
+        @livewireScripts
+        @livewire('wire-elements-modal')
+        @stack('scripts')
     </body>
 </html>
