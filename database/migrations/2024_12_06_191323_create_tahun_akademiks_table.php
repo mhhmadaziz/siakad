@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->date('mulai');
             $table->date('selesai');
+            $table->string('file_ppdb')->nullable();
             $table->timestamps();
         });
     }

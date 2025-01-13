@@ -6,7 +6,7 @@
         <div class="mt-4 flex w-full">
             <nav class="w-[200px]">
                 <ul class="space-y-4">
-                    <li>
+                    <li class="font-semibold">
                         <a href="{{ route('home.galeri') }}">Foto</a>
                     </li>
                     <li>

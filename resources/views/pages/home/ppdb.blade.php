@@ -7,11 +7,11 @@
             <nav class="w-[200px]">
                 <h1 class="font-semibold">Tahun Ajaran</h1>
                 <ul class="mt-2">
-                    @for ($i = 0; $i < 7; $i++)
+                    @foreach ($tahunAkademiks as $item)
                         <li>
-                            <a href="{{ route('home.ppdb') }}">2024/2025</a>
+                            <a href="">{{ $item }}</a>
                         </li>
-                    @endfor
+                    @endforeach
                 </ul>
             </nav>
             <section class="w-full">

@@ -146,3 +146,18 @@ Breadcrumbs::for('admin.cms.galeri.video-create', function (BreadcrumbTrail $tra
     $trail->parent('admin.cms.galeri.index');
     $trail->push('Tambah Video', route('admin.cms.galeri.video-create'));
 });
+
+Breadcrumbs::for('admin.cms.kalender.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.cms.index');
+    $trail->push('Kalender', route('admin.cms.kalender.index'));
+});
+
+Breadcrumbs::for('admin.cms.ppdb.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.cms.index');
+    $trail->push('PPDB', route('admin.cms.ppdb.index'));
+});
+
+Breadcrumbs::for('admin.cms.ppdb.show', function (BreadcrumbTrail $trail, $tahunAkademik) {
+    $trail->parent('admin.cms.ppdb.index');
+    $trail->push($tahunAkademik->name, route('admin.cms.ppdb.show', $tahunAkademik));
+});

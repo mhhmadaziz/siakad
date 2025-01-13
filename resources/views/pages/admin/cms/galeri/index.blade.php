@@ -86,18 +86,52 @@
                     </a>
                 </div>
 
-                <div class="grid grid-cols-2 gap-2 rounded-md border border-zinc-300 p-2 md:grid-cols-5">
-                    @for ($i = 0; $i < 7; $i++)
+                <div class="grid grid-cols-2 gap-2 rounded-md border border-zinc-300 p-2 md:grid-cols-5" x-data>
+                    @forelse ($videos as $item)
                         <div class="relative">
-                            <img
-                                src="https://placehold.co/600x400"
+                            <video
+                                src="
+                                    {{ asset('storage/galeri/video/' . $item['video']) }}
+                                "
                                 alt="carousel"
                                 class="h-32 w-full rounded-md border border-zinc-300 object-cover"
-                            />
-                            <button class="absolute right-2 top-2 rounded-full bg-red-500 p-1 text-white">
+                                controls
+                            ></video>
+
+                            <form
+                                action="{{ route('admin.cms.galeri.video-delete', $item['video']) }}"
+                                method="post"
+                                @submit=" confirm('Apakah Anda yakin?') || event.preventDefault() "
+                            >
+                                @csrf
+                                @method('DELETE')
+
+                                <button class="absolute right-2 top-2 rounded-full bg-red-500 p-1 text-white">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12"
+                                        />
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    @empty
+                        <a class="relative" href="{{ route('admin.cms.galeri.video-create') }}">
+                            <div
+                                class="flex h-32 w-full cursor-pointer flex-col items-center justify-center rounded-md border border-zinc-300"
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="h-4 w-4"
+                                    class="h-8 w-8 text-zinc-300"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -106,12 +140,12 @@
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                         stroke-width="2"
-                                        d="M6 18L18 6M6 6l12 12"
+                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                                     />
                                 </svg>
-                            </button>
-                        </div>
-                    @endfor
+                            </div>
+                        </a>
+                    @endforelse
                 </div>
             </section>
         </div>

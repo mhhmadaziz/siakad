@@ -13,6 +13,7 @@ class TahunAkademik extends Model
         'name',
         'mulai',
         'selesai',
+        'file_ppdb',
     ];
 
     public function kelas()

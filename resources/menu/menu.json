@@ -95,10 +95,12 @@
             "role": ["admin"],
             "slug": [
                 "admin.cms.index",
+                "admin.cms.home.index",
                 "admin.cms.galeri.index",
-                "admin.cms.galeri.show",
-                "admin.cms.galeri.create",
-                "admin.cms.galeri.edit"
+                "admin.cms.galeri.foto-create",
+                "admin.cms.galeri.video-create",
+                "admin.cms.kalender.index",
+                "admin.cms.ppdb.index"
             ]
         }
     ],
@@ -115,19 +117,19 @@
             "icon": "fas fa-images",
             "cms": "admin.cms.galeri.index",
             "route": "home.galeri",
-            "slug": ["home.galeri"]
+            "slug": ["home.galeri", "home.galeri.video"]
         },
         {
             "label": "Kalender",
             "icon": "fas fa-calendar-alt",
-            "cms": "admin.cms.home.index",
+            "cms": "admin.cms.kalender.index",
             "route": "home.kalender",
             "slug": ["home.kalender"]
         },
         {
             "label": "PPDB",
             "icon": "fas fa-school",
-            "cms": "admin.cms.home.index",
+            "cms": "admin.cms.ppdb.index",
             "route": "home.ppdb",
             "slug": ["home.ppdb"]
         }

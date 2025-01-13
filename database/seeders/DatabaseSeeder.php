@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Services\OptionService;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Storage::deleteDirectory('public');
+
         $this->call(OptionSeeder::class);
 
         $admin = Role::create(['name' => 'admin']);

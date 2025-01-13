@@ -9,18 +9,25 @@
                     <li>
                         <a href="{{ route('home.galeri') }}">Foto</a>
                     </li>
-                    <li>
+                    <li class="font-semibold">
                         <a href="{{ route('home.galeri.video') }}">Video</a>
                     </li>
                 </ul>
             </nav>
             <section class="w-full">
                 <div class="grid grid-cols-4 gap-4">
-                    @for ($i = 0; $i < 24; $i++)
+                    @forelse ($videos as $item)
                         <div class="flex h-48 flex-col rounded-lg border border-zinc-200 bg-white p-2 shadow-lg">
-                            <div class="h-full w-full rounded-lg bg-zinc-300"></div>
+                            <div class="h-full w-full rounded-lg bg-zinc-300">
+                                <iframe
+                                    src="{{ asset('storage/galeri/video/' . $item['video']) }}"
+                                    class="h-full w-full rounded-lg object-cover"
+                                ></iframe>
+                            </div>
                         </div>
-                    @endfor
+                    @empty
+                        <div class="col-span-4 text-center">Tidak ada video</div>
+                    @endforelse
                 </div>
             </section>
         </div>

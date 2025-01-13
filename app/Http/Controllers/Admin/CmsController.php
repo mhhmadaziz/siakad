@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\TahunAkademik;
 use App\Service\CmsService;
 use Illuminate\Http\Request;
 
@@ -26,8 +27,24 @@ class CmsController extends Controller
     {
 
         $fotos = json_decode($this->cmsService->getCms('galeri_foto'), true) ?? [];
+        $videos = json_decode($this->cmsService->getCms('galeri_video'), true) ?? [];
 
-        return view('pages.admin.cms.galeri.index', compact('fotos'));
+        return view('pages.admin.cms.galeri.index', compact('fotos', 'videos'));
+    }
+
+    public function kalender()
+    {
+        return view('pages.admin.cms.kalender.index');
+    }
+
+    public function ppdb()
+    {
+        return view('pages.admin.cms.ppdb.index');
+    }
+
+    public function ppdbShow(TahunAkademik $tahunAkademik)
+    {
+        return view('pages.admin.cms.ppdb.show', compact('tahunAkademik'));
     }
 
     public function galeriFotoCreate()
@@ -62,6 +79,31 @@ class CmsController extends Controller
         try {
             $this->cmsService->deleteFoto($name);
             return redirect()->route('admin.cms.galeri.index')->with('success', 'Foto berhasil dihapus');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }
+
+    public function galeriVideoStore(Request $request)
+    {
+        $validated = $request->validate([
+            'video' => 'required|file|mimes:mp4,mov,avi,3gp,wmv,flv|max:10240',
+        ]);
+
+        try {
+            $this->cmsService->storeVideo($validated);
+
+            return redirect()->route('admin.cms.galeri.index')->with('success', 'Video berhasil ditambahkan');
+        } catch (\Throwable $th) {
+            return redirect()->back()->withInput()->with('error', $th->getMessage());
+        }
+    }
+
+    public function galeriVideoDelete($name)
+    {
+        try {
+            $this->cmsService->deleteVideo($name);
+            return redirect()->route('admin.cms.galeri.index')->with('success', 'Video berhasil dihapus');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }

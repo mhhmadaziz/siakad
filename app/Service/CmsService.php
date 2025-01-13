@@ -100,4 +100,22 @@ class CmsService
             return $fileName;
         });
     }
+
+    public function deleteVideo($fileName)
+    {
+        return DB::transaction(function () use ($fileName) {
+
+            $oldVideo = json_decode($this->getCms('galeri_video'), true) ?? [];
+
+            $newArrayVideo = array_filter($oldVideo, function ($item) use ($fileName) {
+                return $item['video'] != $fileName;
+            });
+
+            $this->upsertCms('galeri_video', json_encode(array_values($newArrayVideo)));
+
+            Storage::disk('public')->delete('galeri/video/' . $fileName);
+
+            return $fileName;
+        });
+    }
 }

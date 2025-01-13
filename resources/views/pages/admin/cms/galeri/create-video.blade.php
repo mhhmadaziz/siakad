@@ -3,17 +3,49 @@
         <div class="space-y-4 rounded border border-zinc-300 p-2">
             <h1 class="text-xl font-semibold">Tambah Video</h1>
 
-            <form action="" method="post">
+            <form
+                action="{{ route('admin.cms.galeri.video-store') }}"
+                method="post"
+                enctype="multipart/form-data"
+                x-data="{
+                    videoPreview: '',
+                    videoUrl: null,
+                }"
+            >
                 @csrf
                 <div class="grid grid-cols-2 gap-4">
                     <div class="col-span-2">
-                        <input type="file" name="foto" id="foto" class="sr-only" />
+                        <input
+                            type="file"
+                            name="video"
+                            id="video"
+                            class="sr-only"
+                            accept="video/*"
+                            x-on:change="
+                                videoFile = $event.target.files[0]
+                                videoPreview = URL.createObjectURL(videoFile)
+                            "
+                        />
                         <label
-                            for="foto"
-                            class="flex h-44 w-full cursor-pointer items-center justify-center rounded-md border border-zinc-300"
+                            for="video"
+                            class="flex min-h-44 w-full cursor-pointer items-center justify-center rounded-md border border-zinc-300"
                         >
-                            <span class="text-gray-700">Pilih Video</span>
+                            <span class="text-gray-700" x-show="!videoPreview">Pilih Video</span>
+
+                            <video
+                                class="w-full object-cover"
+                                x-show="videoPreview"
+                                x-bind:src="videoPreview"
+                                x-cloak
+                                controls
+                            ></video>
                         </label>
+
+                        <span class="text-xs">Max. 20MB</span>
+
+                        @error('video')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
