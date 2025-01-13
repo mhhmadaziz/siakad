@@ -28,7 +28,10 @@ class HomeController extends Controller
 
     public function galeri()
     {
-        return view('pages.home.galeri');
+
+        $fotos = json_decode($this->cmsService->getCms('galeri_foto'), true) ?? [];
+
+        return view('pages.home.galeri', compact('fotos'));
     }
 
     public function video()

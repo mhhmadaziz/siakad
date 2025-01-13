@@ -1,6 +1,6 @@
 <x-guest-layout>
     @include('layouts.home-header')
-    <section class="mx-auto max-w-screen-xl py-4">
+    <section class="mx-auto min-h-screen max-w-screen-xl py-4">
         <h1 class="text-2xl font-bold">Galeri</h1>
         <h2 class="">Dokumentasi Kegiatan SMA Negeri 1 Jati Agung</h2>
         <div class="mt-4 flex w-full">
@@ -16,18 +16,28 @@
             </nav>
             <section class="w-full">
                 <div class="grid grid-cols-4 gap-4">
-                    @for ($i = 0; $i < 24; $i++)
+                    @forelse ($fotos as $item)
                         <div class="flex h-64 flex-col rounded-lg border border-zinc-200 bg-white p-2 shadow-lg">
-                            <div class="h-full w-full rounded-lg bg-zinc-300"></div>
+                            <div class="max-h-48 rounded-lg bg-zinc-300">
+                                <img
+                                    src="{{ asset('storage/galeri/foto/' . $item['foto']) }}"
+                                    alt="{{ $item['judul'] }}"
+                                    class="h-full w-full rounded-lg object-cover"
+                                />
+                            </div>
 
                             <div class="mt-2">
-                                <h1 class="text-sm font-bold">Judul Foto</h1>
+                                <h1 class="line-clamp-1 text-sm font-bold">
+                                    {{ $item['judul'] }}
+                                </h1>
                                 <p class="text-xs">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                                    {{ $item['tanggal'] }}
                                 </p>
                             </div>
                         </div>
-                    @endfor
+                    @empty
+                        <div class="col-span-4 text-center">Tidak ada foto</div>
+                    @endforelse
                 </div>
             </section>
         </div>

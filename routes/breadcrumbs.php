@@ -131,3 +131,18 @@ Breadcrumbs::for('admin.cms.home.index', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.cms.index');
     $trail->push('Beranda', route('admin.cms.home.index'));
 });
+
+Breadcrumbs::for('admin.cms.galeri.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.cms.index');
+    $trail->push('Galeri', route('admin.cms.galeri.index'));
+});
+
+Breadcrumbs::for('admin.cms.galeri.foto-create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.cms.galeri.index');
+    $trail->push('Tambah Foto', route('admin.cms.galeri.foto-create'));
+});
+
+Breadcrumbs::for('admin.cms.galeri.video-create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.cms.galeri.index');
+    $trail->push('Tambah Video', route('admin.cms.galeri.video-create'));
+});

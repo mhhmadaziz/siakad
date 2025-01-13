@@ -57,9 +57,15 @@ Route::group(
             function () {
                 Route::get('/', [App\Http\Controllers\Admin\CmsController::class, 'index'])->name('index');
                 Route::get('/home', [App\Http\Controllers\Admin\CmsController::class, 'home'])->name('home.index');
-                Route::get('/galeri', [App\Http\Controllers\Admin\CmsController::class, 'index'])->name('galeri.index');
+                Route::get('/galeri', [App\Http\Controllers\Admin\CmsController::class, 'galeri'])->name('galeri.index');
                 Route::get('/kalender', [App\Http\Controllers\Admin\CmsController::class, 'index'])->name('kalender.index');
                 Route::get('/ppdb', [App\Http\Controllers\Admin\CmsController::class, 'index'])->name('ppdb.index');
+
+                Route::get('/galeri/foto-create', [App\Http\Controllers\Admin\CmsController::class, 'galeriFotoCreate'])->name('galeri.foto-create');
+                Route::post('/galeri/foto-store', [App\Http\Controllers\Admin\CmsController::class, 'galeriFotoStore'])->name('galeri.foto-store');
+                Route::delete('/galeri/foto-delete/{name}', [App\Http\Controllers\Admin\CmsController::class, 'galeriFotoDelete'])->name('galeri.foto-delete');
+
+                Route::get('/galeri/video-create', [App\Http\Controllers\Admin\CmsController::class, 'galeriVideoCreate'])->name('galeri.video-create');
             }
         );
     }

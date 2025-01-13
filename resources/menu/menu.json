@@ -113,7 +113,7 @@
         {
             "label": "Galeri",
             "icon": "fas fa-images",
-            "cms": "admin.cms.home.index",
+            "cms": "admin.cms.galeri.index",
             "route": "home.galeri",
             "slug": ["home.galeri"]
         },
