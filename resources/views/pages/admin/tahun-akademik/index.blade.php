@@ -15,8 +15,15 @@
                         <i class="fa-solid fa-graduation-cap text-6xl"></i>
                         <div class="flex w-full items-center justify-between">
                             <div class="">
-                                <h2>Tahun Ajaran</h2>
-                                <h1 class="text-3xl font-semibold">{{ $item->name }}</h1>
+                                <h2>
+                                    Tahun Ajaran
+                                    @if ($currentTahunAkademik->id == $item->id)
+                                        <span class="rounded-full bg-green-600 px-4 py-1 text-sm">Aktif</span>
+                                    @endif
+                                </h2>
+                                <h1 class="text-3xl font-semibold">
+                                    {{ $item->name }}
+                                </h1>
                             </div>
                             <a href="{{ route('admin.tahun-akademik.show', $item->id) }}">
                                 <button class="rounded-md bg-white px-8 py-2 text-sm font-semibold text-primary">

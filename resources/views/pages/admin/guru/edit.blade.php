@@ -11,22 +11,8 @@
                 @csrf
                 @method('PUT')
 
-                <div class="p-2">
-                    <div class="mx-auto h-56 max-w-44 bg-zinc-400"></div>
-                </div>
-                <div class="flex items-center p-2">
-                    <div class="flex w-full items-center justify-center">
-                        <label
-                            for="file-upload"
-                            class="flex w-full cursor-pointer items-center divide-x divide-zinc-500 rounded border border-zinc-500"
-                        >
-                            <span class="flex-1 p-2">Tidak ada file yang dipilih</span>
-                            <div class="bg-zinc-100 p-2 px-4">
-                                <span class="text-gray-700">Pilih Foto</span>
-                            </div>
-                        </label>
-                        <input id="file-upload" type="file" class="sr-only" />
-                    </div>
+                <div class="col-span-2">
+                    <livewire:profile-photo-upload :user="$guru->user" />
                 </div>
 
                 @foreach ($forms as $item)

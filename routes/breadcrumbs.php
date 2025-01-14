@@ -18,10 +18,11 @@ Breadcrumbs::for('admin.tahun-akademik.show', function (BreadcrumbTrail $trail, 
     $trail->push($tahunAkademik->name, route('admin.tahun-akademik.show', $tahunAkademik));
 });
 
-Breadcrumbs::for('admin.tahun-akademik.kalender-akademik', function (BreadcrumbTrail $trail, $tahunAkademik) {
+Breadcrumbs::for('admin.tahun-akademik.edit', function (BreadcrumbTrail $trail, $tahunAkademik) {
     $trail->parent('admin.tahun-akademik.show', $tahunAkademik);
-    $trail->push('Kalender Akademik', route('admin.tahun-akademik.kalender-akademik', $tahunAkademik));
+    $trail->push('Edit', route('admin.tahun-akademik.edit', $tahunAkademik));
 });
+
 
 Breadcrumbs::for('admin.tahun-akademik.kelas', function (BreadcrumbTrail $trail, $tahunAkademik) {
     $trail->parent('admin.tahun-akademik.show', $tahunAkademik);
@@ -36,6 +37,11 @@ Breadcrumbs::for('admin.tahun-akademik.kelas.create', function (BreadcrumbTrail 
 Breadcrumbs::for('admin.tahun-akademik.kelas.jadwal', function (BreadcrumbTrail $trail, $tahunAkademik, $kelas) {
     $trail->parent('admin.tahun-akademik.kelas', $tahunAkademik);
     $trail->push('Penjadwalan ' . $kelas->fullName, route('admin.tahun-akademik.kelas.jadwal', [$tahunAkademik, $kelas]));
+});
+
+Breadcrumbs::for('admin.tahun-akademik.ppdb', function (BreadcrumbTrail $trail, $tahunAkademik) {
+    $trail->parent('admin.tahun-akademik.show', $tahunAkademik);
+    $trail->push('PPDB', route('admin.tahun-akademik.ppdb', $tahunAkademik));
 });
 
 Breadcrumbs::for('admin.kelas.index', function (BreadcrumbTrail $trail) {

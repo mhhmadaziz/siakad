@@ -14,7 +14,13 @@
 
             <div class="divide-y divide-zinc-300 rounded-md border border-zinc-300">
                 <div class="py-2">
-                    <div class="mx-auto h-56 max-w-44 bg-zinc-400"></div>
+                    <div class="mx-auto h-56 max-w-44 bg-zinc-400">
+                        <img
+                            src="{{ $siswa->user?->photoUrl }}"
+                            alt="{{ $siswa->user?->name }}"
+                            class="h-full w-full object-cover"
+                        />
+                    </div>
                 </div>
                 @foreach ($dataDiri as $key => $value)
                     <div class="grid grid-cols-2 px-1 py-2">

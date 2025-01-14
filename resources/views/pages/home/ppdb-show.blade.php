@@ -10,7 +10,7 @@
                     @foreach ($tahunAkademiks as $key => $item)
                         <li
                             @class([
-                                'font-semibold' => $key == $currentTahunAkademik->id,
+                                'font-semibold' => $key == $tahunAkademik->id,
                             ])
                         >
                             <a href="{{ route('home.ppdb.show', $key) }}">{{ $item }}</a>
@@ -19,23 +19,28 @@
                 </ul>
             </nav>
             <section class="min-h-screen w-full">
-                @if ($currentTahunAkademik && $currentTahunAkademik->file_ppdb)
-                    <div class="mx-auto min-h-[1000px] w-[600px]">
-                        <div class="mb-4 flex items-center justify-between">
-                            <h1 class="text-lg font-semibold">Dokumen PPDB {{ $currentTahunAkademik->name }}</h1>
+                <div class="mx-auto min-h-[1000px] w-[600px]">
+                    <div class="mb-4 flex items-center justify-between">
+                        <h1 class="text-lg font-semibold">Dokumen PPDB {{ $tahunAkademik->name }}</h1>
+                        @if ($tahunAkademik->file_ppdb)
                             <a
                                 href="{{
-                                    route('pdf.download', urlencode('ppdb/' . $currentTahunAkademik->file_ppdb)) .
+                                    route('pdf.download', urlencode('ppdb/' . $tahunAkademik->file_ppdb)) .
                                         '?name=' .
-                                        urlencode('PPDB ' . Str::of($currentTahunAkademik->name)->replace('/', '-'))
+                                        urlencode('PPDB ' . Str::of($tahunAkademik->name)->replace('/', '-'))
                                 }}"
                             >
                                 <button class="rounded bg-primary px-4 py-2 text-white">Unduh</button>
                             </a>
-                        </div>
-                        <livewire:pdf-viewer src="{{ asset('storage/ppdb/' . $currentTahunAkademik->file_ppdb) }}" />
+                        @endif
                     </div>
-                @endif
+
+                    @if ($tahunAkademik->file_ppdb)
+                        <livewire:pdf-viewer src="{{ asset('storage/ppdb/' . $tahunAkademik->file_ppdb) }}" />
+                    @else
+                        <p>Belum ada dokumen PPDB untuk tahun ajaran ini.</p>
+                    @endif
+                </div>
             </section>
         </div>
     </section>

@@ -9,6 +9,7 @@ Route::group(
         'as' => 'admin.',
         'middleware' => [
             'auth',
+            'verified',
             'role:admin'
         ],
     ],
@@ -19,8 +20,9 @@ Route::group(
         Route::prefix('tahun-akademik')->group(
             function () {
 
-                Route::get('{tahun_akademik}/kalender-akademik', [App\Http\Controllers\Admin\TahunAkademikController::class, 'showKalenderAkademik'])->name('tahun-akademik.kalender-akademik');
+                Route::post('{tahun_akademik}/uploadPpdb', [App\Http\Controllers\Admin\TahunAkademikController::class, 'uploadPpdb'])->name('tahun-akademik.upload-ppdb');
 
+                Route::get('{tahun_akademik}/ppdb', [App\Http\Controllers\Admin\TahunAkademikController::class, 'ppdb'])->name('tahun-akademik.ppdb');
 
                 Route::get('{tahun_akademik}/kelas', [App\Http\Controllers\Admin\TahunAkademikController::class, 'kelas'])->name('tahun-akademik.kelas');
 

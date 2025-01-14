@@ -1,7 +1,7 @@
 <x-guest-layout>
     @include('layouts.auth-header')
 
-    <section class="absolute right-0 top-48 rounded-xl border border-zinc-200 p-8 pr-48 text-primary shadow-xl">
+    <section class="absolute right-0 top-48 rounded-xl border border-zinc-200 p-8 pr-48 text-primary shadow-xl" x-data>
         <div class="w-[300px]">
             <h1 class="text-center font-semibold">SIAKAD SMA N 1 JATI AGUNG</h1>
             <h2 class="text-center">Masuk</h2>
@@ -27,13 +27,13 @@
                 </div>
 
                 <!-- Password -->
-                <div class="mt-4">
+                <div class="mt-4" x-data="{ showPassword: false }">
                     <x-input-label for="password" :value="__('Kata Sandi')" />
 
                     <x-text-input
                         id="password"
                         class="block w-full"
-                        type="password"
+                        x-bind:type="showPassword ? 'text' : 'password'"
                         name="password"
                         required
                         placeholder="Masukan Kata Sandi"
@@ -43,7 +43,12 @@
 
                     <!--checkbox untuk tampilkan password-->
                     <div class="mt-2 flex items-center">
-                        <input type="checkbox" class="h-4 w-4 border-2 border-primary text-primary" />
+                        <input
+                            type="checkbox"
+                            class="h-4 w-4 border-2 border-primary text-primary"
+                            id="show-password"
+                            x-on:click="showPassword = !showPassword"
+                        />
                         <label for="show-password" class="ml-2 text-sm text-gray-600">Tampilkan Kata Sandi</label>
                     </div>
                 </div>
@@ -51,9 +56,13 @@
                 <div class="mt-4 flex flex-col space-y-2 text-center">
                     <button class="rounded-lg bg-primary py-1 text-center font-semibold text-white">Masuk</button>
                     <span class="text-sm">atau</span>
-                    <a class="rounded-md text-sm text-red-500 underline" href="{{ route('password.request') }}">
-                        {{ __('Reset Kata sandi') }}
-                    </a>
+                    <div>
+                        <a class="rounded-md text-sm text-red-500 underline" href="{{ route('password.request') }}">
+                            {{ __('Reset Kata sandi') }}
+                        </a>
+                        |
+                        <a class="rounded-md text-sm underline" href="{{ route('register') }}">Daftar Sekarang</a>
+                    </div>
                 </div>
             </form>
         </div>

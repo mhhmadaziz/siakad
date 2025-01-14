@@ -14,8 +14,10 @@
         </div>
     </a>
 </header>
-<nav class="relative bg-primary">
-    <div class="absolute h-10 w-8 bg-green-600"></div>
+<nav class="flex bg-primary">
+    <div class="flex min-w-fit items-center bg-green-600 px-2">
+        <h1 class="font-semibold text-white">Tahun Ajaran {{ $currentTahunAkademik->name }}</h1>
+    </div>
     <div class="flex w-full justify-end">
         <button class="flex items-center gap-2 bg-yellowCustom px-4 py-2">
             <i class="fas fa-user text-xs"></i>
@@ -23,9 +25,12 @@
                 {{ auth()->user()->name }}
             @endauth
         </button>
-        <button class="flex items-center gap-2 bg-red-700 px-4 py-2 text-white">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            Keluar
-        </button>
+        <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <button class="flex items-center gap-2 bg-red-700 px-4 py-2 text-white">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Keluar
+            </button>
+        </form>
     </div>
 </nav>

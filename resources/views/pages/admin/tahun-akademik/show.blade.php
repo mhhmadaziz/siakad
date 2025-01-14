@@ -3,27 +3,100 @@
         <div class="space-y-2 rounded border border-zinc-300 p-2">
             <h1 class="font-semibold">ATURAN & KEBIJAKAN</h1>
 
-            <div class="rounded-lg bg-primary p-3 py-6">
+            <div class="flex items-center justify-between rounded-lg bg-primary p-3 py-6">
                 <div class="flex gap-2 text-white">
                     <i class="fa-solid fa-graduation-cap text-6xl"></i>
                     <div class="flex w-full items-center justify-between">
                         <div class="">
-                            <h2>Tahun Ajaran</h2>
+                            <h2>
+                                Tahun Ajaran
+
+                                @if ($currentTahunAkademik->id == $tahunAkademik->id)
+                                    <span class="rounded-full bg-green-600 px-4 py-1 text-sm">Aktif</span>
+                                @endif
+                            </h2>
                             <h1 class="text-3xl font-semibold">{{ $tahunAkademik->name }}</h1>
                         </div>
                     </div>
                 </div>
+                <div>
+                    <a href="{{ route('admin.tahun-akademik.edit', $tahunAkademik->id) }}">
+                        <button class="rounded-md bg-yellowCustom px-4 py-2">Edit</button>
+                    </a>
+                </div>
             </div>
 
-            <div class="divide-y divide-zinc-300 rounded border border-zinc-300">
+            <div class="divide-y divide-zinc-300 rounded border border-zinc-300" x-data>
                 <div class="flex items-center justify-between p-2">
-                    <h1>Kalender Akademik</h1>
-                    <div class="flex justify-end gap-2 text-white">
-                        <button class="rounded-md bg-black px-4 py-2">UNDUH</button>
-                        <button class="rounded-md bg-yellowCustom px-4 py-2 text-black">UNGGAH BARU</button>
-                        <a href="{{ route('admin.tahun-akademik.kalender-akademik', $tahunAkademik->id) }}">
-                            <button class="rounded-md bg-primary px-4 py-2">LIHAT</button>
-                        </a>
+                    <h1>PPDB</h1>
+                    <div class="flex items-center justify-end gap-2 text-white">
+                        @if ($tahunAkademik->file_ppdb)
+                            <a
+                                href="{{
+                                    route('pdf.download', urlencode('ppdb/' . $tahunAkademik->file_ppdb)) .
+                                        '?name=' .
+                                        urlencode('PPDB ' . Str::of($tahunAkademik->name)->replace('/', '-'))
+                                }}"
+                            >
+                                <button class="rounded-md bg-black px-4 py-2">UNDUH</button>
+                            </a>
+
+                            <form
+                                action="{{ route('admin.tahun-akademik.upload-ppdb', $tahunAkademik->id) }}"
+                                method="post"
+                                x-ref="form"
+                            >
+                                @csrf
+
+                                <label for="file" class="cursor-pointer">
+                                    <input
+                                        type="file"
+                                        name="file"
+                                        id="file"
+                                        class="sr-only"
+                                        accept=".pdf"
+                                        x-on:change="$refs.form.submit()"
+                                        x-ref="file"
+                                    />
+                                    <button
+                                        class="rounded-md bg-yellowCustom px-4 py-2 text-black"
+                                        x-on:click.prevent="$refs.file.click()"
+                                    >
+                                        UNGGAH BARU
+                                    </button>
+                                </label>
+                            </form>
+
+                            <a href="{{ route('admin.tahun-akademik.ppdb', $tahunAkademik->id) }}">
+                                <button class="rounded-md bg-primary px-4 py-2">LIHAT</button>
+                            </a>
+                        @else
+                            <form
+                                action="{{ route('admin.tahun-akademik.upload-ppdb', $tahunAkademik->id) }}"
+                                method="post"
+                                x-ref="form"
+                            >
+                                @csrf
+
+                                <label for="file" class="cursor-pointer">
+                                    <input
+                                        type="file"
+                                        name="file"
+                                        id="file"
+                                        class="sr-only"
+                                        accept=".pdf"
+                                        x-on:change="$refs.form.submit()"
+                                        x-ref="file"
+                                    />
+                                    <button
+                                        class="rounded-md bg-yellowCustom px-4 py-2 text-black"
+                                        x-on:click.prevent="$refs.file.click()"
+                                    >
+                                        UNGGAH
+                                    </button>
+                                </label>
+                            </form>
+                        @endif
                     </div>
                 </div>
 

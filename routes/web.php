@@ -8,6 +8,11 @@ Route::get('/galeri', [App\Http\Controllers\HomeController::class, 'galeri'])->n
 Route::get('/galeri/video', [App\Http\Controllers\HomeController::class, 'video'])->name('home.galeri.video');
 Route::get('/kalender', [App\Http\Controllers\HomeController::class, 'kalender'])->name('home.kalender');
 Route::get('/ppdb', [App\Http\Controllers\HomeController::class, 'ppdb'])->name('home.ppdb');
+Route::get('/ppdb/{tahun_akademik}', [App\Http\Controllers\HomeController::class, 'ppdbShow'])->name('home.ppdb.show');
+
+Route::get('/pdf/{path}', [App\Http\Controllers\PdfController::class, 'download'])
+    ->where('path', '.*')
+    ->name('pdf.download');
 
 
 Route::middleware('auth')->group(function () {
@@ -15,11 +20,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::get('/pdf/{path}', [App\Http\Controllers\PdfController::class, 'download'])
-        ->where('path', '.*')
-        ->name('pdf.download');
 });
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
+require __DIR__ . '/guru.php';
+require __DIR__ . '/siswa.php';

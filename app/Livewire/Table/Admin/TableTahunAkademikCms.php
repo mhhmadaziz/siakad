@@ -8,7 +8,9 @@ use App\Models\Kelas;
 use App\Models\KelasSiswa;
 use App\Models\Siswa;
 use App\Models\TahunAkademik;
+use App\Services\TahunAkademikService;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
@@ -31,17 +33,22 @@ class TableTahunAkademikCms extends BaseTable
             return;
         }
 
-        $fileName = $this->filePpdb[$key]->hashName();
-
-        DB::transaction(function () use ($tahunAkademik, $fileName, $key) {
-            $tahunAkademik->update([
-                'file_ppdb' => $fileName,
-            ]);
-
-            Storage::disk('public')->putFileAs('ppdb', $this->filePpdb[$key], $fileName);
-        });
+        app(TahunAkademikService::class)->uploadPpdb($tahunAkademik, $this->filePpdb[$key]);
 
         session()->flash('success', 'File PPDB berhasil diupload');
+    }
+
+    public function deleteFilePpdb($key)
+    {
+        $tahunAkademik = TahunAkademik::find($key);
+
+        if (!$tahunAkademik) {
+            return;
+        }
+
+        app(TahunAkademikService::class)->deletePpdb($tahunAkademik);
+
+        session()->flash('success', 'File PPDB berhasil dihapus');
     }
 
     public function query(): Builder

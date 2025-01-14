@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cms;
 use App\Models\TahunAkademik;
 use App\Service\CmsService;
+use App\Services\TahunAkademikService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -57,6 +58,18 @@ class HomeController extends Controller
             ->get()
             ->pluck('name', 'id');
 
-        return view('pages.home.ppdb', compact('tahunAkademiks'));
+        $currentTahunAkademik = app(TahunAkademikService::class)->getCurrentTahunAkademik() ?? null;
+
+        return view('pages.home.ppdb', compact('tahunAkademiks', 'currentTahunAkademik'));
+    }
+
+    public function ppdbShow(TahunAkademik $tahunAkademik)
+    {
+        $tahunAkademiks = TahunAkademik::query()
+            ->orderBy('mulai', 'desc')
+            ->get()
+            ->pluck('name', 'id');
+
+        return view('pages.home.ppdb-show', compact('tahunAkademik', 'tahunAkademiks'));
     }
 }

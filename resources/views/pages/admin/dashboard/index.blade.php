@@ -13,22 +13,22 @@
             <div class="flex flex-col text-right font-semibold">
                 <h1>Sistem Informasi Akademik</h1>
                 <h1>SMA Negeri 1 Jati Agung</h1>
-                <h1 class="mt-8">Tahun ajaran</h1>
+                <h1 class="mt-8">Tahun Akademik {{ $currentTahunAkademik?->name ?? '' }}</h1>
             </div>
         </div>
 
         <div class="grid grid-cols-3 gap-6">
-            @for ($i = 0; $i < 3; $i++)
+            @foreach ($countCard as $key => $item)
                 <div class="flex items-center rounded-lg bg-zinc-100 p-6">
                     <div class="flex-1">
-                        <h1 class="text-md">Jumlah Siswa</h1>
-                        <h2 class="text-4xl font-semibold">100</h2>
+                        <h1 class="text-md">{{ $key }}</h1>
+                        <h2 class="text-4xl font-semibold">{{ $item->count }}</h2>
                     </div>
                     <div>
-                        <i class="fa-solid fa-user text-8xl text-zinc-400"></i>
+                        <i class="{{ $item->icon }} text-8xl text-zinc-400"></i>
                     </div>
                 </div>
-            @endfor
+            @endforeach
         </div>
 
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -49,21 +49,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="py-2">Siswa Aktif</td>
-                                    <td class="py-2">275</td>
-                                    <td class="py-2">74.9%</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2">Cuti</td>
-                                    <td class="py-2">92</td>
-                                    <td class="py-2">25.1%</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2">Keluar/Dikeluarkan</td>
-                                    <td class="py-2">0</td>
-                                    <td class="py-2">0.0%</td>
-                                </tr>
+                                @foreach ($statistikSiswa as $item)
+                                    <tr>
+                                        <td class="py-2">{{ $item['label'] }}</td>
+                                        <td class="py-2">{{ $item['count'] }}</td>
+                                        <td class="py-2">{{ $item['percentage'] }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -87,21 +79,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="py-2">Siswa Aktif</td>
-                                    <td class="py-2">275</td>
-                                    <td class="py-2">74.9%</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2">Cuti</td>
-                                    <td class="py-2">92</td>
-                                    <td class="py-2">25.1%</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2">Keluar/Dikeluarkan</td>
-                                    <td class="py-2">0</td>
-                                    <td class="py-2">0.0%</td>
-                                </tr>
+                                @foreach ($statistikGuru as $item)
+                                    <tr>
+                                        <td class="py-2">{{ $item['label'] }}</td>
+                                        <td class="py-2">{{ $item['count'] }}</td>
+                                        <td class="py-2">{{ $item['percentage'] }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -112,7 +96,7 @@
         <!-- Grafik Kelulusan Siswa -->
 
         <div class="w-full rounded-md bg-zinc-100 p-4">
-            <h2 class="mb-4 text-xl font-semibold">Grafik Kelulusan Siswa</h2>
+            <h2 class="mb-4 text-xl font-semibold">Grafik Penerimaan</h2>
 
             <canvas id="kelulusanChart" width="400" height="100"></canvas>
         </div>
@@ -125,12 +109,12 @@
             const siswaChart = new Chart(ctxSiswa, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Aktif', 'Cuti', 'Keluar/Dikeluarkan'],
+                    labels: @json($statistikSiswa->pluck('label')),
                     datasets: [
                         {
                             label: 'Statistik Siswa',
-                            data: [275, 92, 0],
-                            backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)', 'rgb(75, 192, 192)'],
+                            data: @json($statistikSiswa->pluck('count')),
+                            backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)'],
                             hoverOffset: 4,
                         },
                     ],
@@ -151,11 +135,11 @@
             const guruChart = new Chart(ctxGuru, {
                 type: 'doughnut',
                 data: {
-                    labels: ['PNS', 'Honor'],
+                    labels: @json($statistikGuru->pluck('label')),
                     datasets: [
                         {
                             label: 'Statistik Guru',
-                            data: [30, 0],
+                            data: @json($statistikGuru->pluck('count')),
                             backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)'],
                             hoverOffset: 4,
                         },
@@ -174,14 +158,17 @@
 
             // Chart Kelulusan
             const ctxKelulusan = document.getElementById('kelulusanChart').getContext('2d');
+            const labels = @json($statistikTahunAkademik->values());
+            const labelsCount = labels.length;
+            const data = Array.from({ length: labelsCount }, () => Math.floor(Math.random() * 500));
             const kelulusanChart = new Chart(ctxKelulusan, {
                 type: 'bar', //tetap bar
                 data: {
-                    labels: ['2018/2019', '2019/2020', '2020/2021', '2021/2022', '2024/2023'],
+                    labels: labels,
                     datasets: [
                         {
-                            label: 'Kelulusan Siswa',
-                            data: [100, 200, 300, 400, 300],
+                            label: 'Penerimaan Siswa',
+                            data: data,
                             backgroundColor: 'rgb(54, 162, 235)',
                             borderColor: 'rgb(54, 162, 235)',
                             borderWidth: 1,
