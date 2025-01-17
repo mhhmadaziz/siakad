@@ -167,3 +167,7 @@ Breadcrumbs::for('admin.cms.ppdb.show', function (BreadcrumbTrail $trail, $tahun
     $trail->parent('admin.cms.ppdb.index');
     $trail->push($tahunAkademik->name, route('admin.cms.ppdb.show', $tahunAkademik));
 });
+
+Breadcrumbs::for('admin.form.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Formulir Mata Pelajaran Pilihan', route('admin.form.index'));
+});

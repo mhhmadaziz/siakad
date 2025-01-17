@@ -158,9 +158,8 @@
 
             // Chart Kelulusan
             const ctxKelulusan = document.getElementById('kelulusanChart').getContext('2d');
-            const labels = @json($statistikTahunAkademik->values());
-            const labelsCount = labels.length;
-            const data = Array.from({ length: labelsCount }, () => Math.floor(Math.random() * 500));
+            const labels = @json($siswaKelas10->pluck('label'));
+            const data = @json($siswaKelas10->pluck('count'));
             const kelulusanChart = new Chart(ctxKelulusan, {
                 type: 'bar', //tetap bar
                 data: {

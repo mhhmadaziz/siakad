@@ -73,5 +73,15 @@ Route::group(
                 Route::delete('/galeri/video-delete/{name}', [App\Http\Controllers\Admin\CmsController::class, 'galeriVideoDelete'])->name('galeri.video-delete');
             }
         );
+
+        Route::group(
+            [
+                'prefix' => 'form',
+                'as' => 'form.'
+            ],
+            function () {
+                Route::get('/', [App\Http\Controllers\Admin\FormController::class, 'index'])->name('index');
+            }
+        );
     }
 );

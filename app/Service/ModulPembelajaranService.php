@@ -18,16 +18,17 @@ class ModulPembelajaranService
     }
     public function getFormCreate()
     {
-
         $mataPelajarans = MataPelajaran::query()
+            ->whereHas('kelas', function ($q) {
+                $q->currentTahunAkademik();
+            })
             ->get()
-            ->pluck('name', 'id')->map(function ($item, $key) {
+            ->map(function ($item) {
                 return (object) [
-                    'label' => $item,
-                    'value' => $key,
+                    'label' => $item->kelas?->fullName . ' - ' . $item->name,
+                    'value' => $item->id,
                 ];
             });
-
 
         $forms = [
             (object) [

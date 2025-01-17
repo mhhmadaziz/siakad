@@ -84,9 +84,9 @@
         {
             "label": "Formulir Mata Pelajaran Pilihan",
             "icon": "fa-solid fa-file",
-            "route": "admin.kelas.index",
+            "route": "admin.form.index",
             "role": ["admin"],
-            "slug": []
+            "slug": ["admin.form.index"]
         },
         {
             "label": "Galeri dan Konten",

@@ -39,7 +39,12 @@ class OptionSeeder extends Seeder
             [
                 'key' => 'status_kehadiran',
                 'name' => 'Status Kehadiran'
+            ],
+            [
+                'key' => 'tipe_pertanyaan',
+                'name' => 'Tipe Pertanyaan'
             ]
+
         ]);
 
         $jenisKelamin = $this->optionService->getOptionCategoryKey('jenis_kelamin');
@@ -84,6 +89,15 @@ class OptionSeeder extends Seeder
             ['name' => 'Izin'],
             ['name' => 'Terlambat'],
             ['name' => 'Tidak Hadir'],
+        ]);
+
+        $tipePertanyaan = $this->optionService->getOptionCategoryKey('tipe_pertanyaan');
+        $tipePertanyaan->options()->createMany([
+            ['name' => 'Isian Singkat'],
+            ['name' => 'Esai'],
+            ['name' => 'Angka'],
+            ['name' => 'Pilihan Ganda'],
+            ['name' => 'Pilihan Ganda (checkbox)'],
         ]);
     }
 }

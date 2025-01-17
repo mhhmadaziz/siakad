@@ -16,4 +16,5 @@
     placeholder="{{ $placeholder }}"
     {{ $required ? 'required' : '' }}
     {{ $disabled ? 'disabled' : '' }}
+    {{ $attributes }}
 />
