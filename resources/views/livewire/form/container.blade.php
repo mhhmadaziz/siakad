@@ -1,4 +1,16 @@
 <div class="mt-8 space-y-4">
+    <div class="flex items-center justify-between gap-2">
+        <div class="w-72">
+            <x-inputs.select wire:model.live="selectedTahunAkademik" :options="$tahunAkademiks" />
+        </div>
+
+        <div class="flex w-full items-center justify-end gap-2">
+            <button class="rounded-md bg-black px-4 py-2 text-white">Lihat hasil pengisian formulir</button>
+            <a href="{{ route('admin.form.preview', $selectedTahunAkademik) }}">
+                <button class="rounded-md bg-black px-4 py-2 text-white">Preview</button>
+            </a>
+        </div>
+    </div>
     @forelse ($pertanyaans as $item)
         <livewire:form.pertanyaan wire:key="{{ 'pertanyaan' . $item->id }}" :pertanyaan="$item" />
     @empty

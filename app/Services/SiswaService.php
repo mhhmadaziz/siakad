@@ -50,7 +50,7 @@ class SiswaService
             }
         }
 
-        $result['jenis_kelamin'] = JenisKelaminEnum::from($siswa->user->jenisKelamin->name)->label();
+        $result['jenis_kelamin'] = $siswa->user->jenisKelamin->name;
 
         $result['agama'] = $siswa->agama->name;
 
@@ -86,7 +86,7 @@ class SiswaService
         return $result;
     }
 
-    public function getFormEditDataDiriSiswa(Siswa $siswa)
+    public function getFormEditDataDiriSiswa(Siswa $siswa, array $disabled = [])
     {
 
         $data = $this->getDataDiriSiswa($siswa);
@@ -116,6 +116,18 @@ class SiswaService
                 case 'alamat':
                     $form[count($form) - 1]->type = 'textarea';
                     break;
+                case 'tanggal_lahir':
+                    $form[count($form) - 1]->type = 'date';
+                    break;
+                case 'telepon':
+                    $form[count($form) - 1]->type = 'tel';
+                    break;
+            }
+        }
+
+        foreach ($form as $key => $value) {
+            if (in_array($value->name, $disabled)) {
+                $form[$key]->disabled = true;
             }
         }
 
@@ -126,9 +138,8 @@ class SiswaService
     {
         return DB::transaction(function () use ($siswa, $data) {
             $siswa->update([
-                'nisn' => $data['NISN'],
-                'nipd' => $data['NIPD'],
-                'jenis_kelamin_id' => $data['jenis_kelamin'],
+                'nisn' => $data['NISN'] ?? $siswa->nisn,
+                'nipd' => $data['NIPD'] ?? $siswa->nipd,
                 'tempat_lahir' => $data['tempat_lahir'],
                 'tanggal_lahir' => Carbon::parse($data['tanggal_lahir']),
                 'agama_id' => $data['agama'],
@@ -145,6 +156,7 @@ class SiswaService
             $this->userService->updateUser($siswa->user, [
                 'name' => $data['nama_lengkap'],
                 'telepon' => $data['telepon'],
+                'jenis_kelamin_id' => $data['jenis_kelamin'],
             ]);
             return $siswa;
         });

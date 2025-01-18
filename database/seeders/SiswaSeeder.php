@@ -42,5 +42,30 @@ class SiswaSeeder extends Seeder
                     'nama_ibu' => fake()->name,
                 ]);
             });
+
+        $jenisKelaminId = app(OptionService::class)->getOptionValueByName('L')->id;
+        $siswaUser = User::create([
+            'name' => 'Siswa',
+            'email' => 'siswa@siswa.com',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+            'jenis_kelamin_id' => $jenisKelaminId,
+        ]);
+        $siswaUser->assignRole($siswa);
+        $siswaUser->siswa()->create([
+            'nisn' => '12345678',
+            'nipd' => '12345678',
+            'tempat_lahir' => 'Jakarta',
+            'tanggal_lahir' => '2000-01-01',
+            'agama_id' => $agamaId->random(),
+            'alamat' => 'Jl. Jalan',
+            'rt' => '001',
+            'rw' => '001',
+            'dusun' => 'Dusun',
+            'kelurahan' => 'Kelurahan',
+            'kecamatan' => 'Kecamatan',
+            'nama_ayah' => 'Ayah',
+            'nama_ibu' => 'Ibu',
+        ]);
     }
 }

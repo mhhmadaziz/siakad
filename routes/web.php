@@ -20,6 +20,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::group(
+        [
+            'prefix' => 'siswa',
+            'as' => 'siswa.',
+            'middleware' => [
+                'auth',
+                'role:siswa'
+            ],
+        ],
+        function () {
+            Route::get('/profile', [App\Http\Controllers\Siswa\ProfileController::class, 'index'])->name('profile.index');
+            Route::patch('/profile', [App\Http\Controllers\Siswa\ProfileController::class, 'update'])->name('profile.update');
+            Route::patch('/profile/akun', [App\Http\Controllers\Siswa\ProfileController::class, 'updateAkun'])->name('profile.update.akun');
+        }
+    );
 });
 
 require __DIR__ . '/auth.php';

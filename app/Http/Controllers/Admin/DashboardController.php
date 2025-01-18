@@ -87,7 +87,7 @@ class DashboardController extends Controller
                         'P' => 'Perempuan',
                     },
                     'count' => $item->count(),
-                    'percentage' => $item->count() / $model::count() * 100,
+                    'percentage' => round($item->count() / $model::count() * 100, 2),
                 ];
             });
     }

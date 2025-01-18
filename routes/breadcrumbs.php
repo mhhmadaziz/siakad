@@ -171,3 +171,34 @@ Breadcrumbs::for('admin.cms.ppdb.show', function (BreadcrumbTrail $trail, $tahun
 Breadcrumbs::for('admin.form.index', function (BreadcrumbTrail $trail) {
     $trail->push('Formulir Mata Pelajaran Pilihan', route('admin.form.index'));
 });
+
+Breadcrumbs::for('admin.form.preview', function (BreadcrumbTrail $trail, $tahunAkademik) {
+    $trail->parent('admin.form.index');
+    $trail->push($tahunAkademik->name, route('admin.form.preview', $tahunAkademik));
+});
+
+Breadcrumbs::for('siswa.profile.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Profil', route('siswa.profile.index'));
+});
+
+Breadcrumbs::for('siswa.jadwal-mata-pelajaran.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Jadwal Mata Pelajaran', route('siswa.jadwal-mata-pelajaran.index'));
+});
+
+Breadcrumbs::for('siswa.jadwal-mata-pelajaran.show', function (BreadcrumbTrail $trail, $kelas) {
+    $trail->parent('siswa.jadwal-mata-pelajaran.index');
+    $trail->push($kelas->fullName, route('siswa.jadwal-mata-pelajaran.show', $kelas));
+});
+
+Breadcrumbs::for('siswa.modul-pembelajaran.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Modul Pembelajaran', route('siswa.modul-pembelajaran.index'));
+});
+
+Breadcrumbs::for('siswa.modul-pembelajaran.show', function (BreadcrumbTrail $trail, $modulPembelajaran) {
+    $trail->parent('siswa.modul-pembelajaran.index');
+    $trail->push($modulPembelajaran->name, route('siswa.modul-pembelajaran.show', $modulPembelajaran));
+});
+
+Breadcrumbs::for('siswa.form.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Formulir Mata Pelajaran Pilihan', route('siswa.form.index'));
+});

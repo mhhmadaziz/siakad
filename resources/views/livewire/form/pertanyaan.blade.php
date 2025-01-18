@@ -65,12 +65,12 @@
             <div class="flex items-center gap-2">
                 <input
                     type="checkbox"
-                    id="required"
-                    name="required"
+                    id="required-{{ $pertanyaan->id }}"
+                    name="required-{{ $pertanyaan->id }}"
                     wire:model.live="editor.required"
                     {{ $editor['required'] ? 'checked' : '' }}
                 />
-                <label for="required">Tidak boleh kosong</label>
+                <label for="required-{{ $pertanyaan->id }}">Tidak boleh kosong</label>
             </div>
 
             <div class="">

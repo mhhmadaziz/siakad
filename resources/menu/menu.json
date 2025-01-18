@@ -86,7 +86,7 @@
             "icon": "fa-solid fa-file",
             "route": "admin.form.index",
             "role": ["admin"],
-            "slug": ["admin.form.index"]
+            "slug": ["admin.form.index", "admin.form.preview"]
         },
         {
             "label": "Galeri dan Konten",
@@ -102,6 +102,41 @@
                 "admin.cms.kalender.index",
                 "admin.cms.ppdb.index"
             ]
+        },
+        {
+            "label": "Dashboard",
+            "icon": "fa-solid fa-border-all",
+            "route": "siswa.dashboard",
+            "role": ["siswa"],
+            "slug": ["siswa.dashboard"]
+        },
+        {
+            "label": "Profil",
+            "icon": "fa-solid fa-border-all",
+            "route": "siswa.profile.index",
+            "role": ["siswa"],
+            "slug": ["siswa.profile.index"]
+        },
+        {
+            "label": "Jadwal Mata Pelajaran",
+            "icon": "fa-solid fa-border-all",
+            "route": "siswa.jadwal-mata-pelajaran.index",
+            "role": ["siswa"],
+            "slug": ["siswa.jadwal-mata-pelajaran.index", "siswa.jadwal-mata-pelajaran.show"]
+        },
+        {
+            "label": "Modul Pembelajaran",
+            "icon": "fa-solid fa-border-all",
+            "route": "siswa.modul-pembelajaran.index",
+            "role": ["siswa"],
+            "slug": ["siswa.modul-pembelajaran.index", "siswa.modul-pembelajaran.show"]
+        },
+        {
+            "label": "Formulir Mata Pelajaran Pilihan",
+            "icon": "fa-solid fa-border-all",
+            "route": "siswa.form.index",
+            "role": ["siswa"],
+            "slug": ["siswa.form.index"]
         }
     ],
     "home": [

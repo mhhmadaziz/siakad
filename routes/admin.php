@@ -81,6 +81,7 @@ Route::group(
             ],
             function () {
                 Route::get('/', [App\Http\Controllers\Admin\FormController::class, 'index'])->name('index');
+                Route::get('/preview/{tahunAkademik}', [App\Http\Controllers\Admin\FormController::class, 'preview'])->name('preview');
             }
         );
     }
