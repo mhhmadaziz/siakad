@@ -86,7 +86,7 @@
             "icon": "fa-solid fa-file",
             "route": "admin.form.index",
             "role": ["admin"],
-            "slug": ["admin.form.index", "admin.form.preview"]
+            "slug": ["admin.form.index", "admin.form.preview", "admin.form.hasil", "admin.form.hasil.siswa"]
         },
         {
             "label": "Galeri dan Konten",
@@ -136,7 +136,7 @@
             "icon": "fa-solid fa-border-all",
             "route": "siswa.form.index",
             "role": ["siswa"],
-            "slug": ["siswa.form.index"]
+            "slug": ["siswa.form.index", "siswa.form.show"]
         }
     ],
     "home": [

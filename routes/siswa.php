@@ -24,5 +24,6 @@ Route::group(
 
         Route::get('/form', [App\Http\Controllers\Siswa\FormController::class, 'index'])->name('form.index');
         Route::post('/form', [App\Http\Controllers\Siswa\FormController::class, 'submit'])->name('form.submit');
+        Route::get('/form/result', [App\Http\Controllers\Siswa\FormController::class, 'show'])->name('form.show');
     }
 );

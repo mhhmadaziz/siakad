@@ -4,11 +4,30 @@
             <x-inputs.select wire:model.live="selectedTahunAkademik" :options="$tahunAkademiks" />
         </div>
 
-        <div class="flex w-full items-center justify-end gap-2">
-            <button class="rounded-md bg-black px-4 py-2 text-white">Lihat hasil pengisian formulir</button>
-            <a href="{{ route('admin.form.preview', $selectedTahunAkademik) }}">
-                <button class="rounded-md bg-black px-4 py-2 text-white">Preview</button>
-            </a>
+        <div class="flex w-full flex-col items-end justify-end gap-2">
+            <div class="ml-4 flex items-center gap-2">
+                <input type="checkbox" id="buka_kuisioner" name="buka_kuisioner" wire:model.live="bukaKuisioner" />
+                <label for="buka_kuisioner">Buka Kuisioner</label>
+            </div>
+
+            <div>
+                <a href="{{ route('admin.form.hasil', $selectedTahunAkademik) }}">
+                    <button
+                        class="rounded-md bg-black px-4 py-2 text-white disabled:opacity-50"
+                        wire:loading.attr="disabled"
+                    >
+                        Lihat hasil pengisian formulir
+                    </button>
+                </a>
+                <a href="{{ route('admin.form.preview', $selectedTahunAkademik) }}">
+                    <button
+                        class="rounded-md bg-black px-4 py-2 text-white disabled:opacity-50"
+                        wire:loading.attr="disabled"
+                    >
+                        Preview
+                    </button>
+                </a>
+            </div>
         </div>
     </div>
     @forelse ($pertanyaans as $item)

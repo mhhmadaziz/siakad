@@ -177,6 +177,16 @@ Breadcrumbs::for('admin.form.preview', function (BreadcrumbTrail $trail, $tahunA
     $trail->push($tahunAkademik->name, route('admin.form.preview', $tahunAkademik));
 });
 
+Breadcrumbs::for('admin.form.hasil', function (BreadcrumbTrail $trail, $tahunAkademik) {
+    $trail->parent('admin.form.index');
+    $trail->push('Hasil Pengisian Formulir ' . $tahunAkademik->name, route('admin.form.hasil', $tahunAkademik));
+});
+
+Breadcrumbs::for('admin.form.hasil.siswa', function (BreadcrumbTrail $trail, $tahunAkademik, $jawabanSiswa) {
+    $trail->parent('admin.form.hasil', $tahunAkademik);
+    $trail->push($jawabanSiswa->siswa->user->name, route('admin.form.hasil.siswa', [$tahunAkademik, $jawabanSiswa]));
+});
+
 Breadcrumbs::for('siswa.profile.index', function (BreadcrumbTrail $trail) {
     $trail->push('Profil', route('siswa.profile.index'));
 });
@@ -201,4 +211,9 @@ Breadcrumbs::for('siswa.modul-pembelajaran.show', function (BreadcrumbTrail $tra
 
 Breadcrumbs::for('siswa.form.index', function (BreadcrumbTrail $trail) {
     $trail->push('Formulir Mata Pelajaran Pilihan', route('siswa.form.index'));
+});
+
+Breadcrumbs::for('siswa.form.show', function (BreadcrumbTrail $trail) {
+    $trail->parent('siswa.form.index');
+    $trail->push('Hasil', route('siswa.form.show'));
 });

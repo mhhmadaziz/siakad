@@ -4,6 +4,7 @@ namespace App\Livewire\Form;
 
 use App\Models\Pertanyaan;
 use App\Models\TahunAkademik;
+use App\Service\CmsService;
 use App\Services\OptionService;
 use App\Services\TahunAkademikService;
 use Livewire\Component;
@@ -12,7 +13,13 @@ class Container extends Component
 {
     public $pertanyaans = [];
     public $tahunAkademiks = [];
+    public $bukaKuisioner = false;
     public $selectedTahunAkademik = null;
+
+    public function updatedBukaKuisioner()
+    {
+        app(CmsService::class)->upsertCms('buka_kuisioner', $this->bukaKuisioner ? 'true' : 'false');
+    }
 
     public function updatedSelectedTahunAkademik($value)
     {
@@ -43,6 +50,8 @@ class Container extends Component
         $this->tahunAkademiks = TahunAkademik::pluck('name', 'id')->map(fn($value, $key) => (object) ['value' => $key, 'label' => $value]);
         $this->selectedTahunAkademik = app(TahunAkademikService::class)->getCurrentTahunAkademik()->id;
         $this->pertanyaans = Pertanyaan::currentTahunAkademik()->get();
+
+        $this->bukaKuisioner = app(CmsService::class)->getCms('buka_kuisioner') == 'true' ? true : false;
     }
 
     public function render()

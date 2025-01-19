@@ -82,6 +82,8 @@ Route::group(
             function () {
                 Route::get('/', [App\Http\Controllers\Admin\FormController::class, 'index'])->name('index');
                 Route::get('/preview/{tahunAkademik}', [App\Http\Controllers\Admin\FormController::class, 'preview'])->name('preview');
+                Route::get('/hasil/{tahunAkademik}', [App\Http\Controllers\Admin\FormController::class, 'hasil'])->name('hasil');
+                Route::get('/hasil/{tahunAkademik}/siswa/{jawabanSiswa}', [App\Http\Controllers\Admin\FormController::class, 'hasilSiswa'])->name('hasil.siswa');
             }
         );
     }

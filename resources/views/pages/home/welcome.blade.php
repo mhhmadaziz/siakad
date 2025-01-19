@@ -1,7 +1,7 @@
 <x-guest-layout>
     @include('layouts.home-header')
     <section
-        class="relative min-h-96 overflow-clip bg-black/80"
+        class="relative min-h-96 overflow-clip bg-black/30"
         x-data="{
             activeSlide: 0,
             autoSlideInterval: null,
@@ -29,27 +29,22 @@
             </template>
             {{-- <img src="{{ Vite::asset('resources/images/default-carousel.jpg') }}" alt="logo" class="w-screen" /> --}}
         </div>
+    </section>
 
-        <div class="bg mx-auto flex h-96 w-1/2 flex-col justify-center">
-            <div class="flex gap-2">
-                <div class="min-w-[200px] max-w-[200px] flex-1">
-                    <img
-                        src="{{ Vite::asset('resources/images/logo.png') }}"
-                        alt="logo"
-                        class="h-full w-full object-contain"
-                    />
-                </div>
-                <div class="prose prose-sm prose-invert prose-headings:m-0 prose-p:m-0">
-                    {!! $profileText !!}
-                </div>
+    <div class="bg mx-auto flex h-96 w-1/2 flex-col justify-center">
+        <div class="flex gap-2">
+            <div class="min-w-[200px] max-w-[200px] flex-1">
+                <img
+                    src="{{ Vite::asset('resources/images/logo.png') }}"
+                    alt="logo"
+                    class="h-full w-full object-contain"
+                />
             </div>
-            <div class="mt-4 flex justify-end">
-                <a href="{{ route('login') }}">
-                    <button class="rounded-md bg-white px-8 py-2 font-semibold uppercase text-blue-800">Masuk</button>
-                </a>
+            <div class="prose prose-sm prose-headings:m-0 prose-p:m-0">
+                {!! $profileText !!}
             </div>
         </div>
-    </section>
+    </div>
     <section class="px-8 py-4">
         <h1 class="mb-4 text-center text-xl font-bold">Struktur Organisasi</h1>
         <div class="flex justify-center gap-4">
