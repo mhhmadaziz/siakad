@@ -1,14 +1,14 @@
 <x-guest-layout>
     @include('layouts.auth-header')
 
-    <section class="absolute right-0 top-48 rounded-xl border border-zinc-200 p-8 pr-48 text-primary shadow-xl" x-data>
-        <div class="w-[300px]">
+    <section class="mx-auto my-8 w-[600px] rounded-md border border-zinc-300 p-8 shadow-md" x-data>
+        <div class="">
             <h1 class="text-center font-semibold">SIAKAD SMA N 1 JATI AGUNG</h1>
             <h2 class="text-center">Masuk</h2>
 
             <x-auth-session-status class="my-4" :status="session('status')" />
 
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('login') }}" class="mx-auto w-96 space-y-4">
                 @csrf
 
                 <!-- Email Address -->
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="mt-4 flex flex-col space-y-2 text-center">
-                    <button class="rounded-lg bg-primary py-1 text-center font-semibold text-white">Masuk</button>
+                    <button class="w-full rounded-md bg-primary py-2 font-semibold text-white">MASUK</button>
                     <span class="text-sm">atau</span>
                     <div>
                         <a class="rounded-md text-sm text-red-500 underline" href="{{ route('password.request') }}">

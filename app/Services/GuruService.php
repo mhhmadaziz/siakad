@@ -124,7 +124,7 @@ class GuruService
             }
         }
 
-        $result['jenis_kelamin'] = JenisKelaminEnum::from($guru?->user?->jenisKelamin->name)->label();
+        $result['jenis_kelamin'] = $guru->user->jenisKelamin->name;
 
         // remove unnecessary keys
         unset(
@@ -147,7 +147,7 @@ class GuruService
         return $result;
     }
 
-    public function getFormEdit(Guru $guru)
+    public function getFormEdit(Guru $guru, array $disabled = [])
     {
         $forms = [
             (object) [
@@ -189,9 +189,15 @@ class GuruService
                 'required' => true,
                 'disabled' => false,
                 'options' => $this->optionService->getSelectOptionsByCategoryKey('jenis_kelamin'),
-                'value' => $guru->user->jenis_kelamin_id,
+                'value' => $guru->user->jenisKelamin->name,
             ],
         ];
+
+        foreach ($forms as $key => $value) {
+            if (in_array($value->name, $disabled)) {
+                $forms[$key]->disabled = true;
+            }
+        }
 
         return $forms;
     }
@@ -201,7 +207,7 @@ class GuruService
         return DB::transaction(function () use ($data, $guru) {
             $guru->user->update([
                 'name' => $data['name'],
-                'email' => $data['email'],
+                'email' => $data['email'] ?? $guru->user->email,
                 'telepon' => $data['telepon'],
                 'jenis_kelamin_id' => $data['jenis_kelamin'],
             ]);

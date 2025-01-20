@@ -15,5 +15,8 @@ Route::group(
     ],
     function () {
         Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+
+        Route::resource('modul-pembelajaran', App\Http\Controllers\Guru\ModulPembelajaranController::class);
+        Route::resource('kehadiran-siswa', App\Http\Controllers\Guru\KehadiranSiswaController::class);
     }
 );

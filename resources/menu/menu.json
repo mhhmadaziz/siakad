@@ -137,6 +137,34 @@
             "route": "siswa.form.index",
             "role": ["siswa"],
             "slug": ["siswa.form.index", "siswa.form.show"]
+        },
+        {
+            "label": "Dashboard",
+            "icon": "fa-solid fa-border-all",
+            "route": "guru.dashboard",
+            "role": ["guru"],
+            "slug": ["guru.dashboard"]
+        },
+        {
+            "label": "Profil",
+            "icon": "fa-solid fa-border-all",
+            "route": "guru.profile.index",
+            "role": ["guru"],
+            "slug": ["guru.profile.index"]
+        },
+        {
+            "label": "Modul Pembelajaran",
+            "icon": "fa-solid fa-border-all",
+            "route": "guru.modul-pembelajaran.index",
+            "role": ["guru"],
+            "slug": ["guru.modul-pembelajaran.index", "guru.modul-pembelajaran.show"]
+        },
+        {
+            "label": "Kehadiran Siswa",
+            "icon": "fa-solid fa-border-all",
+            "route": "guru.kehadiran-siswa.index",
+            "role": ["guru"],
+            "slug": ["guru.kehadiran-siswa.index", "guru.kehadiran-siswa.show"]
         }
     ],
     "home": [

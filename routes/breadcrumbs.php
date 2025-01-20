@@ -217,3 +217,16 @@ Breadcrumbs::for('siswa.form.show', function (BreadcrumbTrail $trail) {
     $trail->parent('siswa.form.index');
     $trail->push('Hasil', route('siswa.form.show'));
 });
+
+Breadcrumbs::for('guru.profile.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Profil', route('guru.profile.index'));
+});
+
+Breadcrumbs::for('guru.modul-pembelajaran.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Modul Pembelajaran', route('guru.modul-pembelajaran.index'));
+});
+
+Breadcrumbs::for('guru.modul-pembelajaran.show', function (BreadcrumbTrail $trail, $modulPembelajaran) {
+    $trail->parent('guru.modul-pembelajaran.index');
+    $trail->push($modulPembelajaran->name, route('guru.modul-pembelajaran.show', $modulPembelajaran));
+});

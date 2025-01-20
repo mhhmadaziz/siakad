@@ -36,6 +36,22 @@ Route::middleware('auth')->group(function () {
             Route::patch('/profile/akun', [App\Http\Controllers\Siswa\ProfileController::class, 'updateAkun'])->name('profile.update.akun');
         }
     );
+
+    Route::group(
+        [
+            'prefix' => 'guru',
+            'as' => 'guru.',
+            'middleware' => [
+                'auth',
+                'role:guru'
+            ],
+        ],
+        function () {
+            Route::get('/profile', [App\Http\Controllers\Guru\ProfileController::class, 'index'])->name('profile.index');
+            Route::patch('/profile', [App\Http\Controllers\Guru\ProfileController::class, 'update'])->name('profile.update');
+            Route::patch('/profile/akun', [App\Http\Controllers\Guru\ProfileController::class, 'updateAkun'])->name('profile.update.akun');
+        }
+    );
 });
 
 require __DIR__ . '/auth.php';

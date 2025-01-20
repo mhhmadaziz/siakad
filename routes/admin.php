@@ -21,13 +21,9 @@ Route::group(
             function () {
 
                 Route::post('{tahun_akademik}/uploadPpdb', [App\Http\Controllers\Admin\TahunAkademikController::class, 'uploadPpdb'])->name('tahun-akademik.upload-ppdb');
-
                 Route::get('{tahun_akademik}/ppdb', [App\Http\Controllers\Admin\TahunAkademikController::class, 'ppdb'])->name('tahun-akademik.ppdb');
-
                 Route::get('{tahun_akademik}/kelas', [App\Http\Controllers\Admin\TahunAkademikController::class, 'kelas'])->name('tahun-akademik.kelas');
-
                 Route::get('{tahun_akademik}/kelas/create', [App\Http\Controllers\Admin\TahunAkademikController::class, 'createKelas'])->name('tahun-akademik.kelas.create');
-
                 Route::post('{tahun_akademik}/kelas', [App\Http\Controllers\Admin\TahunAkademikController::class, 'storeKelas'])->name('tahun-akademik.kelas.store');
 
                 Route::get('{tahun_akademik}/kelas/{kelas}/jadwal', [App\Http\Controllers\Admin\TahunAkademikController::class, 'jadwalMataPelajaran'])->name('tahun-akademik.kelas.jadwal');

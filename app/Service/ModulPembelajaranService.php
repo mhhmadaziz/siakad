@@ -16,11 +16,14 @@ class ModulPembelajaranService
     {
         //
     }
-    public function getFormCreate()
+    public function getFormCreate(bool $isGuru = false)
     {
         $mataPelajarans = MataPelajaran::query()
             ->whereHas('kelas', function ($q) {
                 $q->currentTahunAkademik();
+            })
+            ->when($isGuru, function ($q) {
+                $q->where('guru_id', auth()->user()->guru->id);
             })
             ->get()
             ->map(function ($item) {
@@ -75,6 +78,14 @@ class ModulPembelajaranService
                 ]
             );
             return $modulPembelajaran;
+        });
+    }
+
+    public function delete(ModulPembelajaran $modulPembelajaran)
+    {
+        return DB::transaction(function () use ($modulPembelajaran) {
+            Storage::disk('public')->delete('modul-pembelajaran/' . $modulPembelajaran->file);
+            $modulPembelajaran->delete();
         });
     }
 }

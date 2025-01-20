@@ -1,63 +1,56 @@
 <?php
 
-namespace App\Http\Controllers\Siswa;
+namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
-use App\Services\SiswaService;
+use App\Services\GuruService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
-    public function __construct(private SiswaService $siswaService) {}
+
+    public function __construct(
+        protected GuruService $guruService
+    ) {}
 
     public function index()
     {
-
         $user = auth()->user();
-        $siswa = auth()->user()->siswa;
-        $forms = $this->siswaService->getFormEditDataDiriSiswa($siswa, [
-            'NISN',
-            'NIPD'
+        $guru = auth()->user()->guru;
+
+        $forms = $this->guruService->getFormEdit($guru, [
+            'nuptk'
         ]);
-        return view('pages.siswa.profile.index', compact(
-            'forms',
-            'siswa',
-            'user'
-        ));
+
+        // hapus kolom email dari variable forms
+        $forms = collect($forms)->filter(function ($form) {
+            return $form->name !== 'email';
+        })->toArray();
+
+        return view('pages.guru.profile.index', compact('forms', 'guru', 'user'));
     }
 
     public function update(Request $request)
     {
         $validated = $request->validate([
-            'nama_lengkap' => ['required', 'string'],
-            'jenis_kelamin' => ['required', 'string', 'exists:options,id'],
-            'tempat_lahir' => ['required', 'string'],
-            'tanggal_lahir' => ['required', 'date'],
-            'agama' => ['required', 'string', 'exists:options,id'],
-            'alamat' => ['required', 'string'],
-            'RT' => ['required', 'string'],
-            'RW' => ['required', 'string'],
-            'dusun' => ['required', 'string'],
-            'kelurahan' => ['required', 'string'],
-            'kecamatan' => ['required', 'string'],
-            'telepon' => ['required', 'string', 'numeric'],
-            'nama_ayah' => ['required', 'string'],
-            'nama_ibu' => ['required', 'string'],
+            'name' => 'required',
+            'telepon' => 'required|numeric',
+            'jenis_kelamin' => 'required',
         ]);
 
         try {
             DB::beginTransaction();
 
-            $siswa = auth()->user()->siswa;
-            $this->siswaService->updateSiswa($siswa, $validated);
+            $guru = auth()->user()->guru;
+            $this->guruService->update($validated, $guru);
 
             DB::commit();
 
             return redirect()->back()->with('success', 'Berhasil mengubah data diri');
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Gagal mengubah data diri');
+            return redirect()->back()->with('error', 'Gagal mengubah data diri ' . $th->getMessage());
         }
     }
 
@@ -73,7 +66,6 @@ class ProfileController extends Controller
         );
 
         try {
-
             DB::beginTransaction();
 
             $user = auth()->user();

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Table\Admin;
 
+use App\Exports\HasilKuisionerExport;
 use App\Helpers\Column;
 use App\Livewire\BaseTable;
 use App\Models\JawabanSiswa;
@@ -11,8 +12,17 @@ use Illuminate\Database\Eloquent\Builder;
 class TableHasilKuisioner extends BaseTable
 {
     public TahunAkademik $tahunAkademik;
-    /*public $actionView = 'components.actions.admin.table-guru-action';*/
+    public $actionView = 'components.actions.admin.table-hasil-kuisioner';
     /*public $searchColumns = ['user.name'];*/
+
+    public function export()
+    {
+        $namaFile = 'hasil-kuisioner-' . $this->tahunAkademik->name . '.xlsx';
+        $namaFile = str_replace('/', '-', $namaFile);
+
+        return (new HasilKuisionerExport)->forTahunAkademik($this->tahunAkademik)
+            ->download($namaFile);
+    }
 
     public function query(): Builder
     {
