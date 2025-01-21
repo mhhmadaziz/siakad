@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use App\Imports\SiswaImport;
 use App\Models\TahunAkademik;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TahunAkademikService
 {
@@ -92,5 +94,10 @@ class TahunAkademikService
             Cache::forget('current_tahun_akademik');
             return $tahunAkademik;
         });
+    }
+
+    public function importData(TahunAkademik $tahunAkademik, $file)
+    {
+        Excel::import(new SiswaImport($tahunAkademik), $file);
     }
 }

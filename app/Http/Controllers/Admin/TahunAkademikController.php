@@ -163,4 +163,19 @@ class TahunAkademikController extends Controller
     {
         return view('pages.admin.cms.ppdb.show', compact('tahunAkademik'));
     }
+
+    public function importData(Request $request, TahunAkademik $tahunAkademik)
+    {
+        $validated = $request->validate([
+            'file' => 'required|file|mimes:xlsx,xls|max:2048'
+        ]);
+
+        try {
+            $this->tahunAkademikService->importData($tahunAkademik, $validated['file']);
+
+            return redirect()->back()->with('success', 'Data berhasil diunggah');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }
 }

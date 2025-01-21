@@ -19,10 +19,30 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div class="flex items-center gap-2">
                     <a href="{{ route('admin.tahun-akademik.edit', $tahunAkademik->id) }}">
                         <button class="rounded-md bg-yellowCustom px-4 py-2">Edit</button>
                     </a>
+                    <form
+                        action="{{ route('admin.tahun-akademik.import-data', $tahunAkademik->id) }}"
+                        method="post"
+                        enctype="multipart/form-data"
+                        x-data
+                        x-ref="form"
+                    >
+                        @csrf
+                        <label for="importdata" class="cursor-pointer rounded-md bg-green-600 px-4 py-2 text-white">
+                            <input
+                                type="file"
+                                id="importdata"
+                                name="file"
+                                class="sr-only"
+                                x-on:change="$refs.form.submit()"
+                                accept=".xlsx"
+                            />
+                            Import Data
+                        </label>
+                    </form>
                 </div>
             </div>
 
