@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\MataPelajaran;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
@@ -58,6 +59,11 @@ Breadcrumbs::for('admin.kelas.show', function (BreadcrumbTrail $trail, $kelas) {
     $trail->push($kelas->fullName, route('admin.kelas.show', $kelas));
 });
 
+Breadcrumbs::for('admin.kelas.mata-pelajaran.create', function (BreadcrumbTrail $trail, $kelas) {
+    $trail->parent('admin.kelas.show', $kelas);
+    $trail->push('Tambah Mata Pelajaran', route('admin.kelas.mata-pelajaran.create', $kelas));
+});
+
 Breadcrumbs::for('admin.guru.index', function (BreadcrumbTrail $trail) {
     $trail->push('Guru', route('admin.guru.index'));
 });
@@ -95,6 +101,21 @@ Breadcrumbs::for('admin.siswa.edit', function (BreadcrumbTrail $trail, $siswa) {
     $trail->parent('admin.siswa.show', $siswa);
     $trail->push('Edit', route('admin.siswa.edit', $siswa));
 });
+
+Breadcrumbs::for('admin.mata-pelajaran.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Mata Pelajaran', route('admin.mata-pelajaran.index'));
+});
+
+Breadcrumbs::for('admin.mata-pelajaran.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.mata-pelajaran.index');
+    $trail->push('Tambah Mata Pelajaran', route('admin.mata-pelajaran.create'));
+});
+
+Breadcrumbs::for('admin.mata-pelajaran.edit', function (BreadcrumbTrail $trail, $mataPelajaran) {
+    $trail->parent('admin.mata-pelajaran.index');
+    $trail->push('Edit ' . $mataPelajaran->name, route('admin.mata-pelajaran.edit', $mataPelajaran));
+});
+
 
 Breadcrumbs::for('admin.kehadiran-siswa.index', function (BreadcrumbTrail $trail) {
     $trail->push('Kehadiran Siswa', route('admin.kehadiran-siswa.index'));
@@ -229,4 +250,14 @@ Breadcrumbs::for('guru.modul-pembelajaran.index', function (BreadcrumbTrail $tra
 Breadcrumbs::for('guru.modul-pembelajaran.show', function (BreadcrumbTrail $trail, $modulPembelajaran) {
     $trail->parent('guru.modul-pembelajaran.index');
     $trail->push($modulPembelajaran->name, route('guru.modul-pembelajaran.show', $modulPembelajaran));
+});
+
+Breadcrumbs::for('guru.kehadiran-siswa.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Kehadiran Siswa', route('guru.kehadiran-siswa.index'));
+});
+
+Breadcrumbs::for('guru.kehadiran-siswa.show', function (BreadcrumbTrail $trail, $mataPelajaran) {
+    $trail->parent('guru.kehadiran-siswa.index');
+    $mapel = MataPelajaran::find($mataPelajaran);
+    $trail->push($mapel->name, route('guru.kehadiran-siswa.show', $mataPelajaran));
 });

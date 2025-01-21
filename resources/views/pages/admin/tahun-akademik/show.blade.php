@@ -44,6 +44,7 @@
                             <form
                                 action="{{ route('admin.tahun-akademik.upload-ppdb', $tahunAkademik->id) }}"
                                 method="post"
+                                enctype="multipart/form-data"
                                 x-ref="form"
                             >
                                 @csrf
@@ -74,7 +75,8 @@
                             <form
                                 action="{{ route('admin.tahun-akademik.upload-ppdb', $tahunAkademik->id) }}"
                                 method="post"
-                                x-ref="form"
+                                enctype="multipart/form-data"
+                                x-ref="formNew"
                             >
                                 @csrf
 
@@ -85,12 +87,12 @@
                                         id="file"
                                         class="sr-only"
                                         accept=".pdf"
-                                        x-on:change="$refs.form.submit()"
-                                        x-ref="file"
+                                        x-on:change="$refs.formNew.submit()"
+                                        x-ref="fileNew"
                                     />
                                     <button
                                         class="rounded-md bg-yellowCustom px-4 py-2 text-black"
-                                        x-on:click.prevent="$refs.file.click()"
+                                        x-on:click.prevent="$refs.fileNew.click()"
                                     >
                                         UNGGAH
                                     </button>

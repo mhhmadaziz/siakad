@@ -15,6 +15,12 @@ class TableSiswaKelas extends BaseTable
 
     public $actionView = 'components.actions.admin.table-siswa-kelas-action';
 
+    public function delete($id)
+    {
+        $siswa = KelasSiswa::find($id);
+        $siswa->delete();
+    }
+
     public function query(): Builder
     {
         $this->perPage = 1000;
@@ -34,6 +40,7 @@ class TableSiswaKelas extends BaseTable
             Column::make('siswa.user.name', 'Nama Siswa'),
             Column::make('siswa.nisn', 'NISN'),
             Column::make('siswa.user.jenisKelamin.name', 'Jenis Kelamin'),
+            Column::make('id', '')->component('columns.actions.admin.aksi-table-siswa-kelas'),
         ];
     }
 }

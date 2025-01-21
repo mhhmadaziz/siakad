@@ -76,8 +76,13 @@ class ModulPembelajaranController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(ModulPembelajaran $modulPembelajaran)
     {
-        //
+        try {
+            $this->modulPembelajaranService->delete($modulPembelajaran);
+            return redirect()->route('admin.modul-pembelajaran.index')->with('success', 'Modul Pembelajaran berhasil dihapus');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
     }
 }

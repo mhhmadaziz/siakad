@@ -2,9 +2,6 @@
     <section class="mx-auto min-h-full w-full max-w-screen-xl space-y-4 px-16 pt-4 text-black">
         <div class="space-y-2 rounded border border-zinc-300 p-2">
             <div class="flex items-center gap-2">
-                <a href="{{ route('admin.mata-pelajaran.index') }}">
-                    <i class="fa-solid fa-angle-left"></i>
-                </a>
                 <h1 class="font-semibold">TAMBAH MATA PELAJARAN</h1>
             </div>
 

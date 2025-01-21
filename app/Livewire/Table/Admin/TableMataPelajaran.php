@@ -32,7 +32,7 @@ class TableMataPelajaran extends BaseTable
             Column::make('name', 'Mata Pelajaran'),
             Column::make('kelas.tingkatKelas.name', 'Kelas'),
             Column::make('guru.user.name', 'Guru'),
-            Column::make('id', ''),
+            Column::make('id', '')->component('columns.actions.admin.aksi-table-mata-pelajaran'),
         ];
     }
 }

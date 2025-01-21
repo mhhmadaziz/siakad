@@ -7,7 +7,7 @@
             </div>
 
             <div>
-                <livewire:admin.kehadiran-siswa-detail :$kelas :$mataPelajaran />
+                <livewire:guru.kehadiran-siswa-detail :$kelas :$mataPelajaran />
             </div>
         </div>
     </section>

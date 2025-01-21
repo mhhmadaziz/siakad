@@ -23,4 +23,30 @@ class MataPelajaranService
             return $mataPelajaran;
         });
     }
+
+    public function delete(MataPelajaran $mataPelajaran)
+    {
+        return DB::transaction(function () use ($mataPelajaran) {
+
+            $mataPelajaran->modulPembelajarans()->delete();
+            $mataPelajaran->jadwalMataPelajarans->each(function ($jadwal) {
+                $jadwal->kehadiranSiswas->each(function ($kehadiran) {
+                    $kehadiran->kehadiranSiswaChildren()->delete();
+                    $kehadiran->delete();
+                });
+            });
+            $mataPelajaran->jadwalMataPelajarans()->delete();
+
+            $mataPelajaran->delete();
+            return $mataPelajaran;
+        });
+    }
+
+    public function update(MataPelajaran $mataPelajaran, array $data)
+    {
+        return DB::transaction(function () use ($mataPelajaran, $data) {
+            $mataPelajaran->update($data);
+            return $mataPelajaran;
+        });
+    }
 }

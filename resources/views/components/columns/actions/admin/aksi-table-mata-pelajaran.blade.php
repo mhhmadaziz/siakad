@@ -3,16 +3,12 @@
 ])
 
 <div class="flex justify-end gap-2">
-    <a href="{{ route('admin.modul-pembelajaran.show', $value) }}">
-        <button class="rounded-md bg-primary px-2 py-1 text-sm text-white">Lihat</button>
-    </a>
-
-    <a href="{{ route('admin.modul-pembelajaran.show', $value) }}">
+    <a href="{{ route('admin.mata-pelajaran.edit', $value) }}">
         <button class="rounded-md bg-amber-600 px-2 py-1 text-sm text-white">Edit</button>
     </a>
 
     <form
-        action="{{ route('admin.modul-pembelajaran.destroy', $value) }}"
+        action="{{ route('admin.mata-pelajaran.destroy', $value) }}"
         method="post"
         x-data
         @submit="

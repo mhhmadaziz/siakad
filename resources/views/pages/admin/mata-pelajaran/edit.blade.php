@@ -2,21 +2,23 @@
     <section class="mx-auto min-h-full w-full max-w-screen-xl space-y-4 px-16 pt-4 text-black">
         <div class="space-y-2 rounded border border-zinc-300 p-2">
             <div class="flex items-center gap-2">
-                <h1 class="font-semibold">Tambah Mata Pelajaran Kelas {{ $kelas->fullName }}</h1>
+                <h1 class="font-semibold">EDIT MATA PELAJARAN</h1>
             </div>
 
             <form
-                action="{{ route('admin.kelas.mata-pelajaran.store', $kelas->id) }}"
+                action="{{ route('admin.mata-pelajaran.update', $mataPelajaran->id) }}"
                 method="post"
                 class="grid grid-cols-2 divide-y divide-zinc-300 rounded-md border border-zinc-300"
             >
                 @csrf
 
+                @method('PUT')
+
                 <div class="flex items-center p-2">
                     <label for="">Nama Mata Pelajaran</label>
                 </div>
                 <div class="flex flex-col justify-center p-2">
-                    <x-inputs.text name="name" placeholder="Matematika" />
+                    <x-inputs.text name="name" placeholder="Matematika" :value="$mataPelajaran->name" />
 
                     @if ($errors->has('name'))
                         <span class="text-red-500">
@@ -26,10 +28,23 @@
                 </div>
 
                 <div class="flex items-center p-2">
+                    <label for="">Kelas</label>
+                </div>
+                <div class="flex flex-col justify-center p-2">
+                    <x-inputs.select name="kelas_id" :options="$kelas" :disabled="true" />
+
+                    @if ($errors->has('kelas_id'))
+                        <span class="text-red-500">
+                            {{ $errors->first('kelas_id') }}
+                        </span>
+                    @endif
+                </div>
+
+                <div class="flex items-center p-2">
                     <label for="">Guru</label>
                 </div>
                 <div class="flex flex-col justify-center p-2">
-                    <x-inputs.select name="guru_id" :options="$guru" />
+                    <x-inputs.select name="guru_id" :options="$guru" :value="$mataPelajaran?->guru?->user?->name" />
 
                     @if ($errors->has('guru_id'))
                         <span class="text-red-500">
@@ -40,7 +55,7 @@
 
                 <div></div>
                 <div class="flex justify-end gap-2 p-2">
-                    <a href="{{ route('admin.kelas.show', $kelas->id) }}">
+                    <a href="{{ route('admin.mata-pelajaran.index') }}">
                         <button class="rounded bg-primary px-4 py-2 font-semibold text-white" type="button">
                             BATAL
                         </button>
