@@ -32,7 +32,9 @@ class MataPelajaranController extends Controller
      */
     public function create()
     {
-        $kelas = Kelas::currentTahunAkademik()->get()
+        $kelas = Kelas::currentTahunAkademik()
+            ->orderBy('tingkat_kelas_id', 'asc')
+            ->get()
             ->map(
                 function ($item) {
                     return (object) [
