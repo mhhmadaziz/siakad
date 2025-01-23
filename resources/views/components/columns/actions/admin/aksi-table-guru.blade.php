@@ -1,8 +1,22 @@
 @props([
     'value',
 ])
-<div class="flex justify-center">
+<div class="flex justify-end gap-2">
     <a href="{{ route('admin.guru.show', $value) }}">
         <button class="rounded-md bg-primary px-2 py-1 text-sm text-white">Detail</button>
     </a>
+
+    <form
+        action="{{ route('admin.guru.destroy', $value) }}"
+        method="post"
+        x-data
+        @submit="
+            confirm('Apakah Anda yakin?') || event.preventDefault()
+        "
+    >
+        @csrf
+        @method('DELETE')
+
+        <button class="rounded-md bg-red-700 px-2 py-1 text-sm text-white">Hapus</button>
+    </form>
 </div>

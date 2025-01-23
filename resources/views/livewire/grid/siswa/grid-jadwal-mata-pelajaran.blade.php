@@ -1,4 +1,4 @@
-<section class="grid auto-rows-min grid-cols-3 items-start gap-2">
+<section class="grid auto-rows-min items-start gap-2 md:grid-cols-3">
     @foreach ($this->jadwalMataPelajarans() as $hari => $jadwal)
         <div class="rounded-md border border-zinc-300 p-2">
             <h1 class="text-center">{{ $hari }}</h1>

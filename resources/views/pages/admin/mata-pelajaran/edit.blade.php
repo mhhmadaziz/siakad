@@ -1,5 +1,5 @@
 <x-app-layout>
-    <section class="mx-auto min-h-full w-full max-w-screen-xl space-y-4 px-16 pt-4 text-black">
+    <section class="mx-auto min-h-full w-full max-w-screen-xl space-y-4 px-2 pt-4 text-black md:px-16">
         <div class="space-y-2 rounded border border-zinc-300 p-2">
             <div class="flex items-center gap-2">
                 <h1 class="font-semibold">EDIT MATA PELAJARAN</h1>
@@ -8,7 +8,7 @@
             <form
                 action="{{ route('admin.mata-pelajaran.update', $mataPelajaran->id) }}"
                 method="post"
-                class="grid grid-cols-2 divide-y divide-zinc-300 rounded-md border border-zinc-300"
+                class="grid divide-y divide-zinc-300 rounded-md border border-zinc-300 md:grid-cols-2"
             >
                 @csrf
 
@@ -31,13 +31,12 @@
                     <label for="">Kelas</label>
                 </div>
                 <div class="flex flex-col justify-center p-2">
-                    <x-inputs.select name="kelas_id" :options="$kelas" :disabled="true" />
-
-                    @if ($errors->has('kelas_id'))
-                        <span class="text-red-500">
-                            {{ $errors->first('kelas_id') }}
-                        </span>
-                    @endif
+                    <x-inputs.select
+                        name="kelas_id"
+                        :options="$kelas"
+                        :disabled="true"
+                        :value="$mataPelajaran->kelas->fullName"
+                    />
                 </div>
 
                 <div class="flex items-center p-2">
@@ -55,11 +54,6 @@
 
                 <div></div>
                 <div class="flex justify-end gap-2 p-2">
-                    <a href="{{ route('admin.mata-pelajaran.index') }}">
-                        <button class="rounded bg-primary px-4 py-2 font-semibold text-white" type="button">
-                            BATAL
-                        </button>
-                    </a>
                     <button class="rounded bg-green-600 px-4 py-2 font-semibold text-white" type="submit">
                         SIMPAN
                     </button>

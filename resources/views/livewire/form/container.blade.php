@@ -1,10 +1,10 @@
 <div class="mt-8 space-y-4">
-    <div class="flex items-center justify-between gap-2">
+    <div class="flex flex-wrap items-center justify-between gap-2">
         <div class="w-72">
             <x-inputs.select wire:model.live="selectedTahunAkademik" :options="$tahunAkademiks" />
         </div>
 
-        <div class="flex w-full flex-col items-end justify-end gap-2">
+        <div class="flex w-full flex-col flex-wrap items-end justify-end gap-2">
             <div class="ml-4 flex items-center gap-2">
                 <input type="checkbox" id="buka_kuisioner" name="buka_kuisioner" wire:model.live="bukaKuisioner" />
                 <label for="buka_kuisioner">Buka Kuisioner</label>

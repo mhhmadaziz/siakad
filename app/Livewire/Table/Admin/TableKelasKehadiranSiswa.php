@@ -19,6 +19,8 @@ class TableKelasKehadiranSiswa extends BaseTable
         return Kelas::query()
             ->withCount(['siswas', 'mataPelajarans'])
             ->currentTahunAkademik()
+            ->orderBy('tingkat_kelas_id')
+            ->orderBy('name')
             ->latest();
     }
 

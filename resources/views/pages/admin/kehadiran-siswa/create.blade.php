@@ -1,12 +1,12 @@
 <x-app-layout>
-    <section class="mx-auto min-h-full w-full max-w-screen-xl space-y-4 px-16 pt-4 text-black">
+    <section class="mx-auto min-h-full w-full max-w-screen-xl space-y-4 px-2 pt-4 text-black md:px-16">
         <div class="space-y-2 rounded border border-zinc-300 p-2">
             <h1 class="font-semibold">TAMBAH PERTEMUAN</h1>
 
             <form
                 action="{{ route('admin.kehadiran-siswa.store') }}"
                 method="post"
-                class="grid grid-cols-2 divide-y divide-zinc-300 rounded-md border border-zinc-300"
+                class="grid divide-y divide-zinc-300 rounded-md border border-zinc-300 md:grid-cols-2"
             >
                 @csrf
 

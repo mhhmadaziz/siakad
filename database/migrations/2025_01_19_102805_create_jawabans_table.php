@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('jawabans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('jawaban_siswa_id')->constrained('jawaban_siswas');
-            $table->foreignId('pertanyaan_id')->constrained('pertanyaans');
+            $table->foreignId('jawaban_siswa_id')->constrained('jawaban_siswas')->cascadeOnDelete();
+            $table->foreignId('pertanyaan_id')->constrained('pertanyaans')->cascadeOnDelete();
             $table->text('jawaban')->nullable();
 
             $table->softDeletes();

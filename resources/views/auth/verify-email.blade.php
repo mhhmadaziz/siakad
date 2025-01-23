@@ -1,6 +1,6 @@
 <x-guest-layout>
     @include('layouts.auth-header')
-    <section class="mx-auto my-8 w-[600px] rounded-md border border-zinc-300 p-8 shadow-md">
+    <section class="mx-auto my-8 rounded-md border border-zinc-300 p-8 shadow-md md:w-[600px]">
         <h1 class="mb-4 text-center text-xl font-semibold text-primary">REGISTRASI BERHASIL</h1>
         <div class="mb-4 text-sm text-gray-600">
             Tautan verifikasi telah dikirimkan melalui kotak masuk email
@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <div class="mt-4 flex items-center gap-2">
+        <div class="mt-4 flex flex-col items-center gap-2 md:flex-row">
             <form method="POST" action="{{ route('verification.send') }}">
                 @csrf
 

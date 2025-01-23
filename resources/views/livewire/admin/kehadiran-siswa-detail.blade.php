@@ -1,5 +1,5 @@
 <div class="">
-    <section class="mt-8 flex items-start justify-between">
+    <section class="mt-8 flex flex-wrap items-start justify-between">
         <div>
             <x-inputs.select
                 name="kehadiranSiswa"

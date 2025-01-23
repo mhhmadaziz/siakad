@@ -1,7 +1,7 @@
 <x-guest-layout>
     @include('layouts.home-header')
     <section
-        class="relative min-h-96 overflow-clip bg-black/30"
+        class="min-h-60 overflow-clip bg-black/30 md:min-h-96"
         x-data="{
             activeSlide: 0,
             autoSlideInterval: null,
@@ -14,26 +14,28 @@
             }, 4000)
         "
     >
-        <div class="absolute -top-96 -z-10 w-screen">
+        <div class="relative -z-10 min-h-fit w-screen md:-top-96">
             <template x-for="(slide, index) in slides" :key="index">
                 <div
                     x-show="true"
-                    class="absolute left-0 top-0 transition-transform duration-500 ease-in-out"
-                    style="width: 100%"
+                    class="absolute w-full transition-transform duration-500 ease-in-out"
                     x-bind:style="{
                         transform: `translateX(${(index - activeSlide) * 100}%)`,
                     }"
                 >
-                    <img :src=" @js(asset('storage/carousel/')) + '/' + slide " :alt="slide" class="w-full" />
+                    <img
+                        :src=" @js(asset('storage/carousel/')) + '/' + slide "
+                        :alt="slide"
+                        class="w-full object-cover object-center"
+                    />
                 </div>
             </template>
-            {{-- <img src="{{ Vite::asset('resources/images/default-carousel.jpg') }}" alt="logo" class="w-screen" /> --}}
         </div>
     </section>
 
-    <div class="bg mx-auto flex h-96 w-1/2 flex-col justify-center">
-        <div class="flex gap-2">
-            <div class="min-w-[200px] max-w-[200px] flex-1">
+    <div class="mx-auto flex min-h-16 flex-col justify-center px-4 py-8 md:w-1/2">
+        <div class="flex flex-wrap gap-2">
+            <div class="mx-auto min-w-[200px] max-w-[200px] flex-1">
                 <img
                     src="{{ Vite::asset('resources/images/logo.png') }}"
                     alt="logo"
@@ -47,7 +49,7 @@
     </div>
     <section class="px-8 py-4">
         <h1 class="mb-4 text-center text-xl font-bold">Struktur Organisasi</h1>
-        <div class="flex justify-center gap-4">
+        <div class="flex flex-wrap justify-center gap-4">
             <div class="h-72 w-[600px] border border-zinc-300 bg-zinc-600">
                 @if ($gambarStrukturOrganisasi)
                     <img

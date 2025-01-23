@@ -1,4 +1,4 @@
-<header class="flex items-center justify-between px-8 py-2 text-primary">
+<header class="flex items-center justify-between px-2 py-2 text-primary md:px-8">
     <!--logo-->
     <a class="flex gap-2" href="{{ route('home.index') }}">
         <div class="h-16 w-16">
@@ -14,7 +14,7 @@
         </div>
     </a>
 </header>
-<nav class="flex bg-primary">
+<nav class="flex flex-col bg-primary md:flex-row">
     <div class="flex min-w-fit items-center bg-green-600 px-2">
         <h1 class="font-semibold text-white">Tahun Ajaran {{ $currentTahunAkademik->name }}</h1>
     </div>

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <section class="mx-auto min-h-full w-full max-w-screen-xl space-y-4 px-16 pt-4 text-black">
+    <section class="mx-auto min-h-full w-full max-w-screen-xl space-y-4 px-2 pt-4 text-black md:px-16">
         <div class="space-y-2 rounded border border-zinc-300 p-2">
             <h1 class="font-semibold">EDIT INFORMASI AKUN</h1>
 
@@ -8,7 +8,7 @@
             </form>
 
             <form
-                class="grid grid-cols-2 divide-y divide-zinc-300 rounded-md border border-zinc-300"
+                class="grid divide-y divide-zinc-300 rounded-md border border-zinc-300 md:grid-cols-2"
                 method="POST"
                 action="{{ route('siswa.profile.update.akun') }}"
             >
@@ -49,7 +49,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="col-span-2 p-2">
+                <div class="p-2 md:col-span-2">
                     <span class="text-red-500">Hanya diisi jika ingin mengganti password</span>
                 </div>
                 <div class="flex items-center p-2">
@@ -91,7 +91,7 @@
                     <x-input-error :messages="$errors->updateAkun->get('password_confirmation')" class="mt-2" />
                 </div>
 
-                <div class="col-span-2 flex justify-end gap-2 p-2">
+                <div class="flex justify-end gap-2 p-2 md:col-span-2">
                     <button class="rounded bg-green-600 px-4 py-2 font-semibold text-white" type="submit">
                         SIMPAN
                     </button>
@@ -101,14 +101,14 @@
             <h1 class="font-semibold">EDIT DATA DIRI SISWA</h1>
 
             <form
-                class="grid grid-cols-2 divide-y divide-zinc-300 rounded-md border border-zinc-300"
+                class="grid divide-y divide-zinc-300 rounded-md border border-zinc-300 md:grid-cols-2"
                 action="{{ route('siswa.profile.update') }}"
                 method="POST"
             >
                 @csrf
                 @method('PATCH')
 
-                <div class="col-span-2">
+                <div class="md:col-span-2">
                     <livewire:profile-photo-upload :user="$siswa->user" />
                 </div>
 

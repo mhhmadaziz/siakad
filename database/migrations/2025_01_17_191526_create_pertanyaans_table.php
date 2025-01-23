@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('pertanyaan');
             $table->boolean('required')->default(false);
             $table->foreignId('tipe_pertanyaan_id')->constrained('options');
-            $table->foreignId('tahun_akademik_id')->constrained('tahun_akademik');
+            $table->foreignId('tahun_akademik_id')->constrained('tahun_akademik')->cascadeOnDelete();
             $table->text('opsi')->nullable();
 
             $table->softDeletes();

@@ -1,13 +1,13 @@
 <div>
-    <div class="my-2 flex items-center justify-between">
+    <div class="my-2 flex flex-wrap items-center justify-between gap-2">
         <input type="text" placeholder="Cari" class="rounded border-zinc-300" wire:model.live.debounce.500ms="search" />
 
         @includeWhen($actionView !== '', $actionView)
     </div>
-    <div class="relative rounded-md border border-zinc-300" x-data="{
+    <div class="relative overflow-auto rounded-md border border-zinc-300" x-data="{
         selectAll: false,
     }">
-        <table class="w-full">
+        <table class="table w-full">
             <thead>
                 <tr class="border-b border-zinc-300 text-left">
                     @if ($this->checkbox)

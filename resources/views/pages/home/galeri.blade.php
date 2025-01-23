@@ -1,11 +1,11 @@
 <x-guest-layout>
     @include('layouts.home-header')
-    <section class="mx-auto min-h-screen max-w-screen-xl py-4">
+    <section class="mx-auto min-h-screen max-w-screen-xl p-4">
         <h1 class="text-2xl font-bold">Galeri</h1>
         <h2 class="">Dokumentasi Kegiatan SMA Negeri 1 Jati Agung</h2>
-        <div class="mt-4 flex w-full">
+        <div class="mt-4 flex w-full flex-col md:flex-row">
             <nav class="w-[200px]">
-                <ul class="space-y-4">
+                <ul class="space-y-1">
                     <li class="font-semibold">
                         <a href="{{ route('home.galeri') }}">Foto</a>
                     </li>
@@ -14,8 +14,8 @@
                     </li>
                 </ul>
             </nav>
-            <section class="w-full">
-                <div class="grid grid-cols-4 gap-4">
+            <section class="mt-2 w-full md:mt-0">
+                <div class="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-4">
                     @forelse ($fotos as $item)
                         <div class="flex h-64 flex-col rounded-lg border border-zinc-200 bg-white p-2 shadow-lg">
                             <div class="max-h-48 rounded-lg bg-zinc-300">

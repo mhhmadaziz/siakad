@@ -1,7 +1,7 @@
 <x-guest-layout>
     @include('layouts.auth-header')
     <section
-        class="mx-auto my-8 w-[600px] rounded-md border border-zinc-300 p-8 shadow-md"
+        class="mx-auto my-8 rounded-md border border-zinc-300 p-8 shadow-md md:w-[600px]"
         x-data="{
             showPassword: false,
         }"
@@ -9,7 +9,7 @@
         <h1 class="text-center text-xl font-semibold text-primary">PENDAFTARAN</h1>
         <h1 class="text-center text-primary">SIAKAD SMA N 1 JATI AGUNG</h1>
 
-        <form method="POST" action="{{ route('register') }}" class="mx-auto w-96 space-y-4">
+        <form method="POST" action="{{ route('register') }}" class="mx-auto space-y-4 md:w-96">
             @csrf
 
             <div>

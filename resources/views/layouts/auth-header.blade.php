@@ -1,6 +1,6 @@
-<nav class="flex items-center justify-between px-8 py-2 text-primary">
+<nav class="flex items-center justify-between px-2 py-2 text-primary md:px-8">
     <!--logo-->
-    <section class="flex gap-2">
+    <section class="flex items-center gap-2 text-sm">
         <div class="h-16 w-16">
             <img
                 src="{{ Vite::asset('resources/images/logo.png') }}"
@@ -10,7 +10,7 @@
         </div>
         <div class="">
             <h1 class="">Sistem Informasi Akademik</h1>
-            <h2 class="text-2xl font-semibold">SMA NEGERI 1 JATI AGUNG</h2>
+            <h2 class="font-semibold md:text-2xl">SMA NEGERI 1 JATI AGUNG</h2>
         </div>
     </section>
 

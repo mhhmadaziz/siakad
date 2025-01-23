@@ -21,28 +21,28 @@ class SiswaSeeder extends Seeder
 
         $agamaId = app(OptionService::class)->getOptionCategoryKey('agama')->options->pluck('id');
 
-        /*User::factory()*/
-        /*    ->count(80)*/
-        /*    ->create()*/
-        /*    ->each(function ($user) use ($siswa, $agamaId) {*/
-        /*        $user->assignRole($siswa);*/
-        /*        $user->siswa()->create([*/
-        /*            'nisn' => fake()->unique()->randomNumber(8),*/
-        /*            'nipd' => fake()->unique()->randomNumber(8),*/
-        /*            'tempat_lahir' => fake()->city,*/
-        /*            'tanggal_lahir' => fake()->date,*/
-        /*            'agama_id' => $agamaId->random(),*/
-        /*            'alamat' => fake()->address,*/
-        /*            'rt' => fake()->randomNumber(3),*/
-        /*            'rw' => fake()->randomNumber(3),*/
-        /*            'dusun' => fake()->streetName,*/
-        /*            'kelurahan' => fake()->streetName,*/
-        /*            'kecamatan' => fake()->city,*/
-        /*            'nama_ayah' => fake()->name,*/
-        /*            'nama_ibu' => fake()->name,*/
-        /*        ]);*/
-        /*    });*/
-        /**/
+        User::factory()
+            ->count(80)
+            ->create()
+            ->each(function ($user) use ($siswa, $agamaId) {
+                $user->assignRole($siswa);
+                $user->siswa()->create([
+                    'nisn' => fake()->unique()->randomNumber(8),
+                    'nipd' => fake()->unique()->randomNumber(8),
+                    'tempat_lahir' => fake()->city,
+                    'tanggal_lahir' => fake()->date,
+                    'agama_id' => $agamaId->random(),
+                    'alamat' => fake()->address,
+                    'rt' => fake()->randomNumber(3),
+                    'rw' => fake()->randomNumber(3),
+                    'dusun' => fake()->streetName,
+                    'kelurahan' => fake()->streetName,
+                    'kecamatan' => fake()->city,
+                    'nama_ayah' => fake()->name,
+                    'nama_ibu' => fake()->name,
+                ]);
+            });
+
         $jenisKelaminId = app(OptionService::class)->getOptionValueByName('L')->id;
         $siswaUser = User::create([
             'name' => 'Siswa',

@@ -260,4 +260,13 @@ class SiswaService
             return $user;
         });
     }
+
+    public function delete(Siswa $siswa)
+    {
+        return DB::transaction(function () use ($siswa) {
+            $siswa->delete();
+            $siswa->user->delete();
+            return $siswa;
+        });
+    }
 }

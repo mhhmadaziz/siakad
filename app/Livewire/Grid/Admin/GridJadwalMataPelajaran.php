@@ -12,6 +12,12 @@ class GridJadwalMataPelajaran extends Component
 {
     public Kelas $kelas;
 
+    public function hapus(JadwalMataPelajaran $jadwalMataPelajaran)
+    {
+        $jadwalMataPelajaran->delete();
+        $this->dispatch('refresh');
+    }
+
     #[On('refresh')]
     public function jadwalMataPelajarans()
     {

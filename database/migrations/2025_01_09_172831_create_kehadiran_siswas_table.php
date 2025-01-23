@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('kehadiran_siswa', function (Blueprint $table) {
             $table->id();
             $table->date('tanggal');
-            $table->foreignId('jadwal_mata_pelajaran_id')->constrained('jadwal_mata_pelajaran');
+            $table->foreignId('jadwal_mata_pelajaran_id')->constrained('jadwal_mata_pelajaran')->cascadeOnDelete();
             $table->timestamps();
         });
     }

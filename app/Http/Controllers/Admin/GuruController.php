@@ -102,8 +102,13 @@ class GuruController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Guru $guru)
     {
-        //
+        try {
+            $this->guruService->delete($guru);
+            return redirect()->route('admin.guru.index')->with('success', 'Guru berhasil dihapus');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
     }
 }

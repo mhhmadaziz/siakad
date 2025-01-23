@@ -1,14 +1,14 @@
 <x-guest-layout>
     @include('layouts.auth-header')
 
-    <section class="mx-auto my-8 w-[600px] rounded-md border border-zinc-300 p-8 shadow-md" x-data>
+    <section class="mx-auto my-8 rounded-md border border-zinc-300 p-8 shadow-md md:w-[600px]" x-data>
         <div class="">
             <h1 class="text-center font-semibold">SIAKAD SMA N 1 JATI AGUNG</h1>
             <h2 class="text-center">Masuk</h2>
 
             <x-auth-session-status class="my-4" :status="session('status')" />
 
-            <form method="POST" action="{{ route('login') }}" class="mx-auto w-96 space-y-4">
+            <form method="POST" action="{{ route('login') }}" class="mx-auto space-y-4 md:w-96">
                 @csrf
 
                 <!-- Email Address -->

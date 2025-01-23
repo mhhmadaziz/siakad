@@ -1,9 +1,9 @@
 <x-guest-layout>
     @include('layouts.home-header')
-    <section class="mx-auto max-w-screen-xl py-4">
+    <section class="mx-auto min-h-screen max-w-screen-xl p-4">
         <h1 class="text-2xl font-bold">PENGUMUMAN PENERIMA PESERTA DIDIK BARU (PPDB)</h1>
         <h2 class="">SMA Negeri 1 Jati Agung</h2>
-        <div class="mt-4 flex w-full">
+        <div class="mt-4 flex w-full flex-col gap-2 md:flex-row">
             <nav class="w-[200px]">
                 <h1 class="font-semibold">Tahun Ajaran</h1>
                 <ul class="mt-2">
@@ -19,7 +19,7 @@
                 </ul>
             </nav>
             <section class="min-h-screen w-full">
-                <div class="mx-auto min-h-[1000px] w-[600px]">
+                <div class="mx-auto min-h-[1000px] w-full md:w-[600px]">
                     <div class="mb-4 flex items-center justify-between">
                         <h1 class="text-lg font-semibold">Dokumen PPDB {{ $tahunAkademik->name }}</h1>
                         @if ($tahunAkademik->file_ppdb)

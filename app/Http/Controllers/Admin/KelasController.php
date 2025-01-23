@@ -75,25 +75,42 @@ class KelasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Kelas $kelas)
     {
-        //
+
+        return view('pages.admin.kelas.edit', compact('kelas'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Kelas $kelas)
     {
-        //
+
+        $validated = $request->validate([
+            'name' => 'required',
+        ]);
+
+        try {
+            $this->kelasService->update($kelas, $validated);
+            return redirect()->route('admin.kelas.index')->with('success', 'Kelas berhasil diubah');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Kelas gagal diubah');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Kelas $kelas)
     {
-        //
+
+        try {
+            $this->kelasService->delete($kelas);
+            return redirect()->route('admin.kelas.index')->with('success', 'Kelas berhasil dihapus');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Kelas gagal dihapus');
+        }
     }
 
     public function tambahSiswa(Kelas $kelas)

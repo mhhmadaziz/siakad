@@ -220,4 +220,14 @@ class GuruService
             return $guru;
         });
     }
+
+    public function delete(Guru $guru)
+    {
+        return DB::transaction(function () use ($guru) {
+            $guru->user->delete();
+
+            Cache::forget('guru.jumlah');
+            return $guru;
+        });
+    }
 }

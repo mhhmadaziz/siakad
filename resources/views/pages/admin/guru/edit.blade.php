@@ -1,23 +1,23 @@
 <x-app-layout>
-    <section class="mx-auto min-h-full w-full max-w-screen-xl space-y-4 px-16 pt-4 text-black">
+    <section class="mx-auto min-h-full w-full max-w-screen-xl space-y-4 px-2 pt-4 text-black md:px-16">
         <div class="space-y-2 rounded border border-zinc-300 p-2">
             <h1 class="font-semibold">EDIT DATA GURU</h1>
 
             <form
-                class="grid grid-cols-2 divide-y divide-zinc-300 rounded-md border border-zinc-300"
+                class="grid w-full divide-y divide-zinc-300 rounded-md border border-zinc-300 md:grid-cols-2"
                 action="{{ route('admin.guru.update', $guru->id) }}"
                 method="POST"
             >
                 @csrf
                 @method('PUT')
 
-                <div class="col-span-2">
+                <div class="w-full md:col-span-2">
                     <livewire:profile-photo-upload :user="$guru->user" />
                 </div>
 
                 @foreach ($forms as $item)
                     @if ($item->type === 'header')
-                        <div class="col-span-2">
+                        <div class="md:col-span-2">
                             <div class="p-2">
                                 <h2 id="{{ $item->value }}" class="font-semibold">{{ $item->label }}</h2>
                             </div>
@@ -79,11 +79,6 @@
 
                 <div></div>
                 <div class="flex justify-end gap-2 p-2">
-                    <a href="{{ route('admin.guru.show', $guru->id) }}">
-                        <button class="rounded bg-primary px-4 py-2 font-semibold text-white" type="button">
-                            BATAL
-                        </button>
-                    </a>
                     <button class="rounded bg-green-600 px-4 py-2 font-semibold text-white" type="submit">
                         SIMPAN
                     </button>

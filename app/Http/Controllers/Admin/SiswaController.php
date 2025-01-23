@@ -125,8 +125,14 @@ class SiswaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Siswa $siswa)
     {
-        //
+
+        try {
+            $this->siswaService->delete($siswa);
+            return redirect()->route('admin.siswa.index')->with('success', 'Siswa berhasil dihapus');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Gagal menghapus siswa. ' . $th->getMessage());
+        }
     }
 }

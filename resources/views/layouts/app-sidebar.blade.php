@@ -1,5 +1,5 @@
 <section>
-    <nav class="w-[250px]">
+    <nav class="md:w-[250px]">
         <ul class="space-y-4">
             @foreach ($menuData->dashboard as $menu)
                 @isset($menu->role)

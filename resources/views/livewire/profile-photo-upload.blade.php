@@ -1,15 +1,15 @@
-<div class="grid grid-cols-2 p-2">
+<div class="grid p-2 md:grid-cols-2">
     <div class="p-2">
         <div class="mx-auto h-56 max-w-44 bg-zinc-400">
             <img src="{{ $user?->photoUrl }}" alt="{{ $user?->name }}" class="h-full w-full object-cover" />
         </div>
     </div>
-    <div class="flex w-full flex-col items-center justify-center">
+    <div class="flex w-full flex-col flex-wrap items-center justify-center">
         <label
             for="file-upload"
-            class="flex w-full cursor-pointer items-center divide-x divide-zinc-500 rounded border border-zinc-500"
+            class="flex cursor-pointer items-center divide-x divide-zinc-500 rounded border border-zinc-500"
         >
-            <span class="flex-1 p-2">
+            <span class="max-w-44 flex-1 truncate p-2">
                 @if ($user->photo)
                     {{ $user->photo }}
                 @else

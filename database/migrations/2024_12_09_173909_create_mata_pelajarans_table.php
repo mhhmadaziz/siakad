@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('modul')->nullable();
-            $table->foreignId('guru_id')->constrained('guru');
-            $table->foreignId('kelas_id')->constrained('kelas');
+            $table->foreignId('guru_id')->constrained('guru')->cascadeOnDelete();
+            $table->foreignId('kelas_id')->constrained('kelas')->cascadeOnDelete();
             $table->timestamps();
         });
 
         Schema::table('jadwal_mata_pelajaran', function (Blueprint $table) {
-            $table->foreignId('mata_pelajaran_id')->constrained('mata_pelajaran');
+            $table->foreignId('mata_pelajaran_id')->constrained('mata_pelajaran')->cascadeOnDelete();
         });
     }
 

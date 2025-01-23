@@ -27,12 +27,12 @@
     <body class="font-sans antialiased">
         @include('layouts.app-header')
 
-        <div class="flex min-h-screen bg-bgColor pl-4 pt-4">
+        <div class="flex min-h-screen flex-col bg-bgColor pt-4 md:flex-row md:pl-4">
             <!-- Page Content -->
             @include('layouts.app-sidebar')
 
             <main class="min-h-full w-full bg-white">
-                <div class="mx-auto w-full max-w-screen-xl px-16 pt-4">
+                <div class="mx-auto w-full max-w-screen-xl px-2 pt-4 md:px-16">
                     {{ Breadcrumbs::render() }}
                     <x-alert />
                 </div>

@@ -54,6 +54,11 @@ Breadcrumbs::for('admin.kelas.create', function (BreadcrumbTrail $trail) {
     $trail->push('Tambah Kelas', route('admin.kelas.create'));
 });
 
+Breadcrumbs::for('admin.kelas.edit', function (BreadcrumbTrail $trail, $kelas) {
+    $trail->parent('admin.kelas.show', $kelas);
+    $trail->push('Edit', route('admin.kelas.edit', $kelas));
+});
+
 Breadcrumbs::for('admin.kelas.show', function (BreadcrumbTrail $trail, $kelas) {
     $trail->parent('admin.kelas.index');
     $trail->push($kelas->fullName, route('admin.kelas.show', $kelas));

@@ -56,4 +56,20 @@ class KelasService
             return $kelas;
         });
     }
+
+    public function delete(Kelas $kelas)
+    {
+        return DB::transaction(function () use ($kelas) {
+            $kelas->delete();
+            return $kelas;
+        });
+    }
+
+    public function update(Kelas $kelas, array $data)
+    {
+        return DB::transaction(function () use ($kelas, $data) {
+            $kelas->update($data);
+            return $kelas;
+        });
+    }
 }

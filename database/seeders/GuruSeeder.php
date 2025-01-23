@@ -17,15 +17,15 @@ class GuruSeeder extends Seeder
     {
         $guru = Role::create(['name' => 'guru']);
 
-        /*User::factory()*/
-        /*    ->count(80)*/
-        /*    ->create()*/
-        /*    ->each(function ($user) use ($guru) {*/
-        /*        $user->assignRole($guru);*/
-        /*        $user->guru()->create([*/
-        /*            'nuptk' => fake()->unique()->randomNumber(8),*/
-        /*        ]);*/
-        /*    });*/
+        User::factory()
+            ->count(80)
+            ->create()
+            ->each(function ($user) use ($guru) {
+                $user->assignRole($guru);
+                $user->guru()->create([
+                    'nuptk' => fake()->unique()->randomNumber(8),
+                ]);
+            });
 
         $jenisKelaminId = app(OptionService::class)->getOptionValueByName('L')->id;
 

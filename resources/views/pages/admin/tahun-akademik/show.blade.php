@@ -1,9 +1,9 @@
 <x-app-layout>
-    <section class="mx-auto min-h-full w-full max-w-screen-xl space-y-4 px-16 pt-4 text-black">
+    <section class="mx-auto min-h-full w-full max-w-screen-xl space-y-4 px-2 pt-4 text-black md:px-16">
         <div class="space-y-2 rounded border border-zinc-300 p-2">
             <h1 class="font-semibold">ATURAN & KEBIJAKAN</h1>
 
-            <div class="flex items-center justify-between rounded-lg bg-primary p-3 py-6">
+            <div class="flex flex-wrap items-center justify-between rounded-lg bg-primary p-3 py-6">
                 <div class="flex gap-2 text-white">
                     <i class="fa-solid fa-graduation-cap text-6xl"></i>
                     <div class="flex w-full items-center justify-between">
@@ -49,7 +49,7 @@
             <div class="divide-y divide-zinc-300 rounded border border-zinc-300" x-data>
                 <div class="flex items-center justify-between p-2">
                     <h1>PPDB</h1>
-                    <div class="flex items-center justify-end gap-2 text-white">
+                    <div class="flex flex-wrap items-center justify-end gap-2 text-white">
                         @if ($tahunAkademik->file_ppdb)
                             <a
                                 href="{{

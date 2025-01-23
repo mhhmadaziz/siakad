@@ -2,34 +2,22 @@
     <section class="mx-auto min-h-full w-full max-w-screen-xl space-y-4 px-2 pt-4 text-black md:px-16">
         <div class="space-y-2 rounded border border-zinc-300 p-2">
             <div class="flex items-center gap-2">
-                <h1 class="font-semibold">TAMBAH KELAS</h1>
+                <h1 class="font-semibold">EDIT KELAS</h1>
             </div>
 
             <form
-                action="{{ route('admin.kelas.store') }}"
+                action="{{ route('admin.kelas.update', $kelas->id) }}"
                 method="post"
                 class="grid divide-y divide-zinc-300 rounded-md border border-zinc-300 md:grid-cols-2"
             >
                 @csrf
-
-                <div class="flex items-center p-2">
-                    <label for="">Tingkat Kelas</label>
-                </div>
-                <div class="flex flex-col justify-center p-2">
-                    <x-inputs.select name="tingkat_kelas_id" :options="$tingkatKelas" />
-
-                    @if ($errors->has('tingkat_kelas_id'))
-                        <span class="text-red-500">
-                            {{ $errors->first('tingkat_kelas_id') }}
-                        </span>
-                    @endif
-                </div>
+                @method('PUT')
 
                 <div class="flex items-center p-2">
                     <label for="">Nama Kelas</label>
                 </div>
                 <div class="flex flex-col justify-center p-2">
-                    <x-inputs.text name="name" placeholder="A" />
+                    <x-inputs.text name="name" placeholder="A" :value="$kelas->name" />
 
                     @if ($errors->has('name'))
                         <span class="text-red-500">
