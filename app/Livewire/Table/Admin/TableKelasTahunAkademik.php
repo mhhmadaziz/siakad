@@ -25,6 +25,8 @@ class TableKelasTahunAkademik extends BaseTable
             ->whereHas('tahunAkademik', function ($query) {
                 $query->where('id', $this->tahunAkademik->id);
             })
+            ->orderBy('tingkat_kelas_id')
+            ->orderBy('name')
             ->latest();
     }
 

@@ -213,7 +213,7 @@ class GuruService
             ]);
 
             $guru->update([
-                'nuptk' => $data['nuptk'],
+                'nuptk' => $data['nuptk'] ?? $guru->nuptk,
             ]);
 
             Cache::forget('guru.jumlah');

@@ -28,7 +28,7 @@ class KehadiranSiswa extends Model
     public function getFullTimeAttribute()
     {
         // format menjadi hari, tanggal bulan tahun jam:menit
-        return Carbon::parse($this->tanggal)->translatedFormat('l, h F Y') . ' ' . $this->jadwalMataPelajaran->jam;
+        return Carbon::parse($this->tanggal)->translatedFormat('l, d F Y') . ' ' . $this->jadwalMataPelajaran->jam;
     }
 
     public function getStatistikAttribute()

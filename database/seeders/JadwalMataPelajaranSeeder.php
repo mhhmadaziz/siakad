@@ -21,7 +21,7 @@ class JadwalMataPelajaranSeeder extends Seeder
 
 
         foreach ($mataPelajaranIds as $mataPelajaranId) {
-            $jadwals = collect(range(1, 15))->map(function () use ($hariIds, $mataPelajaranId) {
+            $jadwals = collect(range(1, 8))->map(function () use ($hariIds, $mataPelajaranId) {
                 return [
                     'jam_mulai' => Carbon::createFromTime(rand(7, 10), rand(0, 59), 0)->format('H:i:s'),
                     'jam_selesai' => Carbon::createFromTime(rand(11, 15), rand(0, 59), 0)->format('H:i:s'),

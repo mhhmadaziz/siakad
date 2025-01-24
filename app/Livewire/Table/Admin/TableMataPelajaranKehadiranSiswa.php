@@ -2,15 +2,27 @@
 
 namespace App\Livewire\Table\Admin;
 
+use App\Exports\KehadiranSiswaExport;
 use App\Helpers\Column;
 use App\Livewire\BaseTable;
+use App\Models\KehadiranSiswa;
 use App\Models\Kelas;
 use App\Models\MataPelajaran;
 use Illuminate\Database\Eloquent\Builder;
 
 class TableMataPelajaranKehadiranSiswa extends BaseTable
 {
-    public $actionView = '';
+    public $actionView = 'components.actions.admin.table-mata-pelajaran-kehadiran-siswa';
+
+    public $tanggal;
+
+    public function export()
+    {
+        return (new KehadiranSiswaExport)
+            ->forKelas($this->kelas)
+            ->forTanggal($this->tanggal)
+            ->download('test.xlsx');
+    }
 
     public Kelas $kelas;
 
@@ -24,6 +36,7 @@ class TableMataPelajaranKehadiranSiswa extends BaseTable
     {
         $this->kelas = $kelas;
         $this->perPage = $this->kelas->mataPelajarans->count();
+        $this->tanggal = now()->format('Y-m-d');
     }
 
     public function columns(): array

@@ -30,6 +30,7 @@ class KehadiranSiswaService
                 'required' => true,
                 'options' => $mataPelajaran->jadwalMataPelajarans()
                     ->orderBy('hari_id')
+                    ->orderBy('jam_mulai')
                     ->get()
                     ->map(
                         function ($item) {
