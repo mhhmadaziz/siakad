@@ -9,19 +9,23 @@ use App\Models\KehadiranSiswa;
 use App\Models\Kelas;
 use App\Models\MataPelajaran;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\Url;
 
 class TableMataPelajaranKehadiranSiswa extends BaseTable
 {
     public $actionView = 'components.actions.admin.table-mata-pelajaran-kehadiran-siswa';
 
+    #[Url()]
     public $tanggal;
 
     public function export()
     {
+        $filename = 'kehadiran-siswa-' . $this->kelas->fullName . '-' . $this->tanggal . '.xlsx';
+        $filename = str_replace('/', '-', $filename);
         return (new KehadiranSiswaExport)
             ->forKelas($this->kelas)
             ->forTanggal($this->tanggal)
-            ->download('test.xlsx');
+            ->download($filename);
     }
 
     public Kelas $kelas;
@@ -36,7 +40,9 @@ class TableMataPelajaranKehadiranSiswa extends BaseTable
     {
         $this->kelas = $kelas;
         $this->perPage = $this->kelas->mataPelajarans->count();
-        $this->tanggal = now()->format('Y-m-d');
+        if (!$this->tanggal) {
+            $this->tanggal = now()->format('Y-m-d');
+        }
     }
 
     public function columns(): array

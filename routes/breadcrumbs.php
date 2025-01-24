@@ -266,3 +266,7 @@ Breadcrumbs::for('guru.kehadiran-siswa.show', function (BreadcrumbTrail $trail, 
     $mapel = MataPelajaran::find($mataPelajaran);
     $trail->push($mapel->name, route('guru.kehadiran-siswa.show', $mataPelajaran));
 });
+
+Breadcrumbs::for('profile.edit', function (BreadcrumbTrail $trail) {
+    $trail->push('Profil', route('profile.edit'));
+});

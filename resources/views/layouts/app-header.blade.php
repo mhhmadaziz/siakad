@@ -19,12 +19,14 @@
         <h1 class="font-semibold text-white">Tahun Ajaran {{ $currentTahunAkademik->name }}</h1>
     </div>
     <div class="flex w-full justify-end">
-        <button class="flex items-center gap-2 bg-yellowCustom px-4 py-2">
-            <i class="fas fa-user text-xs"></i>
-            @auth
-                {{ auth()->user()->name }}
-            @endauth
-        </button>
+        <a href="{{ route('profile.edit') }}">
+            <button class="flex items-center gap-2 bg-yellowCustom px-4 py-2">
+                <i class="fas fa-user text-xs"></i>
+                @auth
+                    {{ auth()->user()->name }}
+                @endauth
+            </button>
+        </a>
         <form action="{{ route('logout') }}" method="post">
             @csrf
             <button class="flex items-center gap-2 bg-red-700 px-4 py-2 text-white">

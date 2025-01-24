@@ -7,12 +7,11 @@
     'empty' => 'Tidak Ada Data',
 ])
 <select
-    class="w-full rounded disabled:opacity-50"
     name="{{ $name }}"
     value="{{ old($name, $value) }}"
     {{ $required ? 'required' : '' }}
     {{ $disabled ? 'disabled' : '' }}
-    {{ $attributes }}
+    {{ $attributes->merge(['class' => 'rounded-md border border-zinc-300 p-2 px-4 pr-8 text-black']) }}
 >
     @forelse ($options as $option)
         <option value="{{ $option->value }}" {{ $option->label == $value ? 'selected' : '' }}>

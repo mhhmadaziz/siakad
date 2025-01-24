@@ -20,5 +20,7 @@ Route::group(
         Route::resource('kehadiran-siswa', App\Http\Controllers\Guru\KehadiranSiswaController::class)->except(['create', 'store']);
         Route::get('kehadiran-siswa/{mataPelajaran}/create', [App\Http\Controllers\Guru\KehadiranSiswaController::class, 'create'])->name('kehadiran-siswa.create');
         Route::post('kehadiran-siswa', [App\Http\Controllers\Guru\KehadiranSiswaController::class, 'store'])->name('kehadiran-siswa.store');
+
+        Route::get('jadwal-mata-pelajaran', [App\Http\Controllers\Guru\JadwalMataPelajaranController::class, 'index'])->name('jadwal-mata-pelajaran.index');
     }
 );

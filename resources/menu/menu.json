@@ -165,6 +165,13 @@
             "route": "guru.kehadiran-siswa.index",
             "role": ["guru"],
             "slug": ["guru.kehadiran-siswa.index", "guru.kehadiran-siswa.show"]
+        },
+        {
+            "label": "Jadwal Mata Pelajaran",
+            "icon": "fa-solid fa-border-all",
+            "route": "guru.jadwal-mata-pelajaran.index",
+            "role": ["guru"],
+            "slug": ["guru.jadwal-mata-pelajaran.index"]
         }
     ],
     "home": [

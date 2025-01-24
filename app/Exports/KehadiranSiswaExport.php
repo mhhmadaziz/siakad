@@ -200,7 +200,7 @@ class KehadiranSiswaExport implements FromQuery, WithHeadings, ShouldAutoSize, W
                 for ($i = 0; $i < $this->jadwalMataPelajaranCount; $i++) {
                     $event->sheet->setCellValue('A' . ($this->siswaCount + 14 + 7 + $i), $i + 1);
                     $event->sheet->mergeCells('B' . ($this->siswaCount + 14 + 7 + $i) . ':C' . ($this->siswaCount + 14 + 7 + $i));
-                    $event->sheet->setCellValue('B' . ($this->siswaCount + 14 + 7 + $i), $this->jadwalMataPelajarans[$i]->mataPelajaran->name);
+                    $event->sheet->setCellValue('B' . ($this->siswaCount + 14 + 7 + $i), $this->jadwalMataPelajarans[$i]->mataPelajaran->name . ' (' . $this->jadwalMataPelajarans[$i]->jam . ')');
                     $event->sheet->mergeCells('D' . ($this->siswaCount + 14 + 7 + $i) . ':F' . ($this->siswaCount + 14 + 7 + $i));
                 }
                 // end JURNAL KELAS
