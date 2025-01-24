@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         if (config('app.env') === 'production') {
-            $this->app['request']->server->set('HTTPS', true);
+            URL::forceScheme('https');
         }
     }
 
