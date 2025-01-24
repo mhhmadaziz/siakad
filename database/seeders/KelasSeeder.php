@@ -16,7 +16,7 @@ class KelasSeeder extends Seeder
      */
     public function run(): void
     {
-        $currentTahunAkademik = app(TahunAkademikService::class)->getCurrentTahunAkademik();
-        app(KelasService::class)->createBulk($currentTahunAkademik);
+        /*$currentTahunAkademik = app(TahunAkademikService::class)->getCurrentTahunAkademik();*/
+        /*app(KelasService::class)->createBulk($currentTahunAkademik);*/
     }
 }

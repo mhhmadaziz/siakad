@@ -33,8 +33,8 @@ class DatabaseSeeder extends Seeder
             SiswaSeeder::class,
             TahunAkademikSeeder::class,
             KelasSeeder::class,
-            MataPelajaranSeeder::class,
-            JadwalMataPelajaranSeeder::class,
+            /*MataPelajaranSeeder::class,*/
+            /*JadwalMataPelajaranSeeder::class,*/
         ]);
 
         cache()->flush();
