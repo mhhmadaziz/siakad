@@ -26,6 +26,7 @@ class TableMataPelajaran extends BaseTable
             ->whereHas('kelas', function ($query) {
                 $query->where('tahun_akademik_id', $this->currentTahunAkademik->id);
             })
+            ->orderBy('kelas_id')
             ->latest();
     }
 

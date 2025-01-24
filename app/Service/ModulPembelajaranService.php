@@ -47,7 +47,7 @@ class ModulPembelajaranService
                 'type' => 'file',
                 'required' => true,
                 'disabled' => false,
-                'accept' => '.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.rar',
+                'accept' => '.pdf',
             ],
             (object) [
                 'label' => 'Mata Pelajaran',

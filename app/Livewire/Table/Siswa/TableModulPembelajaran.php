@@ -15,12 +15,7 @@ class TableModulPembelajaran extends BaseTable
     public function query(): Builder
     {
         return ModulPembelajaran::query()
-            ->with(['mataPelajaran', 'mataPelajaran.kelas'])
-            ->whereHas('mataPelajaran.kelas', function ($query) {
-                $query->whereHas('kelasSiswa', function ($query) {
-                    $query->where('siswa_id', auth()->user()->siswa->id);
-                });
-            });
+            ->with(['mataPelajaran', 'mataPelajaran.kelas']);
     }
 
     public function columns(): array
