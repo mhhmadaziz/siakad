@@ -4,7 +4,7 @@ module.exports = {
             name: "siakad",
             // run laravel queue worker
             script: "php",
-            args: "artisan octane:start --port=3000 --admin-port=3001",
+            args: "artisan octane:start --port=3000 --admin-port=3001 --caddyfile=Caddyfile",
         },
     ],
 };
