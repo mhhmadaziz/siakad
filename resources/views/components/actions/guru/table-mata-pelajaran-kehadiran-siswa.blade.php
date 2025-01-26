@@ -8,5 +8,5 @@
         class="rounded-md border border-zinc-300 p-2 px-4 text-black"
     />
 
-    <button class="rounded-md bg-green-600 p-2 px-4 text-white" wire:click="export">Export</button>
+    <button class="rounded-md bg-green-600 p-2 px-4 text-white" wire:click="export">Unduh</button>
 </div>

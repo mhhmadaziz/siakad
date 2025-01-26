@@ -24,7 +24,7 @@ class TableTahunAkademikCms extends BaseTable
     public function updatedFilePpdb($value, $key)
     {
         $this->validate([
-            'filePpdb.*' => 'nullable|file|mimes:pdf|max:2048',
+            'filePpdb.*' => 'nullable|file|mimes:pdf',
         ]);
 
         $tahunAkademik = TahunAkademik::find($key);
