@@ -16,7 +16,7 @@ class ProfilePhotoUpload extends Component
 
     public User $user;
 
-    #[Validate('image|max:2048')]
+    #[Validate('image')]
     public $photo;
 
     public function updatedPhoto()
