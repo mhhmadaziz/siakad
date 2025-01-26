@@ -15,7 +15,7 @@ class CarouselEditor extends Component
 
     public $carousels;
 
-    #[Validate('required|image|mimes:jpeg,png,jpg')]
+    #[Validate('required|image')]
     public $newImage;
 
     public function updatedNewImage()
@@ -33,7 +33,6 @@ class CarouselEditor extends Component
             $this->newImage = null;
             session()->flash('success', 'Gambar berhasil diunggah');
         } catch (\Throwable $th) {
-            dump($th->getMessage());
             session()->flash('error', 'Terjadi kesalahan saat mengunggah gambar ' . $th->getMessage());
         }
     }
