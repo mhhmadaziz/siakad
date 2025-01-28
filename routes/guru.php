@@ -22,5 +22,8 @@ Route::group(
         Route::post('kehadiran-siswa', [App\Http\Controllers\Guru\KehadiranSiswaController::class, 'store'])->name('kehadiran-siswa.store');
 
         Route::get('jadwal-mata-pelajaran', [App\Http\Controllers\Guru\JadwalMataPelajaranController::class, 'index'])->name('jadwal-mata-pelajaran.index');
+
+        Route::get('form', [App\Http\Controllers\Guru\FormController::class, 'index'])->name('form.index');
+        Route::get('form/hasil/{tahunAkademik}/siswa/{jawabanSiswa}', [App\Http\Controllers\Admin\FormController::class, 'hasilSiswa'])->name('form.hasil.siswa');
     }
 );

@@ -172,6 +172,13 @@
             "route": "guru.jadwal-mata-pelajaran.index",
             "role": ["guru"],
             "slug": ["guru.jadwal-mata-pelajaran.index"]
+        },
+        {
+            "label": "Hasil Pengisian Formulir Mata Pelajaran Pilihan",
+            "icon": "fa-solid fa-border-all",
+            "route": "guru.form.index",
+            "role": ["guru"],
+            "slug": ["guru.form.index"]
         }
     ],
     "home": [

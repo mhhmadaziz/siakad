@@ -36,6 +36,20 @@
                         </div>
                     </div>
                 @endforeach
+
+                <div class="grid px-1 py-2 md:grid-cols-2">
+                    <div>
+                        <h1 class="font-semibold">Kelas</h1>
+                    </div>
+                    <div>
+                        <h2>
+                            @foreach ($siswa->kelas as $item)
+                                {{ $item->fullName }}
+                                <br />
+                            @endforeach
+                        </h2>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

@@ -267,6 +267,15 @@ Breadcrumbs::for('guru.kehadiran-siswa.show', function (BreadcrumbTrail $trail, 
     $trail->push($mapel->name, route('guru.kehadiran-siswa.show', $mataPelajaran));
 });
 
+Breadcrumbs::for('guru.form.index', function (BreadcrumbTrail $trail) {
+    $trail->push('Hasil Pengisian Formulir Mata Pelajaran Pilihan', route('guru.form.index'));
+});
+
+Breadcrumbs::for('guru.form.hasil.siswa', function (BreadcrumbTrail $trail, $tahunAkademik, $jawabanSiswa) {
+    $trail->parent('guru.form.index');
+    $trail->push($jawabanSiswa->siswa->user->name, route('guru.form.hasil.siswa', [$tahunAkademik, $jawabanSiswa]));
+});
+
 Breadcrumbs::for('profile.edit', function (BreadcrumbTrail $trail) {
     $trail->push('Profil', route('profile.edit'));
 });
