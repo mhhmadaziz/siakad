@@ -34,6 +34,7 @@ class MataPelajaranController extends Controller
     {
         $kelas = Kelas::currentTahunAkademik()
             ->orderBy('tingkat_kelas_id', 'asc')
+            ->orderBy('name')
             ->get()
             ->map(
                 function ($item) {
