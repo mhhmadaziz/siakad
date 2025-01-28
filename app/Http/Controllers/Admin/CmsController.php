@@ -60,7 +60,7 @@ class CmsController extends Controller
     public function galeriFotoStore(Request $request)
     {
         $validated = $request->validate([
-            'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'foto' => 'required|image|mimes:jpeg,png,jpg',
             'judul' => 'required|string',
             'tanggal' => 'required|date',
         ]);
@@ -87,7 +87,7 @@ class CmsController extends Controller
     public function galeriVideoStore(Request $request)
     {
         $validated = $request->validate([
-            'video' => 'required|file|mimes:mp4,mov,avi,3gp,wmv,flv|max:10240',
+            'video' => 'required|file|mimes:mp4,mov,avi,3gp,wmv,flv',
         ]);
 
         try {
