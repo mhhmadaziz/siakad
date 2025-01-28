@@ -16,6 +16,8 @@ class TableSiswa extends BaseTable
 
     public $route = 'admin.siswa';
 
+    public $searchColumns = ['user.name', 'nisn', 'user.jenisKelamin.name', 'user.telepon'];
+
     public function query(): Builder
     {
         return Siswa::query()

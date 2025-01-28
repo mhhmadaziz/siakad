@@ -14,6 +14,8 @@ class TableModulPembelajaran extends BaseTable
 {
     public $actionView = 'components.actions.admin.table-modul-pembelajaran';
 
+    public $searchColumns = ['mataPelajaran.kelas.name', 'mataPelajaran.name', 'name'];
+
     public function query(): Builder
     {
         return ModulPembelajaran::query()

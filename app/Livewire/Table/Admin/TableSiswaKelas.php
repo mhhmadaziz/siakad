@@ -15,6 +15,8 @@ class TableSiswaKelas extends BaseTable
 
     public $actionView = 'components.actions.admin.table-siswa-kelas-action';
 
+    public $searchColumns = ['siswa.user.name'];
+
     public function delete($id)
     {
         $siswa = KelasSiswa::find($id);

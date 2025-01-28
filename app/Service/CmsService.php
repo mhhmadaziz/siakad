@@ -66,20 +66,19 @@ class CmsService
     {
         return DB::transaction(function () use ($validated) {
 
-            $video = $validated['video'];
+            $video = $validated['url'];
 
             $oldVideo = json_decode($this->getCms('galeri_video'), true) ?? [];
 
             // store with json format video file, judul, and tanggal
-            $fileName = $video->hashName();
             $oldVideo[] = [
-                'video' => $fileName,
+                'id' => uniqid(),
+                'video' => $video,
             ];
 
             $this->upsertCms('galeri_video', json_encode($oldVideo));
-            Storage::disk('public')->putFileAs('galeri/video', $video, $fileName);
 
-            return $fileName;
+            return $video;
         });
     }
 
@@ -108,12 +107,10 @@ class CmsService
             $oldVideo = json_decode($this->getCms('galeri_video'), true) ?? [];
 
             $newArrayVideo = array_filter($oldVideo, function ($item) use ($fileName) {
-                return $item['video'] != $fileName;
+                return $item['id'] != $fileName;
             });
 
             $this->upsertCms('galeri_video', json_encode(array_values($newArrayVideo)));
-
-            Storage::disk('public')->delete('galeri/video/' . $fileName);
 
             return $fileName;
         });

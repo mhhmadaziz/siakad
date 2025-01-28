@@ -19,9 +19,9 @@ class TableKelas extends BaseTable
         return Kelas::query()
             ->with(['tahunAkademik'])
             ->withCount(['siswas'])
-            ->whereHas('tahunAkademik', function ($query) {
-                $query->where('id', $this->currentTahunAkademik->id);
-            })
+            ->currentTahunAkademik()
+            ->orderBy('tingkat_kelas_id')
+            ->orderBy('name')
             ->latest();
     }
 

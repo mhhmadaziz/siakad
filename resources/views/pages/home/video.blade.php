@@ -17,12 +17,9 @@
             <section class="mt-2 w-full md:mt-0">
                 <div class="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-4">
                     @forelse ($videos as $item)
-                        <div class="flex h-48 flex-col rounded-lg border border-zinc-200 bg-white p-2 shadow-lg">
+                        <div class="flex flex-col rounded-lg border border-zinc-200 bg-white p-2 shadow-lg">
                             <div class="h-full w-full rounded-lg bg-zinc-300">
-                                <iframe
-                                    src="{{ asset('storage/galeri/video/' . $item['video']) }}"
-                                    class="h-full w-full rounded-lg object-cover"
-                                ></iframe>
+                                <x-embed :url="$item['video']" />
                             </div>
                         </div>
                     @empty

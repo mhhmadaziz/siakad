@@ -89,17 +89,10 @@
                 <div class="grid grid-cols-2 gap-2 rounded-md border border-zinc-300 p-2 md:grid-cols-5" x-data>
                     @forelse ($videos as $item)
                         <div class="relative">
-                            <video
-                                src="
-                                    {{ asset('storage/galeri/video/' . $item['video']) }}
-                                "
-                                alt="carousel"
-                                class="h-32 w-full rounded-md border border-zinc-300 object-cover"
-                                controls
-                            ></video>
+                            <x-embed :url="$item['video']" />
 
                             <form
-                                action="{{ route('admin.cms.galeri.video-delete', $item['video']) }}"
+                                action="{{ route('admin.cms.galeri.video-delete', $item['id']) }}"
                                 method="post"
                                 @submit=" confirm('Apakah Anda yakin?') || event.preventDefault() "
                             >

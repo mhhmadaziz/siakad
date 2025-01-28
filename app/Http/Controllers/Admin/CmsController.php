@@ -86,8 +86,9 @@ class CmsController extends Controller
 
     public function galeriVideoStore(Request $request)
     {
+        // validasi url dan video, jika url tidak kosong maka video harus kosong
         $validated = $request->validate([
-            'video' => 'required|file|mimes:mp4,mov,avi,3gp,wmv,flv',
+            'url' => 'nullable',
         ]);
 
         try {

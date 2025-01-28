@@ -19,6 +19,7 @@ class TableSiswaKehadiranSiswa extends BaseTable
     public KehadiranSiswa $kehadiranSiswa;
     public $kehadiranSiswaChilds;
 
+
     public $statusKehadiranSiswa = [];
     public function updatedStatusKehadiranSiswa($value, $siswaId)
     {

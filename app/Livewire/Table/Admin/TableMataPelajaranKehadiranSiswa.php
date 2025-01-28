@@ -15,6 +15,8 @@ class TableMataPelajaranKehadiranSiswa extends BaseTable
 {
     public $actionView = 'components.actions.admin.table-mata-pelajaran-kehadiran-siswa';
 
+    public $searchColumns = ['name', 'guru.user.name'];
+
     #[Url()]
     public $tanggal;
 

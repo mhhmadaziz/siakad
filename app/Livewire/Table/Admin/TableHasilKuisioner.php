@@ -13,7 +13,8 @@ class TableHasilKuisioner extends BaseTable
 {
     public TahunAkademik $tahunAkademik;
     public $actionView = 'components.actions.admin.table-hasil-kuisioner';
-    /*public $searchColumns = ['user.name'];*/
+    public $searchColumns = ['siswa.user.name'];
+
 
     public function export()
     {

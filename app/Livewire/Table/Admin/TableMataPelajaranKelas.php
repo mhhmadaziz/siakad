@@ -14,6 +14,8 @@ class TableMataPelajaranKelas extends BaseTable
 
     public $actionView = 'components.actions.admin.table-mata-pelajaran-kelas-action';
 
+    public $searchColumns = ['name', 'guru.user.name'];
+
     public Kelas $kelas;
 
     public function query(): Builder
