@@ -112,28 +112,28 @@
         },
         {
             "label": "Profil",
-            "icon": "fa-solid fa-border-all",
+            "icon": "fa-solid fa-user",
             "route": "siswa.profile.index",
             "role": ["siswa"],
             "slug": ["siswa.profile.index"]
         },
         {
             "label": "Jadwal Mata Pelajaran",
-            "icon": "fa-solid fa-border-all",
+            "icon": "fa-solid fa-person-chalkboard",
             "route": "siswa.jadwal-mata-pelajaran.index",
             "role": ["siswa"],
             "slug": ["siswa.jadwal-mata-pelajaran.index", "siswa.jadwal-mata-pelajaran.show"]
         },
         {
             "label": "Modul Pembelajaran",
-            "icon": "fa-solid fa-border-all",
+            "icon": "fa-solid fa-book",
             "route": "siswa.modul-pembelajaran.index",
             "role": ["siswa"],
             "slug": ["siswa.modul-pembelajaran.index", "siswa.modul-pembelajaran.show"]
         },
         {
             "label": "Formulir Mata Pelajaran Pilihan",
-            "icon": "fa-solid fa-border-all",
+            "icon": "fa-solid fa-file",
             "route": "siswa.form.index",
             "role": ["siswa"],
             "slug": ["siswa.form.index", "siswa.form.show"]
@@ -147,35 +147,35 @@
         },
         {
             "label": "Profil",
-            "icon": "fa-solid fa-border-all",
+            "icon": "fa-solid fa-user",
             "route": "guru.profile.index",
             "role": ["guru"],
             "slug": ["guru.profile.index"]
         },
         {
             "label": "Modul Pembelajaran",
-            "icon": "fa-solid fa-border-all",
+            "icon": "fa-solid fa-book",
             "route": "guru.modul-pembelajaran.index",
             "role": ["guru"],
             "slug": ["guru.modul-pembelajaran.index", "guru.modul-pembelajaran.show"]
         },
         {
             "label": "Kehadiran Siswa",
-            "icon": "fa-solid fa-border-all",
+            "icon": "fa-solid fa-users-rectangle",
             "route": "guru.kehadiran-siswa.index",
             "role": ["guru"],
             "slug": ["guru.kehadiran-siswa.index", "guru.kehadiran-siswa.show"]
         },
         {
             "label": "Jadwal Mata Pelajaran",
-            "icon": "fa-solid fa-border-all",
+            "icon": "fa-solid fa-person-chalkboard",
             "route": "guru.jadwal-mata-pelajaran.index",
             "role": ["guru"],
             "slug": ["guru.jadwal-mata-pelajaran.index"]
         },
         {
             "label": "Hasil Pengisian Formulir Mata Pelajaran Pilihan",
-            "icon": "fa-solid fa-border-all",
+            "icon": "fa-solid fa-file",
             "route": "guru.form.index",
             "role": ["guru"],
             "slug": ["guru.form.index"]
