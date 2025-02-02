@@ -39,7 +39,17 @@ class KelasController extends Controller
     {
         $tingkatKelas = $this->optionService->getSelectOptionsByCategoryKey('tingkat_kelas');
 
-        return view('pages.admin.kelas.create', compact('tingkatKelas'));
+        $waliKelas = Guru::all()
+            ->map(
+                function ($item) {
+                    return (object) [
+                        'value' => $item->id,
+                        'label' => $item->user->name,
+                    ];
+                }
+            );
+
+        return view('pages.admin.kelas.create', compact('tingkatKelas', 'waliKelas'));
     }
 
     /**
@@ -51,6 +61,7 @@ class KelasController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'tingkat_kelas_id' => 'required',
+            'wali_kelas_id' => 'required:exists:guru,id',
         ]);
 
         $validated['tahun_akademik_id'] = $this->tahunAkademikService->getCurrentTahunAkademik()->id;
@@ -77,8 +88,17 @@ class KelasController extends Controller
      */
     public function edit(Kelas $kelas)
     {
+        $waliKelas = Guru::all()
+            ->map(
+                function ($item) {
+                    return (object) [
+                        'value' => $item->id,
+                        'label' => $item->user->name,
+                    ];
+                }
+            );
 
-        return view('pages.admin.kelas.edit', compact('kelas'));
+        return view('pages.admin.kelas.edit', compact('kelas', 'waliKelas'));
     }
 
     /**
@@ -89,6 +109,7 @@ class KelasController extends Controller
 
         $validated = $request->validate([
             'name' => 'required',
+            'wali_kelas_id' => 'required:exists:guru,id',
         ]);
 
         try {

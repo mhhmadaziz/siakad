@@ -39,6 +39,7 @@ class TableKelasTahunAkademik extends BaseTable
     {
         return [
             Column::make('fullName', 'Kelas'),
+            Column::make('waliKelas.user.name', 'Wali Kelas'),
             Column::make('siswas_count', 'Jumlah Siswa'),
             Column::make('siswaLakiLaki', 'Laki Laki'),
             Column::make('siswaPerempuan', 'Perempuan'),

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\TahunAkademik;
 use App\Services\OptionService;
@@ -76,7 +77,16 @@ class TahunAkademikController extends Controller
     public function createKelas(TahunAkademik $tahunAkademik)
     {
         $tingkatKelas = $this->optionService->getSelectOptionsByCategoryKey('tingkat_kelas');
-        return view('pages.admin.tahun-akademik.kelas.create', compact('tahunAkademik', 'tingkatKelas'));
+        $waliKelas = Guru::all()
+            ->map(
+                function ($item) {
+                    return (object) [
+                        'value' => $item->id,
+                        'label' => $item->user->name,
+                    ];
+                }
+            );
+        return view('pages.admin.tahun-akademik.kelas.create', compact('tahunAkademik', 'tingkatKelas', 'waliKelas'));
     }
 
     public function storeKelas(Request $request, TahunAkademik $tahunAkademik)
@@ -84,6 +94,7 @@ class TahunAkademikController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'tingkat_kelas_id' => 'required',
+            'wali_kelas_id' => 'required:exists:guru,id',
         ]);
 
         try {
@@ -112,6 +123,8 @@ class TahunAkademikController extends Controller
      */
     public function edit(TahunAkademik $tahunAkademik)
     {
+
+
         return view('pages.admin.tahun-akademik.edit', compact('tahunAkademik'));
     }
 

@@ -23,11 +23,11 @@ enum StatusKehadiranEnum: string
     public function label(): string
     {
         return match ($this) {
-            static::HADIR => 'H',
+            static::HADIR => ' ',
             static::TERLAMBAT => 'T',
-            static::TIDAK_HADIR => 'TH',
+            static::TIDAK_HADIR => 'A',
             static::IZIN => 'I',
-            default => 'TH',
+            default => 'A',
         };
     }
 }

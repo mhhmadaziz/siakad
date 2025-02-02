@@ -38,6 +38,19 @@
                     @endif
                 </div>
 
+                <div class="flex items-center p-2">
+                    <label for="">Wali Kelas</label>
+                </div>
+                <div class="flex flex-col justify-center p-2">
+                    <x-inputs.select name="wali_kelas_id" :options="$waliKelas" />
+
+                    @if ($errors->has('wali_kelas_id'))
+                        <span class="text-red-500">
+                            {{ $errors->first('wali_kelas_id') }}
+                        </span>
+                    @endif
+                </div>
+
                 <div></div>
                 <div class="flex justify-end gap-2 p-2">
                     <button class="rounded bg-green-600 px-4 py-2 font-semibold text-white" type="submit">

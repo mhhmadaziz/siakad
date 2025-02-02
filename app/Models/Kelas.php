@@ -14,6 +14,7 @@ class Kelas extends Model
         'name',
         'tingkat_kelas_id',
         'tahun_akademik_id',
+        'wali_kelas_id',
     ];
 
     public function tahunAkademik()
@@ -29,6 +30,11 @@ class Kelas extends Model
     public function tingkatKelas()
     {
         return $this->belongsTo(Option::class, 'tingkat_kelas_id');
+    }
+
+    public function waliKelas()
+    {
+        return $this->belongsTo(Guru::class, 'wali_kelas_id');
     }
 
     public function siswas()
