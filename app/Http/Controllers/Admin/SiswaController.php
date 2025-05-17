@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Siswa;
 use App\Services\SiswaService;
 use Illuminate\Http\Request;
+use App\Exports\SiswaExportTemplate;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SiswaController extends Controller
 {
@@ -134,5 +136,25 @@ class SiswaController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Gagal menghapus siswa. ' . $th->getMessage());
         }
+    }
+
+    public function downloadTemplate()
+    {
+        return Excel::download(new SiswaExportTemplate(), 'template_impor_siswa.xlsx');
+    }
+
+    public function export(Request $request)
+    {
+        $kelasId = $request->kelas_id;
+        $filename = 'data_siswa';
+        
+        if ($kelasId) {
+            $kelas = \App\Models\Kelas::find($kelasId);
+            if ($kelas) {
+                $filename = 'data_siswa_kelas_' . $kelas->name;
+            }
+        }
+        
+        return Excel::download(new SiswaExport($kelasId), $filename . '.xlsx');
     }
 }

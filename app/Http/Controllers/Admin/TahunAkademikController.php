@@ -9,6 +9,7 @@ use App\Models\TahunAkademik;
 use App\Services\OptionService;
 use App\Services\TahunAkademikService;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TahunAkademikController extends Controller
 {
@@ -67,6 +68,11 @@ class TahunAkademikController extends Controller
     public function show(TahunAkademik $tahunAkademik)
     {
         return view('pages.admin.tahun-akademik.show', compact('tahunAkademik'));
+    }
+
+    public function exportTemplate()
+    {
+        return Excel::download(new \App\Exports\SiswaExportTemplate(), 'template-import-siswa.xlsx');
     }
 
     public function kelas(TahunAkademik $tahunAkademik)

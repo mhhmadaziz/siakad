@@ -16,9 +16,13 @@ Route::group(
     function () {
         Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
+
+        Route::get('siswa-template-download', [App\Http\Controllers\Admin\TahunAkademikController::class, 'exportTemplate'])->name('siswa.export-template.download');
+
         Route::resource('tahun-akademik', App\Http\Controllers\Admin\TahunAkademikController::class);
         Route::prefix('tahun-akademik')->group(
             function () {
+
 
                 Route::post('{tahun_akademik}/uploadPpdb', [App\Http\Controllers\Admin\TahunAkademikController::class, 'uploadPpdb'])->name('tahun-akademik.upload-ppdb');
                 Route::post('{tahun_akademik}/import-data', [App\Http\Controllers\Admin\TahunAkademikController::class, 'importData'])->name('tahun-akademik.import-data');

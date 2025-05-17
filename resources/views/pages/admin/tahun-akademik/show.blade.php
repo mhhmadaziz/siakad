@@ -43,6 +43,9 @@
                             Import Data
                         </label>
                     </form>
+                    <a href="{{ route('admin.siswa.export-template.download') }}">
+                        <button class="rounded-md bg-yellowCustom px-4 py-2">Download template</button>
+                    </a>
                 </div>
             </div>
 
